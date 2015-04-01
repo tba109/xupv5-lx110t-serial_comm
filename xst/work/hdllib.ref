@@ -1,0 +1,4 @@
+MO rs232_ser NULL rs232_ser.v vlg55/rs232__ser.bin 1427924934
+MO posedge_detector NULL posedge_detector.v vlg78/posedge__detector.bin 1427920592
+MO rs232_des NULL rs232_des.v vlg5F/rs232__des.bin 1427920592
+MO sync NULL sync.v vlg01/sync.bin 1427920592

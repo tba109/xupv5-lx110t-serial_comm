@@ -1,0 +1,5 @@
+set -tmpdir "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/xst/projnav.tmp"
+set -xsthdpdir "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/xst"
+elaborate
+-ifn rs232_ser.prj
+-ifmt mixed
