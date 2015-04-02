@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 // Tyler Anderson Wed, Apr 01, 2015  4:43:49 PM
 //
 // rs232_ser.v
@@ -12,7 +12,7 @@
 //
 // Clock rate needs to be >=2x baud rate for this to really work
 // 
-////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 
 module rs232_ser
   (
@@ -32,7 +32,7 @@ module rs232_ser
    // Finite state machine
    reg [1:0]     fsm;
    localparam
-     S_IDLE  = 2'd0, // sit around waiting for a transmission request from upstream and handshake data in when you get it
+     S_IDLE  = 2'd0, // wait for TX req from upstream and handshake data in when you get it
      S_START = 2'd1, // transmit the start bit
      S_SHIFT = 2'd2, // shift out data byte (little endian)
      S_STOP  = 2'd3; // transmit the stop bit
@@ -88,8 +88,7 @@ module rs232_ser
 		      launch_cnt <= launch_cnt + 1'b1;
 		   end
 	      end
-		   
-		   
+		   		   
 	    S_SHIFT:
 	      begin
 		 tx <= shift_reg[0];

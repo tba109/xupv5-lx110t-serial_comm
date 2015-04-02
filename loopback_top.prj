@@ -1,0 +1,5 @@
+verilog work "sync.v"
+verilog work "posedge_detector.v"
+verilog work "rs232_ser.v"
+verilog work "rs232_des.v"
+verilog work "loopback_top.v"
