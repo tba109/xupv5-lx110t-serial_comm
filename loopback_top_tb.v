@@ -7,11 +7,15 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
+// `define TEST_1
+// `define TEST_2
+`define TEST_3
+
 module loopback_top_tb;
 
    // Inputs
    reg USER_CLK;
-   reg CPU_RESET;
+   reg FPGA_CPU_RESET;
    reg FPGA_SERIAL_RX;
    
    // Outputs
@@ -20,7 +24,7 @@ module loopback_top_tb;
    // Instantiate the Unit Under Test (UUT)
    loopback_top uut (
 		     .USER_CLK(USER_CLK), 
-		     .CPU_RESET(CPU_RESET), 
+		     .FPGA_CPU_RESET(FPGA_CPU_RESET), 
 		     .FPGA_SERIAL_TX(FPGA_SERIAL_TX), 
 		     .FPGA_SERIAL_RX(FPGA_SERIAL_RX)
 		     );
@@ -38,13 +42,15 @@ module loopback_top_tb;
      begin
 	// Initialize Inputs
 	USER_CLK = 0;
-	CPU_RESET = 0;
+	FPGA_CPU_RESET = 0;
 	FPGA_SERIAL_RX = 0;
 	
 	// Wait 100 ns for global reset to finish
 	#100;
-	CPU_RESET = 1'b1;
+	FPGA_CPU_RESET = 1'b1;
 		
+
+`ifdef TEST_1
 	// Add stimulus here
 	// Data word 0xAA
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1; // Start bit
@@ -57,7 +63,9 @@ module loopback_top_tb;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0; // Stop bit
+`endif //  `ifdef TEST_1
 
+`ifdef TEST_2
 	// Data word 0x55
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1; // Start bit
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
@@ -69,6 +77,23 @@ module loopback_top_tb;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0; 
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0; // Stop bit
+`endif
+
+`ifdef TEST_3	
+	// Data word 0x61 (the letter 'a')
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1; // Start bit
+	
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0; 
+	
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0; // Stop bit
+`endif
 	
 	// Let the dust settle
 	#(3*RS232_PERIOD);

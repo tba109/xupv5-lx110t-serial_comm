@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\cygwin64\home\volundr\sat_erp\firmware\xupv5-lx110t-serial_comm\loopback_top.ncd
+OUTFILE=C:\cygwin64\home\volundr\sat_erp\firmware\xupv5-lx110t-serial_comm\loopback_top.bit
+FAMILY=Virtex5
+PART=xc5vlx110t-1ff1136
+WORKINGDIR=C:\cygwin64\home\volundr\sat_erp\firmware\xupv5-lx110t-serial_comm
+LICENSE=ISE
+USER_INFO=174251744_179659119_210565914_163

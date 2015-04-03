@@ -1,11 +1,11 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Wed Apr 01 22:32:19 2015
+// Written by: Map P.20131013 on Fri Apr 03 12:33:34 2015
 //! **************************************************************************
 
 SCHEMATIC START;
+COMP "FPGA_CPU_RESET" LOCATE = SITE "E9" LEVEL 1;
 COMP "USER_CLK" LOCATE = SITE "AH15" LEVEL 1;
 COMP "FPGA_SERIAL_RX" LOCATE = SITE "AG15" LEVEL 1;
 COMP "FPGA_SERIAL_TX" LOCATE = SITE "AG20" LEVEL 1;
-COMP "FPGA_CPU_RESET" LOCATE = SITE "E9" LEVEL 1;
 SCHEMATIC END;
 

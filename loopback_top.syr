@@ -1,21 +1,18 @@
-Release 14.7 - xst P.20131013 (lin64)
+Release 14.7 - xst P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
---> 
-Parameter TMPDIR set to xst/projnav.tmp
+--> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
---> 
-Parameter xsthdpdir set to xst
+--> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
---> 
-Reading design: loopback_top.prj
+--> Reading design: loopback_top.prj
 
 TABLE OF CONTENTS
   1) Synthesis Options Summary
@@ -403,9 +400,9 @@ Design Statistics
 # IOs                              : 4
 
 Cell Usage :
-# BELS                             : 171
+# BELS                             : 173
 #      GND                         : 1
-#      INV                         : 3
+#      INV                         : 5
 #      LUT1                        : 26
 #      LUT2                        : 2
 #      LUT3                        : 12
@@ -433,14 +430,14 @@ Selected Device : 5vlx110tff1136-1
 
 Slice Logic Utilization: 
  Number of Slice Registers:              60  out of  69120     0%  
- Number of Slice LUTs:                  115  out of  69120     0%  
-    Number used as Logic:               115  out of  69120     0%  
+ Number of Slice LUTs:                  117  out of  69120     0%  
+    Number used as Logic:               117  out of  69120     0%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    118
-   Number with an unused Flip Flop:      58  out of    118    49%  
-   Number with an unused LUT:             3  out of    118     2%  
-   Number of fully used LUT-FF pairs:    57  out of    118    48%  
+ Number of LUT Flip Flop pairs used:    120
+   Number with an unused Flip Flop:      60  out of    120    50%  
+   Number with an unused LUT:             3  out of    120     2%  
+   Number of fully used LUT-FF pairs:    57  out of    120    47%  
    Number of unique control sets:         2
 
 IO Utilization: 
@@ -487,8 +484,8 @@ Timing Summary:
 Speed Grade: -1
 
    Minimum period: 2.971ns (Maximum Frequency: 336.587MHz)
-   Minimum input arrival time before clock: 1.627ns
-   Maximum output required time after clock: 3.264ns
+   Minimum input arrival time before clock: 1.733ns
+   Maximum output required time after clock: 3.838ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -523,27 +520,27 @@ Delay:               2.971ns (Levels of Logic = 3)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'USER_CLK'
   Total number of paths / destination ports: 19 / 19
 -------------------------------------------------------------------------
-Offset:              1.627ns (Levels of Logic = 2)
+Offset:              1.733ns (Levels of Logic = 2)
   Source:            FPGA_SERIAL_RX (PAD)
-  Destination:       RS232_DES0/rx_data_7 (FF)
+  Destination:       RS232_DES0/SYNC0/ff_0 (FF)
   Destination Clock: USER_CLK rising
 
-  Data Path: FPGA_SERIAL_RX to RS232_DES0/rx_data_7
+  Data Path: FPGA_SERIAL_RX to RS232_DES0/SYNC0/ff_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             2   0.818   0.715  FPGA_SERIAL_RX_IBUF (FPGA_SERIAL_RX_IBUF)
-     LUT3:I0->O            1   0.094   0.000  RS232_DES0/rx_data_7_rstpot (RS232_DES0/rx_data_7_rstpot)
-     FDC:D                    -0.018          RS232_DES0/rx_data_7
+     IBUF:I->O             2   0.818   0.341  FPGA_SERIAL_RX_IBUF (FPGA_SERIAL_RX_IBUF)
+     INV:I->O              1   0.238   0.336  RS232_DES0_not00001_INV_0 (RS232_DES0_not0000)
+     FDC:D                    -0.018          RS232_DES0/SYNC0/ff_0
     ----------------------------------------
-    Total                      1.627ns (0.912ns logic, 0.715ns route)
-                                       (56.1% logic, 43.9% route)
+    Total                      1.733ns (1.056ns logic, 0.677ns route)
+                                       (60.9% logic, 39.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'USER_CLK'
   Total number of paths / destination ports: 1 / 1
 -------------------------------------------------------------------------
-Offset:              3.264ns (Levels of Logic = 1)
+Offset:              3.838ns (Levels of Logic = 2)
   Source:            RS232_SER0/tx (FF)
   Destination:       FPGA_SERIAL_TX (PAD)
   Source Clock:      USER_CLK rising
@@ -553,21 +550,21 @@ Offset:              3.264ns (Levels of Logic = 1)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDC:C->Q              2   0.471   0.341  RS232_SER0/tx (RS232_SER0/tx)
+     INV:I->O              1   0.238   0.336  FPGA_SERIAL_TX1_INV_0 (FPGA_SERIAL_TX_OBUF)
      OBUF:I->O                 2.452          FPGA_SERIAL_TX_OBUF (FPGA_SERIAL_TX)
     ----------------------------------------
-    Total                      3.264ns (2.923ns logic, 0.341ns route)
-                                       (89.6% logic, 10.4% route)
+    Total                      3.838ns (3.161ns logic, 0.677ns route)
+                                       (82.4% logic, 17.6% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 4.86 secs
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 6.04 secs
  
 --> 
 
-
-Total memory usage is 551856 kilobytes
+Total memory usage is 292320 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)

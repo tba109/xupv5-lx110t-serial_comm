@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="loopback_top_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="4" />
+   <wvobject fp_name="/loopback_top_tb/FPGA_SERIAL_TX" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">FPGA_SERIAL_TX</obj_property>
+      <obj_property name="ObjectShortName">FPGA_SERIAL_TX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/loopback_top_tb/USER_CLK" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">USER_CLK</obj_property>
+      <obj_property name="ObjectShortName">USER_CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/loopback_top_tb/FPGA_CPU_RESET" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">FPGA_CPU_RESET</obj_property>
+      <obj_property name="ObjectShortName">FPGA_CPU_RESET</obj_property>
+   </wvobject>
+   <wvobject fp_name="/loopback_top_tb/FPGA_SERIAL_RX" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">FPGA_SERIAL_RX</obj_property>
+      <obj_property name="ObjectShortName">FPGA_SERIAL_RX</obj_property>
+   </wvobject>
+</wave_config>

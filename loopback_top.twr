@@ -1,10 +1,10 @@
 --------------------------------------------------------------------------------
-Release 14.7 Trace  (lin64)
+Release 14.7 Trace  (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-/home/tyler/xilinx/ISE_14.7/14.7/ISE_DS/ISE/bin/lin64/unwrapped/trce -intstyle
-ise -v 3 -s 1 -n 3 -fastpaths -xml loopback_top.twx loopback_top.ncd -o
-loopback_top.twr loopback_top.pcf -ucf pin_assignments.ucf
+C:\Xilinx_ISE\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s
+1 -n 3 -fastpaths -xml loopback_top.twx loopback_top.ncd -o loopback_top.twr
+loopback_top.pcf -ucf pin_assignments.ucf
 
 Design file:              loopback_top.ncd
 Physical constraint file: loopback_top.pcf
@@ -37,8 +37,8 @@ Setup/Hold to clock USER_CLK
               |Max Setup to|Max Hold to |                  | Clock  |
 Source        | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
 --------------+------------+------------+------------------+--------+
-FPGA_CPU_RESET|    1.841(R)|    0.756(R)|USER_CLK_BUFGP    |   0.000|
-FPGA_SERIAL_RX|    1.171(R)|    1.098(R)|USER_CLK_BUFGP    |   0.000|
+FPGA_CPU_RESET|    2.242(R)|    0.502(R)|USER_CLK_BUFGP    |   0.000|
+FPGA_SERIAL_RX|    0.867(R)|    1.763(R)|USER_CLK_BUFGP    |   0.000|
 --------------+------------+------------+------------------+--------+
 
 Clock USER_CLK to Pad
@@ -46,7 +46,7 @@ Clock USER_CLK to Pad
               | clk (edge) |                  | Clock  |
 Destination   |   to PAD   |Internal Clock(s) | Phase  |
 --------------+------------+------------------+--------+
-FPGA_SERIAL_TX|   10.611(R)|USER_CLK_BUFGP    |   0.000|
+FPGA_SERIAL_TX|   10.308(R)|USER_CLK_BUFGP    |   0.000|
 --------------+------------+------------------+--------+
 
 Clock to Setup on destination clock USER_CLK
@@ -54,18 +54,18 @@ Clock to Setup on destination clock USER_CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-USER_CLK       |    3.200|         |         |         |
+USER_CLK       |    3.073|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Wed Apr  1 22:32:49 2015 
+Analysis completed Fri Apr 03 12:34:07 2015 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 598 MB
+Peak Memory Usage: 417 MB
 
 
 

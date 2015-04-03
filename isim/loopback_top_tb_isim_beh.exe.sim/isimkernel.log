@@ -2,14 +2,14 @@ Command line:
    loopback_top_tb_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  40808
+     -socket  49979
 
-Wed Apr  1 21:41:05 2015
+Fri Apr 03 12:04:26 2015
 
 
- Elaboration Time: 0.02 sec
+ Elaboration Time: 0.0468 sec
 
- Current Memory Usage: 237.969 Meg
+ Current Memory Usage: 831.959 Meg
 
  Total Signals          : 39
  Total Nets             : 29
@@ -20,9 +20,9 @@ Wed Apr  1 21:41:05 2015
  Total Traceable Variables  : 64
  Total Scalar Nets and Variables : 861
 
- Total Simulation Time: 2.33 sec
+ Total Simulation Time: 1.99681 sec
 
- Current Memory Usage: 313.471 Meg
+ Current Memory Usage: 674.673 Meg
 
-Wed Apr  1 22:04:00 2015
+Fri Apr 03 12:29:43 2015
 
