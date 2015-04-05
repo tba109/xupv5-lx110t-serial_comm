@@ -17,8 +17,7 @@ module sync
    parameter P_NFF = 2;
    localparam NFF = (P_NFF > 1) ? P_NFF : 2; 
 
-   // Need to figure out attribute to place FF's near each other
-   reg [NFF-1:0] ff;
+   reg [NFF-1:0] ff; // synthesis attribute shreg_extract of ff is no;
          
    always @(posedge clk or negedge rst_n)
      begin
