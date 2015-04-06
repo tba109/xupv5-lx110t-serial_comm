@@ -29,6 +29,10 @@ module rs232_des
    
    parameter P_CLK_FREQ_HZ = 100000000;
    parameter P_BAUD_RATE = 9600;
+
+   // Goofy mark/space business
+   wire 	    rx_n = !rx;
+   
      
    // Finite state machine
    reg [1:0] 	    fsm;
@@ -39,10 +43,10 @@ module rs232_des
      S_STOP  = 2'd3; // wait for the stop bit to finish
          
    // Synchronize rx into the clk domain and detect it's positive edgeOA
-   wire 	    rx_s;
-   wire 	    rx_s_pedge;
-   sync SYNC0(.clk(clk), .rst_n(rst_n), .a(rx), .y(rx_s));
-   posedge_detector PEDGE0(.clk(clk), .rst_n(rst_n), .a(rx_s), .y(rx_s_pedge));
+   wire 	    rx_n_s;
+   wire 	    rx_n_s_pedge;
+   sync SYNC0(.clk(clk), .rst_n(rst_n), .a(rx_n), .y(rx_n_s));
+   posedge_detector PEDGE0(.clk(clk), .rst_n(rst_n), .a(rx_n_s), .y(rx_n_s_pedge));
    
    // Count to the center of each bit and latch on it
    localparam START_LATCH_CNT_MAX = P_CLK_FREQ_HZ/P_BAUD_RATE/2;
@@ -54,11 +58,11 @@ module rs232_des
    // Count the 8 bits to be shifted in
    reg [2:0] 	    shift_cnt;
 
-   // Handshake to downstream
+   // Handshake to downstream only if you get the stop bit (i.e., watch out for "break" condition.)
    // Note that downstream needs to be processing fast enough to keep up here
    always @(posedge clk or negedge rst_n )
      if( !rst_n ) rx_req <= 1'b0;
-     else if( (fsm == S_SHIFT) && (shift_cnt == 3'd7) && (latch_cnt == SHIFT_LATCH_CNT_MAX) ) rx_req <= 1'b1;
+     else if( (fsm == S_STOP) && (latch_cnt == STOP_LATCH_CNT_MAX) && (rx_n_s == 1'b0) ) rx_req <= 1'b1;
      else if( rx_ack ) rx_req <= 1'b0;
      
    // Finite State Machine
@@ -79,7 +83,7 @@ module rs232_des
 	      begin
 		 latch_cnt <= {NBITS_LATCH_CNT-1{1'b0}};
 		 shift_cnt <= 3'd0;
-		 if( rx_s_pedge )
+		 if( rx_n_s_pedge )
 		   fsm <= S_START;
 	      end
 		 
@@ -97,14 +101,14 @@ module rs232_des
 	    S_SHIFT: 
 	      if( (shift_cnt == 3'd7) && (latch_cnt == SHIFT_LATCH_CNT_MAX) )   
 		begin
-		   rx_data <= {rx,rx_data[7:1]}; // RS-232 is little endian
+		   rx_data <= {rx_n_s,rx_data[7:1]}; // RS-232 is little endian
 		   shift_cnt <= 3'b0;
 		   latch_cnt <= {NBITS_LATCH_CNT-1{1'b0}}; 
 		   fsm <= S_STOP;  
 		end
 	      else if( latch_cnt == SHIFT_LATCH_CNT_MAX )
 		begin
-		   rx_data <= {rx,rx_data[7:1]}; // RS-232 is little endian
+		   rx_data <= {rx_n_s,rx_data[7:1]}; // RS-232 is little endian
 		   shift_cnt <= shift_cnt + 1'b1;
 		   latch_cnt <= {NBITS_LATCH_CNT-1{1'b0}};
 		end

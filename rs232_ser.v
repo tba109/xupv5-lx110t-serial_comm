@@ -18,16 +18,20 @@ module rs232_ser
   (
    input       clk,     // clock frequency
    input       rst_n,   // active low reset
-   output reg  tx,      // serial RS-232 data
+   output      tx,      // serial RS-232 data
    input [7:0] tx_data, // serial tx data
    input       tx_req,  // transmission request from upstream
    output reg  tx_ack   // acknowledge of acceptance to upstream
    );
 
 `include "fncs.h"
-
+   
    parameter P_CLK_FREQ_HZ = 100000000;
    parameter P_BAUD_RATE = 9600;
+
+   // Goofy mark/space business
+   reg 	       tx_n;
+   assign tx = !tx_n;
 
    // Finite state machine
    reg [1:0]     fsm;
@@ -53,7 +57,7 @@ module rs232_ser
      if( !rst_n )
        begin
 	  fsm <= 2'd0;
-	  tx <= 1'b0;
+	  tx_n <= 1'b0;
 	  tx_ack <= 1'b0;
 	  shift_reg <= 8'd0;
        end
@@ -77,7 +81,7 @@ module rs232_ser
 	    	
 	    S_START:
 	      begin
-		 tx <= 1'b1; // assert the start bit
+		 tx_n <= 1'b1; // assert the start bit
 		 if( launch_cnt == LAUNCH_CNT_MAX )
 		   begin
 		      launch_cnt <= {NBITS_LAUNCH_CNT-1{1'b0}};
@@ -91,7 +95,7 @@ module rs232_ser
 		   		   
 	    S_SHIFT:
 	      begin
-		 tx <= shift_reg[0];
+		 tx_n <= shift_reg[0];
 		 if( (shift_cnt == 3'd7) && (launch_cnt == LAUNCH_CNT_MAX) )
 		   begin
 		      shift_reg <= {1'b0,shift_reg[7:1]};
@@ -113,7 +117,7 @@ module rs232_ser
 
 	    S_STOP:
 	      begin
-		 tx <= 1'b0; // assert the stop bit (active low)
+		 tx_n <= 1'b0; // assert the stop bit (active low)
 		 if( launch_cnt == LAUNCH_CNT_MAX )
 		   begin
 		      launch_cnt <= {NBITS_LAUNCH_CNT-1{1'b0}};

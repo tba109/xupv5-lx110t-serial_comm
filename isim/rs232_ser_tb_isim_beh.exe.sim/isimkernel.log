@@ -1,0 +1,28 @@
+Command line:
+   rs232_ser_tb_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  50035
+
+Mon Apr 06 14:35:32 2015
+
+
+ Elaboration Time: 0.0624 sec
+
+ Current Memory Usage: 831.951 Meg
+
+ Total Signals          : 20
+ Total Nets             : 26
+ Total Signal Drivers   : 11
+ Total Blocks           : 4
+ Total Primitive Blocks : 2
+ Total Processes        : 15
+ Total Traceable Variables  : 41
+ Total Scalar Nets and Variables : 442
+
+ Total Simulation Time: 1.71601 sec
+
+ Current Memory Usage: 989.237 Meg
+
+Mon Apr 06 14:37:16 2015
+

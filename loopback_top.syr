@@ -1,21 +1,18 @@
-Release 14.7 - xst P.20131013 (lin64)
+Release 14.7 - xst P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
---> 
-Parameter TMPDIR set to xst/projnav.tmp
+--> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
---> 
-Parameter xsthdpdir set to xst
+--> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
---> 
-Reading design: loopback_top.prj
+--> Reading design: loopback_top.prj
 
 TABLE OF CONTENTS
   1) Synthesis Options Summary
@@ -215,7 +212,7 @@ Performing bidirectional port resolution...
 
 Synthesizing Unit <rs232_ser>.
     Related source file is "rs232_ser.v".
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <fsm> of Case statement line 64 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <fsm> of Case statement line 68 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
    	- add an 'INIT' attribute on signal <fsm> (optimization is then done without any risk)
    	- use the attribute 'signal_encoding user' to avoid onehot optimization
    	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
@@ -233,12 +230,12 @@ INFO:Xst:2117 - HDL ADVISOR - Mux Selector <fsm> of Case statement line 64 was r
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
     Found 1-bit register for signal <tx_ack>.
-    Found 1-bit register for signal <tx>.
     Found 14-bit register for signal <launch_cnt>.
-    Found 14-bit adder for signal <launch_cnt$share0000> created at line 64.
+    Found 14-bit adder for signal <launch_cnt$share0000> created at line 68.
     Found 3-bit register for signal <shift_cnt>.
-    Found 3-bit adder for signal <shift_cnt$addsub0000> created at line 105.
+    Found 3-bit adder for signal <shift_cnt$addsub0000> created at line 109.
     Found 8-bit register for signal <shift_reg>.
+    Found 1-bit register for signal <tx_n>.
     Summary:
 	inferred   1 Finite State Machine(s).
 	inferred  27 D-type flip-flop(s).
@@ -264,7 +261,7 @@ Unit <posedge_detector> synthesized.
 
 Synthesizing Unit <rs232_des>.
     Related source file is "rs232_des.v".
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <fsm> of Case statement line 76 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <fsm> of Case statement line 80 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
    	- add an 'INIT' attribute on signal <fsm> (optimization is then done without any risk)
    	- use the attribute 'signal_encoding user' to avoid onehot optimization
    	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
@@ -284,9 +281,9 @@ INFO:Xst:2117 - HDL ADVISOR - Mux Selector <fsm> of Case statement line 76 was r
     Found 1-bit register for signal <rx_req>.
     Found 8-bit register for signal <rx_data>.
     Found 14-bit register for signal <latch_cnt>.
-    Found 14-bit adder for signal <latch_cnt$share0000> created at line 76.
+    Found 14-bit adder for signal <latch_cnt$share0000> created at line 80.
     Found 3-bit register for signal <shift_cnt>.
-    Found 3-bit adder for signal <shift_cnt$addsub0000> created at line 108.
+    Found 3-bit adder for signal <shift_cnt$addsub0000> created at line 112.
     Summary:
 	inferred   1 Finite State Machine(s).
 	inferred  26 D-type flip-flop(s).
@@ -404,14 +401,14 @@ Design Statistics
 # IOs                              : 4
 
 Cell Usage :
-# BELS                             : 173
+# BELS                             : 170
 #      GND                         : 1
 #      INV                         : 5
 #      LUT1                        : 26
-#      LUT2                        : 2
+#      LUT2                        : 1
 #      LUT3                        : 12
 #      LUT4                        : 27
-#      LUT5                        : 34
+#      LUT5                        : 32
 #      LUT6                        : 11
 #      MUXCY                       : 26
 #      VCC                         : 1
@@ -434,14 +431,14 @@ Selected Device : 5vlx110tff1136-1
 
 Slice Logic Utilization: 
  Number of Slice Registers:              60  out of  69120     0%  
- Number of Slice LUTs:                  117  out of  69120     0%  
-    Number used as Logic:               117  out of  69120     0%  
+ Number of Slice LUTs:                  114  out of  69120     0%  
+    Number used as Logic:               114  out of  69120     0%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    120
-   Number with an unused Flip Flop:      60  out of    120    50%  
-   Number with an unused LUT:             3  out of    120     2%  
-   Number of fully used LUT-FF pairs:    57  out of    120    47%  
+ Number of LUT Flip Flop pairs used:    117
+   Number with an unused Flip Flop:      57  out of    117    48%  
+   Number with an unused LUT:             3  out of    117     2%  
+   Number of fully used LUT-FF pairs:    57  out of    117    48%  
    Number of unique control sets:         2
 
 IO Utilization: 
@@ -488,7 +485,7 @@ Timing Summary:
 Speed Grade: -1
 
    Minimum period: 2.971ns (Maximum Frequency: 336.587MHz)
-   Minimum input arrival time before clock: 1.733ns
+   Minimum input arrival time before clock: 1.728ns
    Maximum output required time after clock: 3.838ns
    Maximum combinational path delay: No path found
 
@@ -499,7 +496,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'USER_CLK'
   Clock period: 2.971ns (frequency: 336.587MHz)
-  Total number of paths / destination ports: 1437 / 59
+  Total number of paths / destination ports: 1429 / 59
 -------------------------------------------------------------------------
 Delay:               2.971ns (Levels of Logic = 3)
   Source:            RS232_DES0/latch_cnt_9 (FF)
@@ -512,19 +509,19 @@ Delay:               2.971ns (Levels of Logic = 3)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDC:C->Q              2   0.471   1.074  RS232_DES0/latch_cnt_9 (RS232_DES0/latch_cnt_9)
-     LUT6:I0->O            3   0.094   0.491  RS232_DES0/fsm_cmp_eq000011 (RS232_DES0/N8)
+     LUT6:I0->O            3   0.094   0.491  RS232_DES0/fsm_cmp_eq000011 (RS232_DES0/N111)
      LUT6:I5->O           15   0.094   0.653  RS232_DES0/fsm_cmp_eq0000 (RS232_DES0/fsm_cmp_eq0000)
-     LUT5:I3->O            1   0.094   0.000  RS232_DES0/latch_cnt_mux0000<13>1 (RS232_DES0/latch_cnt_mux0000<13>)
-     FDC:D                    -0.018          RS232_DES0/latch_cnt_0
+     LUT4:I2->O            1   0.094   0.000  RS232_DES0/fsm_FSM_FFd1-In1 (RS232_DES0/fsm_FSM_FFd1-In)
+     FDC:D                    -0.018          RS232_DES0/fsm_FSM_FFd1
     ----------------------------------------
     Total                      2.971ns (0.753ns logic, 2.218ns route)
                                        (25.3% logic, 74.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'USER_CLK'
-  Total number of paths / destination ports: 19 / 19
+  Total number of paths / destination ports: 18 / 18
 -------------------------------------------------------------------------
-Offset:              1.733ns (Levels of Logic = 2)
+Offset:              1.728ns (Levels of Logic = 2)
   Source:            FPGA_SERIAL_RX (PAD)
   Destination:       RS232_DES0/SYNC0/ff_0 (FF)
   Destination Clock: USER_CLK rising
@@ -533,28 +530,28 @@ Offset:              1.733ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             2   0.818   0.341  FPGA_SERIAL_RX_IBUF (FPGA_SERIAL_RX_IBUF)
-     INV:I->O              1   0.238   0.336  RS232_DES0_not00001_INV_0 (RS232_DES0_not0000)
+     IBUF:I->O             1   0.818   0.336  FPGA_SERIAL_RX_IBUF (FPGA_SERIAL_RX_IBUF)
+     INV:I->O              1   0.238   0.336  RS232_DES0/rx_n1_INV_0 (RS232_DES0/rx_n)
      FDC:D                    -0.018          RS232_DES0/SYNC0/ff_0
     ----------------------------------------
-    Total                      1.733ns (1.056ns logic, 0.677ns route)
-                                       (60.9% logic, 39.1% route)
+    Total                      1.728ns (1.056ns logic, 0.672ns route)
+                                       (61.1% logic, 38.9% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'USER_CLK'
   Total number of paths / destination ports: 1 / 1
 -------------------------------------------------------------------------
 Offset:              3.838ns (Levels of Logic = 2)
-  Source:            RS232_SER0/tx (FF)
+  Source:            RS232_SER0/tx_n (FF)
   Destination:       FPGA_SERIAL_TX (PAD)
   Source Clock:      USER_CLK rising
 
-  Data Path: RS232_SER0/tx to FPGA_SERIAL_TX
+  Data Path: RS232_SER0/tx_n to FPGA_SERIAL_TX
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q              2   0.471   0.341  RS232_SER0/tx (RS232_SER0/tx)
-     INV:I->O              1   0.238   0.336  FPGA_SERIAL_TX1_INV_0 (FPGA_SERIAL_TX_OBUF)
+     FDC:C->Q              2   0.471   0.341  RS232_SER0/tx_n (RS232_SER0/tx_n)
+     INV:I->O              1   0.238   0.336  RS232_SER0/tx1_INV_0 (FPGA_SERIAL_TX_OBUF)
      OBUF:I->O                 2.452          FPGA_SERIAL_TX_OBUF (FPGA_SERIAL_TX)
     ----------------------------------------
     Total                      3.838ns (3.161ns logic, 0.677ns route)
@@ -564,12 +561,11 @@ Offset:              3.838ns (Levels of Logic = 2)
 
 
 Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 5.08 secs
+Total CPU time to Xst completion: 5.30 secs
  
 --> 
 
-
-Total memory usage is 551872 kilobytes
+Total memory usage is 292384 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)

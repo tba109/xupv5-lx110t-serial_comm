@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Sat Apr 04 21:35:45 2015
+// Written by: Map P.20131013 on Mon Apr 06 14:58:05 2015
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -20,7 +20,7 @@ TIMEGRP USER_CLK = BEL "RS232_SER0/fsm_FSM_FFd2" BEL
         "RS232_SER0/shift_reg_6" BEL "RS232_SER0/shift_reg_5" BEL
         "RS232_SER0/shift_reg_4" BEL "RS232_SER0/shift_reg_3" BEL
         "RS232_SER0/shift_reg_2" BEL "RS232_SER0/shift_reg_1" BEL
-        "RS232_SER0/shift_reg_0" BEL "RS232_SER0/tx_ack" BEL "RS232_SER0/tx"
+        "RS232_SER0/shift_reg_0" BEL "RS232_SER0/tx_ack" BEL "RS232_SER0/tx_n"
         BEL "RS232_DES0/fsm_FSM_FFd2" BEL "RS232_DES0/fsm_FSM_FFd1" BEL
         "RS232_DES0/PEDGE0/ff" BEL "RS232_DES0/SYNC0/ff_0" BEL
         "RS232_DES0/SYNC0/ff_1" BEL "RS232_DES0/shift_cnt_2" BEL

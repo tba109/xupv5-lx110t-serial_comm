@@ -43,7 +43,7 @@ module rs232_des_tb;
 	// Initialize Inputs
 	clk = 0;
 	rst_n = 0;
-	rx = 0;
+	rx = 1;
 	rx_ack = 0;
 	
 	// Wait 100 ns for global reset to finish
@@ -53,8 +53,7 @@ module rs232_des_tb;
 	// Add stimulus here
 
 	// Data word 0xAA
-	#(RS232_PERIOD) rx = 1'b1; // Start bit
-	#(RS232_PERIOD) rx = 1'b0;
+	#(RS232_PERIOD) rx = 1'b0; // Start bit
 	#(RS232_PERIOD) rx = 1'b1;
 	#(RS232_PERIOD) rx = 1'b0;
 	#(RS232_PERIOD) rx = 1'b1;
@@ -62,23 +61,24 @@ module rs232_des_tb;
 	#(RS232_PERIOD) rx = 1'b1;
 	#(RS232_PERIOD) rx = 1'b0;
 	#(RS232_PERIOD) rx = 1'b1;
-	#(RS232_PERIOD) rx = 1'b0; // Stop bit
+	#(RS232_PERIOD) rx = 1'b0;
+	#(RS232_PERIOD) rx = 1'b1; // Stop bit
 
 	// Acknowledge
 	#(100*PERIOD) rx_ack = 1'b1;
 	#(1*PERIOD)   rx_ack = 1'b0;
 	
 	// Data word 0x55
-	#(RS232_PERIOD) rx = 1'b1; // Start bit
-	#(RS232_PERIOD) rx = 1'b1;
+	#(RS232_PERIOD) rx = 1'b0; // Start bit
 	#(RS232_PERIOD) rx = 1'b0;
 	#(RS232_PERIOD) rx = 1'b1;
 	#(RS232_PERIOD) rx = 1'b0;
 	#(RS232_PERIOD) rx = 1'b1;
 	#(RS232_PERIOD) rx = 1'b0;
 	#(RS232_PERIOD) rx = 1'b1;
-	#(RS232_PERIOD) rx = 1'b0; 
-	#(RS232_PERIOD) rx = 1'b0; // Stop bit
+	#(RS232_PERIOD) rx = 1'b0;
+	#(RS232_PERIOD) rx = 1'b1; 
+	#(RS232_PERIOD) rx = 1'b1; // Stop bit
 	
 	// Acknowledge
 	#(100*PERIOD) rx_ack = 1'b1;

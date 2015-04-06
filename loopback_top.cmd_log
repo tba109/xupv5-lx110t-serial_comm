@@ -27,3 +27,27 @@ map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -regist
 par -w -intstyle ise -ol high -mt off loopback_top_map.ncd loopback_top.ncd loopback_top.pcf 
 trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml loopback_top.twx loopback_top.ncd -o loopback_top.twr loopback_top.pcf -ucf pin_assignments.ucf 
 bitgen -intstyle ise -f loopback_top.ut loopback_top.ncd 
+xst -intstyle ise -ifn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top.xst" -ofn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc pin_assignments.ucf -p xc5vlx110t-ff1136-1 loopback_top.ngc loopback_top.ngd  
+map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr off -lc off -power off -o loopback_top_map.ncd loopback_top.ngd loopback_top.pcf 
+par -w -intstyle ise -ol high -mt off loopback_top_map.ncd loopback_top.ncd loopback_top.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml loopback_top.twx loopback_top.ncd -o loopback_top.twr loopback_top.pcf -ucf pin_assignments.ucf 
+bitgen -intstyle ise -f loopback_top.ut loopback_top.ncd 
+xst -intstyle ise -ifn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top.xst" -ofn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc pin_assignments.ucf -p xc5vlx110t-ff1136-1 loopback_top.ngc loopback_top.ngd  
+map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr off -lc off -power off -o loopback_top_map.ncd loopback_top.ngd loopback_top.pcf 
+par -w -intstyle ise -ol high -mt off loopback_top_map.ncd loopback_top.ncd loopback_top.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml loopback_top.twx loopback_top.ncd -o loopback_top.twr loopback_top.pcf -ucf pin_assignments.ucf 
+bitgen -intstyle ise -f loopback_top.ut loopback_top.ncd 
+xst -intstyle ise -ifn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top.xst" -ofn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc pin_assignments.ucf -p xc5vlx110t-ff1136-1 loopback_top.ngc loopback_top.ngd  
+map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr off -lc off -power off -o loopback_top_map.ncd loopback_top.ngd loopback_top.pcf 
+par -w -intstyle ise -ol high -mt off loopback_top_map.ncd loopback_top.ncd loopback_top.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml loopback_top.twx loopback_top.ncd -o loopback_top.twr loopback_top.pcf -ucf pin_assignments.ucf 
+bitgen -intstyle ise -f loopback_top.ut loopback_top.ncd 
+xst -intstyle ise -ifn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top.xst" -ofn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc pin_assignments.ucf -p xc5vlx110t-ff1136-1 loopback_top.ngc loopback_top.ngd  
+map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr off -lc off -power off -o loopback_top_map.ncd loopback_top.ngd loopback_top.pcf 
+par -w -intstyle ise -ol high -mt off loopback_top_map.ncd loopback_top.ncd loopback_top.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml loopback_top.twx loopback_top.ncd -o loopback_top.twr loopback_top.pcf -ucf pin_assignments.ucf 
+bitgen -intstyle ise -f loopback_top.ut loopback_top.ncd 

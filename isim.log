@@ -13,9 +13,22 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# run 10ms
-Stopped at time : 3437578 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 89
-# run 10ms
+# run 10 ms
+Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 100
+# run 10 ms
+# restart
+# run 10 ms
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 100
+# run 10 ms
+# restart
+# run 10 ms
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 100
+# run 10 ms
+# restart
 ISim P.20131013 (signature 0x7708f090)
 ----------------------------------------------------------------------
 WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue to function, but you no longer qualify for Xilinx software updates or new releases.
@@ -26,18 +39,8 @@ This is a Full version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-ISim P.20131013 (signature 0x7708f090)
-----------------------------------------------------------------------
-WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue to function, but you no longer qualify for Xilinx software updates or new releases.
-
-
-----------------------------------------------------------------------
-This is a Full version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-# run 10ms
-Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 99
+# run 10 ms
+Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 100
 # run 10 ms
 ISim P.20131013 (signature 0x7708f090)
 ----------------------------------------------------------------------
@@ -50,7 +53,7 @@ This is a Full version of ISim.
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
 # run 10 ms
-Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 99
+Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 100
 # run 10 ms
 ISim P.20131013 (signature 0x7708f090)
 ----------------------------------------------------------------------
@@ -63,5 +66,5 @@ This is a Full version of ISim.
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
 # run 10 ms
-Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 101
+Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 100
 # run 10 ms

@@ -29,7 +29,6 @@ module loopback_top_tb;
 		     .FPGA_SERIAL_RX(FPGA_SERIAL_RX)
 		     );
    
-   
    // module clock generator
    localparam PERIOD = 10;
    always #(PERIOD/2) USER_CLK = ~USER_CLK;
@@ -43,7 +42,7 @@ module loopback_top_tb;
 	// Initialize Inputs
 	USER_CLK = 0;
 	FPGA_CPU_RESET = 0;
-	FPGA_SERIAL_RX = 0;
+	FPGA_SERIAL_RX = 1'b1;
 	
 	// Wait 100 ns for global reset to finish
 	#100;
@@ -53,8 +52,7 @@ module loopback_top_tb;
 `ifdef TEST_1
 	// Add stimulus here
 	// Data word 0xAA
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1; // Start bit
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0; // Start bit
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
@@ -62,37 +60,38 @@ module loopback_top_tb;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0; // Stop bit
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1; // Stop bit
 `endif //  `ifdef TEST_1
 
 `ifdef TEST_2
 	// Data word 0x55
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1; // Start bit
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0; // Start bit
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0; 
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0; // Stop bit
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1; 
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1; // Stop bit
 `endif
 
 `ifdef TEST_3	
 	// Data word 0x61 (the letter 'a')
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1; // Start bit
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0; // Start bit
 	
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
 	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0; 
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0;
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1; 
 	
-	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b0; // Stop bit
+	#(RS232_PERIOD) FPGA_SERIAL_RX = 1'b1; // Stop bit
 `endif
 	
 	// Let the dust settle

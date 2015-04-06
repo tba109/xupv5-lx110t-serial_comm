@@ -1,10 +1,10 @@
 --------------------------------------------------------------------------------
-Release 14.7 Trace  (lin64)
+Release 14.7 Trace  (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-/home/tyler/xilinx/ISE_14.7/14.7/ISE_DS/ISE/bin/lin64/unwrapped/trce -intstyle
-ise -v 3 -s 1 -n 3 -fastpaths -xml loopback_top.twx loopback_top.ncd -o
-loopback_top.twr loopback_top.pcf -ucf pin_assignments.ucf
+C:\Xilinx_ISE\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s
+1 -n 3 -fastpaths -xml loopback_top.twx loopback_top.ncd -o loopback_top.twr
+loopback_top.pcf -ucf pin_assignments.ucf
 
 Design file:              loopback_top.ncd
 Physical constraint file: loopback_top.pcf
@@ -29,19 +29,19 @@ INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on
 Timing constraint: TS_USER_CLK = PERIOD TIMEGRP "USER_CLK" 10 ns HIGH 50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 1437 paths analyzed, 254 endpoints analyzed, 0 failing endpoints
+ 1429 paths analyzed, 255 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is   4.577ns.
+ Minimum period is   4.317ns.
 --------------------------------------------------------------------------------
 
-Paths for end point RS232_SER0/shift_reg_7 (SLICE_X58Y82.D3), 14 paths
+Paths for end point RS232_SER0/shift_reg_0 (SLICE_X64Y84.A2), 14 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     5.423ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               RS232_SER0/launch_cnt_10 (FF)
-  Destination:          RS232_SER0/shift_reg_7 (FF)
+Slack (setup path):     5.683ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               RS232_SER0/launch_cnt_7 (FF)
+  Destination:          RS232_SER0/shift_reg_0 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      4.326ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.216ns (1.168 - 1.384)
+  Data Path Delay:      4.033ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.249ns (1.154 - 1.403)
   Source Clock:         USER_CLK_BUFGP rising at 0.000ns
   Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -52,33 +52,261 @@ Slack (setup path):     5.423ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path: RS232_SER0/launch_cnt_10 to RS232_SER0/shift_reg_7
+  Maximum Data Path: RS232_SER0/launch_cnt_7 to RS232_SER0/shift_reg_0
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X75Y108.CQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
-                                                       RS232_SER0/launch_cnt_10
-    SLICE_X73Y107.D2     net (fanout=2)        0.904   RS232_SER0/launch_cnt<10>
-    SLICE_X73Y107.D      Tilo                  0.094   RS232_SER0/fsm_cmp_eq000050
-                                                       RS232_SER0/fsm_cmp_eq000050
-    SLICE_X72Y106.A1     net (fanout=1)        0.937   RS232_SER0/fsm_cmp_eq000050
-    SLICE_X72Y106.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
+    SLICE_X74Y109.DQ     Tcko                  0.450   RS232_SER0/launch_cnt<7>
+                                                       RS232_SER0/launch_cnt_7
+    SLICE_X77Y109.B1     net (fanout=2)        1.031   RS232_SER0/launch_cnt<7>
+    SLICE_X77Y109.B      Tilo                  0.094   RS232_SER0/fsm_cmp_eq00007
+                                                       RS232_SER0/fsm_cmp_eq00007
+    SLICE_X74Y108.A5     net (fanout=1)        0.384   RS232_SER0/fsm_cmp_eq00007
+    SLICE_X74Y108.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
                                                        RS232_SER0/fsm_cmp_eq000071
-    SLICE_X58Y82.D3      net (fanout=27)       1.819   RS232_SER0/fsm_cmp_eq0000
-    SLICE_X58Y82.CLK     Tas                   0.028   RS232_SER0/shift_reg<7>
+    SLICE_X64Y84.A2      net (fanout=27)       1.973   RS232_SER0/fsm_cmp_eq0000
+    SLICE_X64Y84.CLK     Tas                   0.007   RS232_SER0/shift_reg<3>
+                                                       RS232_SER0/shift_reg_mux0000<0>1
+                                                       RS232_SER0/shift_reg_0
+    -------------------------------------------------  ---------------------------
+    Total                                      4.033ns (0.645ns logic, 3.388ns route)
+                                                       (16.0% logic, 84.0% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     5.957ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               RS232_SER0/launch_cnt_8 (FF)
+  Destination:          RS232_SER0/shift_reg_0 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      3.776ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.232ns (1.154 - 1.386)
+  Source Clock:         USER_CLK_BUFGP rising at 0.000ns
+  Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path: RS232_SER0/launch_cnt_8 to RS232_SER0/shift_reg_0
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X77Y110.AQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
+                                                       RS232_SER0/launch_cnt_8
+    SLICE_X77Y109.A1     net (fanout=2)        0.861   RS232_SER0/launch_cnt<8>
+    SLICE_X77Y109.A      Tilo                  0.094   RS232_SER0/fsm_cmp_eq00007
+                                                       RS232_SER0/fsm_cmp_eq000050
+    SLICE_X74Y108.A6     net (fanout=1)        0.297   RS232_SER0/fsm_cmp_eq000050
+    SLICE_X74Y108.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
+                                                       RS232_SER0/fsm_cmp_eq000071
+    SLICE_X64Y84.A2      net (fanout=27)       1.973   RS232_SER0/fsm_cmp_eq0000
+    SLICE_X64Y84.CLK     Tas                   0.007   RS232_SER0/shift_reg<3>
+                                                       RS232_SER0/shift_reg_mux0000<0>1
+                                                       RS232_SER0/shift_reg_0
+    -------------------------------------------------  ---------------------------
+    Total                                      3.776ns (0.645ns logic, 3.131ns route)
+                                                       (17.1% logic, 82.9% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     5.987ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               RS232_SER0/launch_cnt_11 (FF)
+  Destination:          RS232_SER0/shift_reg_0 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      3.746ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.232ns (1.154 - 1.386)
+  Source Clock:         USER_CLK_BUFGP rising at 0.000ns
+  Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path: RS232_SER0/launch_cnt_11 to RS232_SER0/shift_reg_0
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X77Y110.DQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
+                                                       RS232_SER0/launch_cnt_11
+    SLICE_X77Y109.B2     net (fanout=2)        0.744   RS232_SER0/launch_cnt<11>
+    SLICE_X77Y109.B      Tilo                  0.094   RS232_SER0/fsm_cmp_eq00007
+                                                       RS232_SER0/fsm_cmp_eq00007
+    SLICE_X74Y108.A5     net (fanout=1)        0.384   RS232_SER0/fsm_cmp_eq00007
+    SLICE_X74Y108.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
+                                                       RS232_SER0/fsm_cmp_eq000071
+    SLICE_X64Y84.A2      net (fanout=27)       1.973   RS232_SER0/fsm_cmp_eq0000
+    SLICE_X64Y84.CLK     Tas                   0.007   RS232_SER0/shift_reg<3>
+                                                       RS232_SER0/shift_reg_mux0000<0>1
+                                                       RS232_SER0/shift_reg_0
+    -------------------------------------------------  ---------------------------
+    Total                                      3.746ns (0.645ns logic, 3.101ns route)
+                                                       (17.2% logic, 82.8% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point RS232_SER0/shift_reg_1 (SLICE_X64Y84.B2), 14 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     5.695ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               RS232_SER0/launch_cnt_7 (FF)
+  Destination:          RS232_SER0/shift_reg_1 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      4.021ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.249ns (1.154 - 1.403)
+  Source Clock:         USER_CLK_BUFGP rising at 0.000ns
+  Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path: RS232_SER0/launch_cnt_7 to RS232_SER0/shift_reg_1
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X74Y109.DQ     Tcko                  0.450   RS232_SER0/launch_cnt<7>
+                                                       RS232_SER0/launch_cnt_7
+    SLICE_X77Y109.B1     net (fanout=2)        1.031   RS232_SER0/launch_cnt<7>
+    SLICE_X77Y109.B      Tilo                  0.094   RS232_SER0/fsm_cmp_eq00007
+                                                       RS232_SER0/fsm_cmp_eq00007
+    SLICE_X74Y108.A5     net (fanout=1)        0.384   RS232_SER0/fsm_cmp_eq00007
+    SLICE_X74Y108.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
+                                                       RS232_SER0/fsm_cmp_eq000071
+    SLICE_X64Y84.B2      net (fanout=27)       1.965   RS232_SER0/fsm_cmp_eq0000
+    SLICE_X64Y84.CLK     Tas                   0.003   RS232_SER0/shift_reg<3>
+                                                       RS232_SER0/shift_reg_mux0000<1>1
+                                                       RS232_SER0/shift_reg_1
+    -------------------------------------------------  ---------------------------
+    Total                                      4.021ns (0.641ns logic, 3.380ns route)
+                                                       (15.9% logic, 84.1% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     5.969ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               RS232_SER0/launch_cnt_8 (FF)
+  Destination:          RS232_SER0/shift_reg_1 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      3.764ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.232ns (1.154 - 1.386)
+  Source Clock:         USER_CLK_BUFGP rising at 0.000ns
+  Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path: RS232_SER0/launch_cnt_8 to RS232_SER0/shift_reg_1
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X77Y110.AQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
+                                                       RS232_SER0/launch_cnt_8
+    SLICE_X77Y109.A1     net (fanout=2)        0.861   RS232_SER0/launch_cnt<8>
+    SLICE_X77Y109.A      Tilo                  0.094   RS232_SER0/fsm_cmp_eq00007
+                                                       RS232_SER0/fsm_cmp_eq000050
+    SLICE_X74Y108.A6     net (fanout=1)        0.297   RS232_SER0/fsm_cmp_eq000050
+    SLICE_X74Y108.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
+                                                       RS232_SER0/fsm_cmp_eq000071
+    SLICE_X64Y84.B2      net (fanout=27)       1.965   RS232_SER0/fsm_cmp_eq0000
+    SLICE_X64Y84.CLK     Tas                   0.003   RS232_SER0/shift_reg<3>
+                                                       RS232_SER0/shift_reg_mux0000<1>1
+                                                       RS232_SER0/shift_reg_1
+    -------------------------------------------------  ---------------------------
+    Total                                      3.764ns (0.641ns logic, 3.123ns route)
+                                                       (17.0% logic, 83.0% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     5.999ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               RS232_SER0/launch_cnt_11 (FF)
+  Destination:          RS232_SER0/shift_reg_1 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      3.734ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.232ns (1.154 - 1.386)
+  Source Clock:         USER_CLK_BUFGP rising at 0.000ns
+  Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path: RS232_SER0/launch_cnt_11 to RS232_SER0/shift_reg_1
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X77Y110.DQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
+                                                       RS232_SER0/launch_cnt_11
+    SLICE_X77Y109.B2     net (fanout=2)        0.744   RS232_SER0/launch_cnt<11>
+    SLICE_X77Y109.B      Tilo                  0.094   RS232_SER0/fsm_cmp_eq00007
+                                                       RS232_SER0/fsm_cmp_eq00007
+    SLICE_X74Y108.A5     net (fanout=1)        0.384   RS232_SER0/fsm_cmp_eq00007
+    SLICE_X74Y108.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
+                                                       RS232_SER0/fsm_cmp_eq000071
+    SLICE_X64Y84.B2      net (fanout=27)       1.965   RS232_SER0/fsm_cmp_eq0000
+    SLICE_X64Y84.CLK     Tas                   0.003   RS232_SER0/shift_reg<3>
+                                                       RS232_SER0/shift_reg_mux0000<1>1
+                                                       RS232_SER0/shift_reg_1
+    -------------------------------------------------  ---------------------------
+    Total                                      3.734ns (0.641ns logic, 3.093ns route)
+                                                       (17.2% logic, 82.8% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point RS232_SER0/shift_reg_7 (SLICE_X64Y85.D3), 14 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     5.840ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               RS232_SER0/launch_cnt_7 (FF)
+  Destination:          RS232_SER0/shift_reg_7 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      3.873ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.252ns (1.151 - 1.403)
+  Source Clock:         USER_CLK_BUFGP rising at 0.000ns
+  Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path: RS232_SER0/launch_cnt_7 to RS232_SER0/shift_reg_7
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X74Y109.DQ     Tcko                  0.450   RS232_SER0/launch_cnt<7>
+                                                       RS232_SER0/launch_cnt_7
+    SLICE_X77Y109.B1     net (fanout=2)        1.031   RS232_SER0/launch_cnt<7>
+    SLICE_X77Y109.B      Tilo                  0.094   RS232_SER0/fsm_cmp_eq00007
+                                                       RS232_SER0/fsm_cmp_eq00007
+    SLICE_X74Y108.A5     net (fanout=1)        0.384   RS232_SER0/fsm_cmp_eq00007
+    SLICE_X74Y108.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
+                                                       RS232_SER0/fsm_cmp_eq000071
+    SLICE_X64Y85.D3      net (fanout=27)       1.810   RS232_SER0/fsm_cmp_eq0000
+    SLICE_X64Y85.CLK     Tas                   0.010   RS232_SER0/shift_reg<7>
                                                        RS232_SER0/shift_reg_mux0000<7>1
                                                        RS232_SER0/shift_reg_7
     -------------------------------------------------  ---------------------------
-    Total                                      4.326ns (0.666ns logic, 3.660ns route)
-                                                       (15.4% logic, 84.6% route)
+    Total                                      3.873ns (0.648ns logic, 3.225ns route)
+                                                       (16.7% logic, 83.3% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     5.472ns (requirement - (data path - clock path skew + uncertainty))
+Slack (setup path):     6.114ns (requirement - (data path - clock path skew + uncertainty))
   Source:               RS232_SER0/launch_cnt_8 (FF)
   Destination:          RS232_SER0/shift_reg_7 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      4.277ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.216ns (1.168 - 1.384)
+  Data Path Delay:      3.616ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.235ns (1.151 - 1.386)
   Source Clock:         USER_CLK_BUFGP rising at 0.000ns
   Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -93,29 +321,29 @@ Slack (setup path):     5.472ns (requirement - (data path - clock path skew + un
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X75Y108.AQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
+    SLICE_X77Y110.AQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
                                                        RS232_SER0/launch_cnt_8
-    SLICE_X73Y107.D1     net (fanout=2)        0.855   RS232_SER0/launch_cnt<8>
-    SLICE_X73Y107.D      Tilo                  0.094   RS232_SER0/fsm_cmp_eq000050
+    SLICE_X77Y109.A1     net (fanout=2)        0.861   RS232_SER0/launch_cnt<8>
+    SLICE_X77Y109.A      Tilo                  0.094   RS232_SER0/fsm_cmp_eq00007
                                                        RS232_SER0/fsm_cmp_eq000050
-    SLICE_X72Y106.A1     net (fanout=1)        0.937   RS232_SER0/fsm_cmp_eq000050
-    SLICE_X72Y106.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
+    SLICE_X74Y108.A6     net (fanout=1)        0.297   RS232_SER0/fsm_cmp_eq000050
+    SLICE_X74Y108.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
                                                        RS232_SER0/fsm_cmp_eq000071
-    SLICE_X58Y82.D3      net (fanout=27)       1.819   RS232_SER0/fsm_cmp_eq0000
-    SLICE_X58Y82.CLK     Tas                   0.028   RS232_SER0/shift_reg<7>
+    SLICE_X64Y85.D3      net (fanout=27)       1.810   RS232_SER0/fsm_cmp_eq0000
+    SLICE_X64Y85.CLK     Tas                   0.010   RS232_SER0/shift_reg<7>
                                                        RS232_SER0/shift_reg_mux0000<7>1
                                                        RS232_SER0/shift_reg_7
     -------------------------------------------------  ---------------------------
-    Total                                      4.277ns (0.666ns logic, 3.611ns route)
-                                                       (15.6% logic, 84.4% route)
+    Total                                      3.616ns (0.648ns logic, 2.968ns route)
+                                                       (17.9% logic, 82.1% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     5.689ns (requirement - (data path - clock path skew + uncertainty))
+Slack (setup path):     6.144ns (requirement - (data path - clock path skew + uncertainty))
   Source:               RS232_SER0/launch_cnt_11 (FF)
   Destination:          RS232_SER0/shift_reg_7 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      4.060ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.216ns (1.168 - 1.384)
+  Data Path Delay:      3.586ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.235ns (1.151 - 1.386)
   Source Clock:         USER_CLK_BUFGP rising at 0.000ns
   Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -130,336 +358,107 @@ Slack (setup path):     5.689ns (requirement - (data path - clock path skew + un
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X75Y108.DQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
+    SLICE_X77Y110.DQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
                                                        RS232_SER0/launch_cnt_11
-    SLICE_X72Y107.A2     net (fanout=2)        0.793   RS232_SER0/launch_cnt<11>
-    SLICE_X72Y107.A      Tilo                  0.094   RS232_SER0/fsm_cmp_eq00007
+    SLICE_X77Y109.B2     net (fanout=2)        0.744   RS232_SER0/launch_cnt<11>
+    SLICE_X77Y109.B      Tilo                  0.094   RS232_SER0/fsm_cmp_eq00007
                                                        RS232_SER0/fsm_cmp_eq00007
-    SLICE_X72Y106.A2     net (fanout=1)        0.782   RS232_SER0/fsm_cmp_eq00007
-    SLICE_X72Y106.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
+    SLICE_X74Y108.A5     net (fanout=1)        0.384   RS232_SER0/fsm_cmp_eq00007
+    SLICE_X74Y108.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
                                                        RS232_SER0/fsm_cmp_eq000071
-    SLICE_X58Y82.D3      net (fanout=27)       1.819   RS232_SER0/fsm_cmp_eq0000
-    SLICE_X58Y82.CLK     Tas                   0.028   RS232_SER0/shift_reg<7>
+    SLICE_X64Y85.D3      net (fanout=27)       1.810   RS232_SER0/fsm_cmp_eq0000
+    SLICE_X64Y85.CLK     Tas                   0.010   RS232_SER0/shift_reg<7>
                                                        RS232_SER0/shift_reg_mux0000<7>1
                                                        RS232_SER0/shift_reg_7
     -------------------------------------------------  ---------------------------
-    Total                                      4.060ns (0.666ns logic, 3.394ns route)
-                                                       (16.4% logic, 83.6% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point RS232_SER0/shift_reg_3 (SLICE_X58Y83.D3), 14 paths
---------------------------------------------------------------------------------
-Slack (setup path):     5.427ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               RS232_SER0/launch_cnt_10 (FF)
-  Destination:          RS232_SER0/shift_reg_3 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      4.319ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.219ns (1.165 - 1.384)
-  Source Clock:         USER_CLK_BUFGP rising at 0.000ns
-  Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path: RS232_SER0/launch_cnt_10 to RS232_SER0/shift_reg_3
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X75Y108.CQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
-                                                       RS232_SER0/launch_cnt_10
-    SLICE_X73Y107.D2     net (fanout=2)        0.904   RS232_SER0/launch_cnt<10>
-    SLICE_X73Y107.D      Tilo                  0.094   RS232_SER0/fsm_cmp_eq000050
-                                                       RS232_SER0/fsm_cmp_eq000050
-    SLICE_X72Y106.A1     net (fanout=1)        0.937   RS232_SER0/fsm_cmp_eq000050
-    SLICE_X72Y106.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
-                                                       RS232_SER0/fsm_cmp_eq000071
-    SLICE_X58Y83.D3      net (fanout=27)       1.812   RS232_SER0/fsm_cmp_eq0000
-    SLICE_X58Y83.CLK     Tas                   0.028   RS232_SER0/shift_reg<3>
-                                                       RS232_SER0/shift_reg_mux0000<3>1
-                                                       RS232_SER0/shift_reg_3
-    -------------------------------------------------  ---------------------------
-    Total                                      4.319ns (0.666ns logic, 3.653ns route)
-                                                       (15.4% logic, 84.6% route)
-
---------------------------------------------------------------------------------
-Slack (setup path):     5.476ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               RS232_SER0/launch_cnt_8 (FF)
-  Destination:          RS232_SER0/shift_reg_3 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      4.270ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.219ns (1.165 - 1.384)
-  Source Clock:         USER_CLK_BUFGP rising at 0.000ns
-  Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path: RS232_SER0/launch_cnt_8 to RS232_SER0/shift_reg_3
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X75Y108.AQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
-                                                       RS232_SER0/launch_cnt_8
-    SLICE_X73Y107.D1     net (fanout=2)        0.855   RS232_SER0/launch_cnt<8>
-    SLICE_X73Y107.D      Tilo                  0.094   RS232_SER0/fsm_cmp_eq000050
-                                                       RS232_SER0/fsm_cmp_eq000050
-    SLICE_X72Y106.A1     net (fanout=1)        0.937   RS232_SER0/fsm_cmp_eq000050
-    SLICE_X72Y106.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
-                                                       RS232_SER0/fsm_cmp_eq000071
-    SLICE_X58Y83.D3      net (fanout=27)       1.812   RS232_SER0/fsm_cmp_eq0000
-    SLICE_X58Y83.CLK     Tas                   0.028   RS232_SER0/shift_reg<3>
-                                                       RS232_SER0/shift_reg_mux0000<3>1
-                                                       RS232_SER0/shift_reg_3
-    -------------------------------------------------  ---------------------------
-    Total                                      4.270ns (0.666ns logic, 3.604ns route)
-                                                       (15.6% logic, 84.4% route)
-
---------------------------------------------------------------------------------
-Slack (setup path):     5.693ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               RS232_SER0/launch_cnt_11 (FF)
-  Destination:          RS232_SER0/shift_reg_3 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      4.053ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.219ns (1.165 - 1.384)
-  Source Clock:         USER_CLK_BUFGP rising at 0.000ns
-  Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path: RS232_SER0/launch_cnt_11 to RS232_SER0/shift_reg_3
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X75Y108.DQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
-                                                       RS232_SER0/launch_cnt_11
-    SLICE_X72Y107.A2     net (fanout=2)        0.793   RS232_SER0/launch_cnt<11>
-    SLICE_X72Y107.A      Tilo                  0.094   RS232_SER0/fsm_cmp_eq00007
-                                                       RS232_SER0/fsm_cmp_eq00007
-    SLICE_X72Y106.A2     net (fanout=1)        0.782   RS232_SER0/fsm_cmp_eq00007
-    SLICE_X72Y106.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
-                                                       RS232_SER0/fsm_cmp_eq000071
-    SLICE_X58Y83.D3      net (fanout=27)       1.812   RS232_SER0/fsm_cmp_eq0000
-    SLICE_X58Y83.CLK     Tas                   0.028   RS232_SER0/shift_reg<3>
-                                                       RS232_SER0/shift_reg_mux0000<3>1
-                                                       RS232_SER0/shift_reg_3
-    -------------------------------------------------  ---------------------------
-    Total                                      4.053ns (0.666ns logic, 3.387ns route)
-                                                       (16.4% logic, 83.6% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point RS232_SER0/shift_reg_6 (SLICE_X58Y82.C3), 14 paths
---------------------------------------------------------------------------------
-Slack (setup path):     5.435ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               RS232_SER0/launch_cnt_10 (FF)
-  Destination:          RS232_SER0/shift_reg_6 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      4.314ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.216ns (1.168 - 1.384)
-  Source Clock:         USER_CLK_BUFGP rising at 0.000ns
-  Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path: RS232_SER0/launch_cnt_10 to RS232_SER0/shift_reg_6
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X75Y108.CQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
-                                                       RS232_SER0/launch_cnt_10
-    SLICE_X73Y107.D2     net (fanout=2)        0.904   RS232_SER0/launch_cnt<10>
-    SLICE_X73Y107.D      Tilo                  0.094   RS232_SER0/fsm_cmp_eq000050
-                                                       RS232_SER0/fsm_cmp_eq000050
-    SLICE_X72Y106.A1     net (fanout=1)        0.937   RS232_SER0/fsm_cmp_eq000050
-    SLICE_X72Y106.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
-                                                       RS232_SER0/fsm_cmp_eq000071
-    SLICE_X58Y82.C3      net (fanout=27)       1.806   RS232_SER0/fsm_cmp_eq0000
-    SLICE_X58Y82.CLK     Tas                   0.029   RS232_SER0/shift_reg<7>
-                                                       RS232_SER0/shift_reg_mux0000<6>1
-                                                       RS232_SER0/shift_reg_6
-    -------------------------------------------------  ---------------------------
-    Total                                      4.314ns (0.667ns logic, 3.647ns route)
-                                                       (15.5% logic, 84.5% route)
-
---------------------------------------------------------------------------------
-Slack (setup path):     5.484ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               RS232_SER0/launch_cnt_8 (FF)
-  Destination:          RS232_SER0/shift_reg_6 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      4.265ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.216ns (1.168 - 1.384)
-  Source Clock:         USER_CLK_BUFGP rising at 0.000ns
-  Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path: RS232_SER0/launch_cnt_8 to RS232_SER0/shift_reg_6
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X75Y108.AQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
-                                                       RS232_SER0/launch_cnt_8
-    SLICE_X73Y107.D1     net (fanout=2)        0.855   RS232_SER0/launch_cnt<8>
-    SLICE_X73Y107.D      Tilo                  0.094   RS232_SER0/fsm_cmp_eq000050
-                                                       RS232_SER0/fsm_cmp_eq000050
-    SLICE_X72Y106.A1     net (fanout=1)        0.937   RS232_SER0/fsm_cmp_eq000050
-    SLICE_X72Y106.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
-                                                       RS232_SER0/fsm_cmp_eq000071
-    SLICE_X58Y82.C3      net (fanout=27)       1.806   RS232_SER0/fsm_cmp_eq0000
-    SLICE_X58Y82.CLK     Tas                   0.029   RS232_SER0/shift_reg<7>
-                                                       RS232_SER0/shift_reg_mux0000<6>1
-                                                       RS232_SER0/shift_reg_6
-    -------------------------------------------------  ---------------------------
-    Total                                      4.265ns (0.667ns logic, 3.598ns route)
-                                                       (15.6% logic, 84.4% route)
-
---------------------------------------------------------------------------------
-Slack (setup path):     5.701ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               RS232_SER0/launch_cnt_11 (FF)
-  Destination:          RS232_SER0/shift_reg_6 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      4.048ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.216ns (1.168 - 1.384)
-  Source Clock:         USER_CLK_BUFGP rising at 0.000ns
-  Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path: RS232_SER0/launch_cnt_11 to RS232_SER0/shift_reg_6
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X75Y108.DQ     Tcko                  0.450   RS232_SER0/launch_cnt<11>
-                                                       RS232_SER0/launch_cnt_11
-    SLICE_X72Y107.A2     net (fanout=2)        0.793   RS232_SER0/launch_cnt<11>
-    SLICE_X72Y107.A      Tilo                  0.094   RS232_SER0/fsm_cmp_eq00007
-                                                       RS232_SER0/fsm_cmp_eq00007
-    SLICE_X72Y106.A2     net (fanout=1)        0.782   RS232_SER0/fsm_cmp_eq00007
-    SLICE_X72Y106.A      Tilo                  0.094   RS232_SER0/shift_cnt<1>
-                                                       RS232_SER0/fsm_cmp_eq000071
-    SLICE_X58Y82.C3      net (fanout=27)       1.806   RS232_SER0/fsm_cmp_eq0000
-    SLICE_X58Y82.CLK     Tas                   0.029   RS232_SER0/shift_reg<7>
-                                                       RS232_SER0/shift_reg_mux0000<6>1
-                                                       RS232_SER0/shift_reg_6
-    -------------------------------------------------  ---------------------------
-    Total                                      4.048ns (0.667ns logic, 3.381ns route)
-                                                       (16.5% logic, 83.5% route)
+    Total                                      3.586ns (0.648ns logic, 2.938ns route)
+                                                       (18.1% logic, 81.9% route)
 
 --------------------------------------------------------------------------------
 
 Hold Paths: TS_USER_CLK = PERIOD TIMEGRP "USER_CLK" 10 ns HIGH 50%;
 --------------------------------------------------------------------------------
 
-Paths for end point RS232_SER0/shift_reg_2 (SLICE_X58Y83.C6), 1 path
+Paths for end point RS232_DES0/fsm_FSM_FFd2 (SLICE_X62Y70.C6), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.458ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               RS232_DES0/rx_data_2 (FF)
-  Destination:          RS232_SER0/shift_reg_2 (FF)
+Slack (hold path):      0.439ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               RS232_DES0/SYNC0/ff_1 (FF)
+  Destination:          RS232_DES0/fsm_FSM_FFd2 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.526ns (Levels of Logic = 1)
-  Clock Path Skew:      0.068ns (0.512 - 0.444)
+  Data Path Delay:      0.509ns (Levels of Logic = 1)
+  Clock Path Skew:      0.070ns (0.500 - 0.430)
   Source Clock:         USER_CLK_BUFGP rising at 10.000ns
   Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path: RS232_DES0/rx_data_2 to RS232_SER0/shift_reg_2
+  Minimum Data Path: RS232_DES0/SYNC0/ff_1 to RS232_DES0/fsm_FSM_FFd2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X56Y82.CQ      Tcko                  0.433   RS232_DES0/rx_data<3>
-                                                       RS232_DES0/rx_data_2
-    SLICE_X58Y83.C6      net (fanout=3)        0.288   RS232_DES0/rx_data<2>
-    SLICE_X58Y83.CLK     Tah         (-Th)     0.195   RS232_SER0/shift_reg<3>
-                                                       RS232_SER0/shift_reg_mux0000<2>1
-                                                       RS232_SER0/shift_reg_2
+    SLICE_X61Y69.DQ      Tcko                  0.414   RS232_DES0/SYNC0/ff<1>
+                                                       RS232_DES0/SYNC0/ff_1
+    SLICE_X62Y70.C6      net (fanout=4)        0.290   RS232_DES0/SYNC0/ff<1>
+    SLICE_X62Y70.CLK     Tah         (-Th)     0.195   RS232_DES0/fsm_FSM_FFd2
+                                                       RS232_DES0/fsm_FSM_FFd2-In
+                                                       RS232_DES0/fsm_FSM_FFd2
     -------------------------------------------------  ---------------------------
-    Total                                      0.526ns (0.238ns logic, 0.288ns route)
-                                                       (45.2% logic, 54.8% route)
+    Total                                      0.509ns (0.219ns logic, 0.290ns route)
+                                                       (43.0% logic, 57.0% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point RS232_SER0/tx (SLICE_X58Y81.A6), 1 path
+Paths for end point RS232_SER0/shift_reg_4 (SLICE_X64Y85.A6), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.482ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               RS232_SER0/shift_reg_0 (FF)
-  Destination:          RS232_SER0/tx (FF)
+Slack (hold path):      0.469ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               RS232_DES0/rx_data_4 (FF)
+  Destination:          RS232_SER0/shift_reg_4 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.499ns (Levels of Logic = 1)
-  Clock Path Skew:      0.017ns (0.182 - 0.165)
+  Data Path Delay:      0.488ns (Levels of Logic = 1)
+  Clock Path Skew:      0.019ns (0.497 - 0.478)
   Source Clock:         USER_CLK_BUFGP rising at 10.000ns
   Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path: RS232_SER0/shift_reg_0 to RS232_SER0/tx
+  Minimum Data Path: RS232_DES0/rx_data_4 to RS232_SER0/shift_reg_4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X58Y83.AQ      Tcko                  0.414   RS232_SER0/shift_reg<3>
-                                                       RS232_SER0/shift_reg_0
-    SLICE_X58Y81.A6      net (fanout=3)        0.282   RS232_SER0/shift_reg<0>
-    SLICE_X58Y81.CLK     Tah         (-Th)     0.197   RS232_SER0/tx
-                                                       RS232_SER0/tx_mux00001
-                                                       RS232_SER0/tx
+    SLICE_X62Y85.AQ      Tcko                  0.414   RS232_DES0/rx_data<6>
+                                                       RS232_DES0/rx_data_4
+    SLICE_X64Y85.A6      net (fanout=3)        0.293   RS232_DES0/rx_data<4>
+    SLICE_X64Y85.CLK     Tah         (-Th)     0.219   RS232_SER0/shift_reg<7>
+                                                       RS232_SER0/shift_reg_mux0000<4>1
+                                                       RS232_SER0/shift_reg_4
     -------------------------------------------------  ---------------------------
-    Total                                      0.499ns (0.217ns logic, 0.282ns route)
-                                                       (43.5% logic, 56.5% route)
+    Total                                      0.488ns (0.195ns logic, 0.293ns route)
+                                                       (40.0% logic, 60.0% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point RS232_DES0/latch_cnt_12 (SLICE_X57Y77.A6), 1 path
+Paths for end point RS232_DES0/SYNC0/ff_1 (SLICE_X61Y69.DX), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.497ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               RS232_DES0/fsm_FSM_FFd1 (FF)
-  Destination:          RS232_DES0/latch_cnt_12 (FF)
+Slack (hold path):      0.477ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               RS232_DES0/SYNC0/ff_0 (FF)
+  Destination:          RS232_DES0/SYNC0/ff_1 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.537ns (Levels of Logic = 1)
-  Clock Path Skew:      0.040ns (0.483 - 0.443)
+  Data Path Delay:      0.477ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
   Source Clock:         USER_CLK_BUFGP rising at 10.000ns
   Destination Clock:    USER_CLK_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path: RS232_DES0/fsm_FSM_FFd1 to RS232_DES0/latch_cnt_12
+  Minimum Data Path: RS232_DES0/SYNC0/ff_0 to RS232_DES0/SYNC0/ff_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X55Y77.BQ      Tcko                  0.414   RS232_DES0/fsm_FSM_FFd2
-                                                       RS232_DES0/fsm_FSM_FFd1
-    SLICE_X57Y77.A6      net (fanout=23)       0.320   RS232_DES0/fsm_FSM_FFd1
-    SLICE_X57Y77.CLK     Tah         (-Th)     0.197   RS232_DES0/latch_cnt<13>
-                                                       RS232_DES0/latch_cnt_mux0000<1>1
-                                                       RS232_DES0/latch_cnt_12
+    SLICE_X61Y69.CQ      Tcko                  0.414   RS232_DES0/SYNC0/ff<1>
+                                                       RS232_DES0/SYNC0/ff_0
+    SLICE_X61Y69.DX      net (fanout=1)        0.282   RS232_DES0/SYNC0/ff<0>
+    SLICE_X61Y69.CLK     Tckdi       (-Th)     0.219   RS232_DES0/SYNC0/ff<1>
+                                                       RS232_DES0/SYNC0/ff_1
     -------------------------------------------------  ---------------------------
-    Total                                      0.537ns (0.217ns logic, 0.320ns route)
-                                                       (40.4% logic, 59.6% route)
+    Total                                      0.477ns (0.195ns logic, 0.282ns route)
+                                                       (40.9% logic, 59.1% route)
 
 --------------------------------------------------------------------------------
 
@@ -477,18 +476,18 @@ Slack: 8.946ns (period - (min low pulse limit / (low pulse / period)))
   Period: 10.000ns
   Low pulse: 5.000ns
   Low pulse limit: 0.527ns (Trpw)
-  Physical resource: RS232_DES0/rx_data<7>/SR
-  Logical resource: RS232_DES0/rx_data_7/SR
-  Location pin: SLICE_X54Y75.SR
+  Physical resource: RS232_DES0/SYNC0/ff<1>/SR
+  Logical resource: RS232_DES0/SYNC0/ff_0/SR
+  Location pin: SLICE_X61Y69.SR
   Clock network: RS232_DES0/PEDGE0/rst_n_inv
 --------------------------------------------------------------------------------
 Slack: 8.946ns (period - (min high pulse limit / (high pulse / period)))
   Period: 10.000ns
   High pulse: 5.000ns
   High pulse limit: 0.527ns (Trpw)
-  Physical resource: RS232_DES0/rx_data<7>/SR
-  Logical resource: RS232_DES0/rx_data_7/SR
-  Location pin: SLICE_X54Y75.SR
+  Physical resource: RS232_DES0/SYNC0/ff<1>/SR
+  Logical resource: RS232_DES0/SYNC0/ff_0/SR
+  Location pin: SLICE_X61Y69.SR
   Clock network: RS232_DES0/PEDGE0/rst_n_inv
 --------------------------------------------------------------------------------
 
@@ -505,7 +504,7 @@ Clock to Setup on destination clock USER_CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-USER_CLK       |    4.577|         |         |         |
+USER_CLK       |    4.317|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
@@ -514,23 +513,23 @@ Timing summary:
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 1437 paths, 0 nets, and 436 connections
+Constraints cover 1429 paths, 0 nets, and 427 connections
 
 Design statistics:
-   Minimum period:   4.577ns{1}   (Maximum frequency: 218.484MHz)
+   Minimum period:   4.317ns{1}   (Maximum frequency: 231.642MHz)
 
 
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Sat Apr  4 21:36:15 2015 
+Analysis completed Mon Apr 06 14:58:33 2015 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 605 MB
+Peak Memory Usage: 417 MB
 
 
 
