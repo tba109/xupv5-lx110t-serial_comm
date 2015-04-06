@@ -1,11 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
+<<<<<<< HEAD
   <DateModified>2015-04-06T13:48:09</DateModified>
   <ModuleName>loopback_top</ModuleName>
   <SummaryTimeStamp>2015-04-03T11:43:27</SummaryTimeStamp>
   <SavedFilePath>C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/iseconfig/loopback_top.xreport</SavedFilePath>
   <ImplementationReportsDirectory>C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm\</ImplementationReportsDirectory>
+=======
+  <DateModified>2015-04-04T21:04:47</DateModified>
+  <ModuleName>loopback_top</ModuleName>
+  <SummaryTimeStamp>2015-04-03T11:43:27</SummaryTimeStamp>
+  <SavedFilePath>/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/iseconfig/loopback_top.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/</ImplementationReportsDirectory>
+>>>>>>> 6824a06575dde5591325ba92bc51eac22d406e15
   <DateInitialized>2015-04-03T11:37:12</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

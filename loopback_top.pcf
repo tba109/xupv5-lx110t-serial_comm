@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Fri Apr 03 12:33:34 2015
+// Written by: Map P.20131013 on Sat Apr 04 21:35:45 2015
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -7,5 +7,37 @@ COMP "FPGA_CPU_RESET" LOCATE = SITE "E9" LEVEL 1;
 COMP "USER_CLK" LOCATE = SITE "AH15" LEVEL 1;
 COMP "FPGA_SERIAL_RX" LOCATE = SITE "AG15" LEVEL 1;
 COMP "FPGA_SERIAL_TX" LOCATE = SITE "AG20" LEVEL 1;
+TIMEGRP USER_CLK = BEL "RS232_SER0/fsm_FSM_FFd2" BEL
+        "RS232_SER0/launch_cnt_13" BEL "RS232_SER0/launch_cnt_12" BEL
+        "RS232_SER0/launch_cnt_11" BEL "RS232_SER0/launch_cnt_10" BEL
+        "RS232_SER0/launch_cnt_9" BEL "RS232_SER0/launch_cnt_8" BEL
+        "RS232_SER0/launch_cnt_7" BEL "RS232_SER0/launch_cnt_6" BEL
+        "RS232_SER0/launch_cnt_5" BEL "RS232_SER0/launch_cnt_4" BEL
+        "RS232_SER0/launch_cnt_3" BEL "RS232_SER0/launch_cnt_2" BEL
+        "RS232_SER0/launch_cnt_1" BEL "RS232_SER0/launch_cnt_0" BEL
+        "RS232_SER0/shift_cnt_2" BEL "RS232_SER0/shift_cnt_1" BEL
+        "RS232_SER0/shift_cnt_0" BEL "RS232_SER0/shift_reg_7" BEL
+        "RS232_SER0/shift_reg_6" BEL "RS232_SER0/shift_reg_5" BEL
+        "RS232_SER0/shift_reg_4" BEL "RS232_SER0/shift_reg_3" BEL
+        "RS232_SER0/shift_reg_2" BEL "RS232_SER0/shift_reg_1" BEL
+        "RS232_SER0/shift_reg_0" BEL "RS232_SER0/tx_ack" BEL "RS232_SER0/tx"
+        BEL "RS232_DES0/fsm_FSM_FFd2" BEL "RS232_DES0/fsm_FSM_FFd1" BEL
+        "RS232_DES0/PEDGE0/ff" BEL "RS232_DES0/SYNC0/ff_0" BEL
+        "RS232_DES0/SYNC0/ff_1" BEL "RS232_DES0/shift_cnt_2" BEL
+        "RS232_DES0/shift_cnt_1" BEL "RS232_DES0/shift_cnt_0" BEL
+        "RS232_DES0/latch_cnt_13" BEL "RS232_DES0/latch_cnt_12" BEL
+        "RS232_DES0/latch_cnt_11" BEL "RS232_DES0/latch_cnt_10" BEL
+        "RS232_DES0/latch_cnt_9" BEL "RS232_DES0/latch_cnt_8" BEL
+        "RS232_DES0/latch_cnt_7" BEL "RS232_DES0/latch_cnt_6" BEL
+        "RS232_DES0/latch_cnt_5" BEL "RS232_DES0/latch_cnt_4" BEL
+        "RS232_DES0/latch_cnt_3" BEL "RS232_DES0/latch_cnt_2" BEL
+        "RS232_DES0/latch_cnt_1" BEL "RS232_DES0/latch_cnt_0" BEL
+        "RS232_DES0/rx_req" BEL "RS232_SER0/fsm_FSM_FFd1" BEL
+        "RS232_DES0/rx_data_7" BEL "RS232_DES0/rx_data_6" BEL
+        "RS232_DES0/rx_data_5" BEL "RS232_DES0/rx_data_4" BEL
+        "RS232_DES0/rx_data_3" BEL "RS232_DES0/rx_data_2" BEL
+        "RS232_DES0/rx_data_1" BEL "RS232_DES0/rx_data_0" BEL
+        "USER_CLK_BUFGP/BUFG";
+TS_USER_CLK = PERIOD TIMEGRP "USER_CLK" 10 ns HIGH 50%;
 SCHEMATIC END;
 

@@ -1,13 +1,13 @@
-Release 14.7 ngdbuild P.20131013 (nt64)
+Release 14.7 ngdbuild P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Command Line: C:\Xilinx_ISE\14.7\ISE_DS\ISE\bin\nt64\unwrapped\ngdbuild.exe
+Command Line:
+/home/tyler/xilinx/ISE_14.7/14.7/ISE_DS/ISE/bin/lin64/unwrapped/ngdbuild
 -intstyle ise -dd _ngo -nt timestamp -uc pin_assignments.ucf -p
 xc5vlx110t-ff1136-1 loopback_top.ngc loopback_top.ngd
 
 Reading NGO file
-"C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top
-.ngc" ...
+"/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top.ngc" ...
 Gathering constraint information from source properties...
 Done.
 
@@ -29,10 +29,10 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   0
 
-Total memory usage is 172524 kilobytes
+Total memory usage is 414436 kilobytes
 
 Writing NGD file "loopback_top.ngd" ...
-Total REAL time to NGDBUILD completion:  4 sec
-Total CPU time to NGDBUILD completion:   3 sec
+Total REAL time to NGDBUILD completion:  3 sec
+Total CPU time to NGDBUILD completion:   2 sec
 
 Writing NGDBUILD log file "loopback_top.bld"...
