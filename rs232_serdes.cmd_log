@@ -1,0 +1,11 @@
+xst -intstyle ise -ifn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.xst" -ofn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.syr" 
+xst -intstyle ise -ifn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.xst" -ofn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.syr" 
+xst -intstyle ise -ifn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.xst" -ofn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.syr" 
+xst -intstyle ise -ifn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.xst" -ofn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.syr" 
+xst -intstyle ise -ifn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.xst" -ofn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.syr" 
+xst -intstyle ise -ifn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.xst" -ofn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.syr" 
+xst -intstyle ise -ifn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.xst" -ofn "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -i -p xc5vlx110t-ff1136-1 rs232_serdes.ngc rs232_serdes.ngd  
+map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr off -lc off -power off -o rs232_serdes_map.ncd rs232_serdes.ngd rs232_serdes.pcf 
+par -w -intstyle ise -ol high -mt off rs232_serdes_map.ncd rs232_serdes.ncd rs232_serdes.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml rs232_serdes.twx rs232_serdes.ncd -o rs232_serdes.twr rs232_serdes.pcf 

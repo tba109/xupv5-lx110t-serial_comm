@@ -1,4 +1,4 @@
-Running: fuse.exe -relaunch -intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb_isim_beh.exe" -prj "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb_beh.prj" "work.loopback_top_tb" "work.glbl" 
+Running: fuse.exe -relaunch -intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes_tb_isim_beh.exe" -prj "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes_tb_beh.prj" "work.rs232_serdes_tb" "work.glbl" 
 ISim P.20131013 (signature 0x7708f090)
 Number of CPUs detected in this system: 8
 Turning on mult-threading, number of parallel sub-compilation jobs: 16 
@@ -7,22 +7,26 @@ Analyzing Verilog file "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-s
 Analyzing Verilog file "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/posedge_detector.v" into library work
 Analyzing Verilog file "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_ser.v" into library work
 Analyzing Verilog file "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_des.v" into library work
-Analyzing Verilog file "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top.v" into library work
-Analyzing Verilog file "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" into library work
+Analyzing Verilog file "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/fifo_16_8_dis.v" into library work
+Analyzing Verilog file "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.v" into library work
+Analyzing Verilog file "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes_tb.v" into library work
 Analyzing Verilog file "C:/Xilinx_ISE/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
-WARNING:HDLCompiler:1330 - "fncs.h" Line 2: Function clogb2 has no return value assignment
 Completed static elaboration
 Compiling module sync_default
 Compiling module posedge_detector
-Compiling module rs232_des_default
-Compiling module rs232_ser_default
-Compiling module loopback_top
-Compiling module loopback_top_tb
+Compiling module rs232_des(P_CLK_FREQ_HZ=33000000...
+Compiling module fifo_generator_v9_3_bhv_ver_ss(C...
+Compiling module FIFO_GENERATOR_V9_3_CONV_VER(C_C...
+Compiling module FIFO_GENERATOR_V9_3(C_COMMON_CLO...
+Compiling module fifo_16_8_dis
+Compiling module rs232_ser(P_CLK_FREQ_HZ=33000000...
+Compiling module rs232_serdes
+Compiling module rs232_serdes_tb
 Compiling module glbl
 Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
-Compiled 7 Verilog Units
-Built simulation executable C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb_isim_beh.exe
-Fuse Memory Usage: 28888 KB
-Fuse CPU Usage: 373 ms
+Compiled 11 Verilog Units
+Built simulation executable C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes_tb_isim_beh.exe
+Fuse Memory Usage: 32572 KB
+Fuse CPU Usage: 499 ms

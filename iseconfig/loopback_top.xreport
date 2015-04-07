@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <ImplementationReportsDirectory>C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm</ImplementationReportsDirectory>
-  <ModuleName>loopback_top</ModuleName>
-  <DateModified>2015-04-06T14:47:54</DateModified>
+  <ImplementationReportsDirectory>C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm\</ImplementationReportsDirectory>
+  <ModuleName>rs232_serdes</ModuleName>
+  <DateModified>2015-04-07T08:39:30</DateModified>
   <SavedFilePath>C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/iseconfig/loopback_top.xreport</SavedFilePath>
-  <DateInitialized>2015-04-06T13:57:43</DateInitialized>
+  <DateInitialized>2015-04-07T08:12:55</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
   <SummaryTimeStamp>2015-04-06T14:16:31</SummaryTimeStamp>
  </header>

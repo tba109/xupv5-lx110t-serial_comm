@@ -10,19 +10,17 @@
 //   No parity
 //   1 stop bit
 //
-// Clock rate needs to be ~10x baud rate for this to really work
-// 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 
 module rs232_des
   (
-   input 	    clk,     // clock frequency
-   input 	    rst_n,   // active low reset
-   input 	    rx,      // serial RS-232 data
-   output reg [7:0] rx_data, // ascii data byte
-   output reg 	    rx_req,  // request for downstream module to accept character
-   input 	    rx_ack   // acknowledgement of acceptance from downstream
+   input 	    clk,           // clock frequency
+   input 	    rst_n,         // active low reset
+   input 	    rx,            // serial RS-232 data
+   output reg [7:0] rx_fifo_data,  // ascii data byte
+   output reg 	    rx_fifo_wr_en, // request for downstream module to accept character
+   input 	    rx_fifo_full   // acknowledgement of acceptance from downstream
    );
 
 `include "fncs.h"
@@ -32,8 +30,7 @@ module rs232_des
 
    // Goofy mark/space business
    wire 	    rx_n = !rx;
-   
-     
+        
    // Finite state machine
    reg [1:0] 	    fsm;
    localparam
@@ -58,12 +55,11 @@ module rs232_des
    // Count the 8 bits to be shifted in
    reg [2:0] 	    shift_cnt;
 
-   // Handshake to downstream only if you get the stop bit (i.e., watch out for "break" condition.)
-   // Note that downstream needs to be processing fast enough to keep up here
+   // FIFO write signal (watch out for break condition)
    always @(posedge clk or negedge rst_n )
-     if( !rst_n ) rx_req <= 1'b0;
-     else if( (fsm == S_STOP) && (latch_cnt == STOP_LATCH_CNT_MAX) && (rx_n_s == 1'b0) ) rx_req <= 1'b1;
-     else if( rx_ack ) rx_req <= 1'b0;
+     if( !rst_n ) rx_fifo_wr_en <= 1'b0;
+     else if( (fsm == S_STOP) && (latch_cnt == STOP_LATCH_CNT_MAX) && (rx_n_s == 1'b0) && !rx_fifo_full ) rx_fifo_wr_en <= 1'b1;
+     else rx_fifo_wr_en <= 1'b0;
      
    // Finite State Machine
    always @(posedge clk or negedge rst_n)
@@ -71,7 +67,7 @@ module rs232_des
        begin
 	  latch_cnt <= {NBITS_LATCH_CNT{1'b0}}; 
           shift_cnt <= 3'd0; 
-	  rx_data <= 8'd0;
+	  rx_fifo_data <= 8'd0;
 	  fsm <= S_IDLE;
        end
      
@@ -101,14 +97,14 @@ module rs232_des
 	    S_SHIFT: 
 	      if( (shift_cnt == 3'd7) && (latch_cnt == SHIFT_LATCH_CNT_MAX) )   
 		begin
-		   rx_data <= {rx_n_s,rx_data[7:1]}; // RS-232 is little endian
+		   rx_fifo_data <= {rx_n_s,rx_fifo_data[7:1]}; // RS-232 is little endian
 		   shift_cnt <= 3'b0;
 		   latch_cnt <= {NBITS_LATCH_CNT-1{1'b0}}; 
 		   fsm <= S_STOP;  
 		end
 	      else if( latch_cnt == SHIFT_LATCH_CNT_MAX )
 		begin
-		   rx_data <= {rx_n_s,rx_data[7:1]}; // RS-232 is little endian
+		   rx_fifo_data <= {rx_n_s,rx_fifo_data[7:1]}; // RS-232 is little endian
 		   shift_cnt <= shift_cnt + 1'b1;
 		   latch_cnt <= {NBITS_LATCH_CNT-1{1'b0}};
 		end

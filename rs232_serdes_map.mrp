@@ -1,0 +1,310 @@
+Release 14.7 Map P.20131013 (nt64)
+Xilinx Mapping Report File for Design 'rs232_serdes'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol
+high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr
+off -lc off -power off -o rs232_serdes_map.ncd rs232_serdes.ngd rs232_serdes.pcf
+ 
+Target Device  : xc5vlx110t
+Target Package : ff1136
+Target Speed   : -1
+Mapper Version : virtex5 -- $Revision: 1.55 $
+Mapped Date    : Tue Apr 07 09:07:11 2015
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    0
+Slice Logic Utilization:
+  Number of Slice Registers:                   131 out of  69,120    1%
+    Number used as Flip Flops:                 131
+  Number of Slice LUTs:                        144 out of  69,120    1%
+    Number used as logic:                      132 out of  69,120    1%
+      Number using O6 output only:             110
+      Number using O5 output only:              20
+      Number using O5 and O6:                    2
+    Number used as Memory:                      10 out of  17,920    1%
+      Number used as Dual Port RAM:             10
+        Number using O6 output only:             4
+        Number using O5 output only:             1
+        Number using O5 and O6:                  5
+    Number used as exclusive route-thru:         2
+  Number of route-thrus:                        22
+    Number using O6 output only:                22
+
+Slice Logic Distribution:
+  Number of occupied Slices:                    70 out of  17,280    1%
+  Number of LUT Flip Flop pairs used:          184
+    Number with an unused Flip Flop:            53 out of     184   28%
+    Number with an unused LUT:                  40 out of     184   21%
+    Number of fully used LUT-FF pairs:          91 out of     184   49%
+    Number of unique control sets:              23
+    Number of slice register sites lost
+      to control set restrictions:              38 out of  69,120    1%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  OVERMAPPING of BRAM resources should be ignored if the design is
+  over-mapped for a non-BRAM resource or if placement fails.
+
+IO Utilization:
+  Number of bonded IOBs:                        32 out of     640    5%
+
+Specific Feature Utilization:
+  Number of BUFG/BUFGCTRLs:                      1 out of      32    3%
+    Number used as BUFGs:                        1
+
+Average Fanout of Non-Clock Nets:                3.39
+
+Peak Memory Usage:  573 MB
+Total REAL time to MAP completion:  22 secs 
+Total CPU time to MAP completion:   16 secs 
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Timing Report
+Section 11 - Configuration String Information
+Section 12 - Control Set Information
+Section 13 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:Security:42 - Your software subscription period has lapsed. Your current
+version of Xilinx tools will continue to function, but you no longer qualify for
+Xilinx software updates or new releases.
+
+Section 3 - Informational
+-------------------------
+INFO:Security:56 - Part 'xc5vlx110t' is not a WebPack part.
+INFO:LIT:243 - Logical network
+   RX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/
+   gdm.dm/Mram_RAM22/SPO has no load.
+INFO:LIT:395 - The above info message is repeated 10 more times for the
+   following (max. 5 shown):
+   RX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/
+   gdm.dm/Mram_RAM21/SPO,
+   TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/
+   gdm.dm/dout_i<7>,
+   TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/
+   gdm.dm/dout_i<6>,
+   TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/
+   gdm.dm/dout_i<5>,
+   TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/
+   gdm.dm/dout_i<4>
+   To see the details of these info messages, please use the -detail switch.
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs.
+INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
+   0.000 to 85.000 Celsius)
+INFO:Pack:1720 - Initializing voltage to 0.950 Volts. (default - Range: 0.950 to
+   1.050 Volts)
+INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
+   (.mrp).
+INFO:Pack:1650 - Map created a placed design.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+   9 block(s) removed
+   4 block(s) optimized away
+  14 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i<7>" is sourceless and has been removed.
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i<6>" is sourceless and has been removed.
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i<5>" is sourceless and has been removed.
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i<4>" is sourceless and has been removed.
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i<3>" is sourceless and has been removed.
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i<2>" is sourceless and has been removed.
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i<1>" is sourceless and has been removed.
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/_varindex0000<7>" is sourceless and has been removed.
+ Sourceless block
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i_7" (FF) removed.
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/_varindex0000<6>" is sourceless and has been removed.
+ Sourceless block
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i_6" (FF) removed.
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/_varindex0000<1>" is sourceless and has been removed.
+ Sourceless block
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i_1" (FF) removed.
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/_varindex0000<3>" is sourceless and has been removed.
+ Sourceless block
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i_3" (FF) removed.
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/_varindex0000<2>" is sourceless and has been removed.
+ Sourceless block
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i_2" (FF) removed.
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/_varindex0000<5>" is sourceless and has been removed.
+ Sourceless block
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i_5" (FF) removed.
+The signal
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/_varindex0000<4>" is sourceless and has been removed.
+ Sourceless block
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/dout_i_4" (FF) removed.
+Unused block
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/Mram_RAM21" (RAM32X1D) removed.
+Unused block
+"TX_FIFO_16_8/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gd
+m.dm/Mram_RAM22" (RAM32X1D) removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		RX_FIFO_16_8/XST_GND
+GND 		TX_FIFO_16_8/XST_GND
+GND 		XST_GND
+VCC 		XST_VCC
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 6 - IOB Properties
+--------------------------
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| clk                                | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| rst_n                              | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| rx                                 | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| rx_fifo_dout_out<0>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| rx_fifo_dout_out<1>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| rx_fifo_dout_out<2>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| rx_fifo_dout_out<3>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| rx_fifo_dout_out<4>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| rx_fifo_dout_out<5>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| rx_fifo_dout_out<6>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| rx_fifo_dout_out<7>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| rx_fifo_empty_out                  | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| rx_fifo_rd_en_in                   | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| tx                                 | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| tx_fifo_data_in<0>                 | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| tx_fifo_data_in<1>                 | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| tx_fifo_data_in<2>                 | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| tx_fifo_data_in<3>                 | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| tx_fifo_data_in<4>                 | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| tx_fifo_data_in<5>                 | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| tx_fifo_data_in<6>                 | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| tx_fifo_data_in<7>                 | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| tx_fifo_dout_out<0>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| tx_fifo_dout_out<1>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| tx_fifo_dout_out<2>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| tx_fifo_dout_out<3>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| tx_fifo_dout_out<4>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| tx_fifo_dout_out<5>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| tx_fifo_dout_out<6>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| tx_fifo_dout_out<7>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| tx_fifo_full_out                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| tx_fifo_wr_en_in                   | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Timing Report
+--------------------------
+A logic-level (pre-route) timing report can be generated by using Xilinx static
+timing analysis tools, Timing Analyzer (GUI) or TRCE (command line), with the
+mapped NCD and PCF files. Please note that this timing report will be generated
+using estimated delay information. For accurate numbers, please generate a
+timing report with the post Place and Route NCD file.
+
+For more information about the Timing Analyzer, consult the Xilinx Timing
+Analyzer Reference Manual; for more information about TRCE, consult the Xilinx
+Command Line Tools User Guide "TRACE" chapter.
+
+Section 11 - Configuration String Details
+-----------------------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 12 - Control Set Information
+------------------------------------
+Use the "-detail" map option to print out Control Set Information.
+
+Section 13 - Utilization by Hierarchy
+-------------------------------------
+Use the "-detail" map option to print out the Utilization by Hierarchy section.

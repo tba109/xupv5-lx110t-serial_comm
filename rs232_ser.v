@@ -16,12 +16,12 @@
 
 module rs232_ser
   (
-   input       clk,     // clock frequency
-   input       rst_n,   // active low reset
-   output      tx,      // serial RS-232 data
-   input [7:0] tx_data, // serial tx data
-   input       tx_req,  // transmission request from upstream
-   output reg  tx_ack   // acknowledge of acceptance to upstream
+   input       clk,           // clock frequency
+   input       rst_n,         // active low reset
+   output      tx,            // serial RS-232 data
+   input [7:0] tx_fifo_data,  // serial tx data
+   output reg  tx_fifo_rd_en, // transmission request from upstream
+   input       tx_fifo_empty  // acknowledge of acceptance to upstream
    );
 
 `include "fncs.h"
@@ -51,6 +51,12 @@ module rs232_ser
 
    // Data shift register
    reg [7:0] 	       shift_reg;
+
+   // FIFO read signal
+   always @(posedge clk or negedge rst_n)
+     if( !rst_n ) tx_fifo_rd_en <= 1'b0;
+     else if( (fsm == S_IDLE) && !tx_fifo_empty) tx_fifo_rd_en <= 1'b1;
+     else tx_fifo_rd_en <= 1'b0;
       
    // Finite State Machine
    always @(posedge clk or negedge rst_n)
@@ -58,25 +64,19 @@ module rs232_ser
        begin
 	  fsm <= 2'd0;
 	  tx_n <= 1'b0;
-	  tx_ack <= 1'b0;
 	  shift_reg <= 8'd0;
        end
    
      else
        begin
-	  tx_ack <= 1'b0;
 	  case( fsm )
 	    
 	    S_IDLE:
 	      begin
 		 shift_cnt <= 3'd0;
 		 launch_cnt <= {NBITS_LAUNCH_CNT-1{1'b0}};
-		 if( tx_req ) 
-		   begin
-		      tx_ack <= 1'b1;
-		      shift_reg <= tx_data;
-		      fsm <= S_START;
-		   end
+		 if( !tx_fifo_empty ) 
+		   fsm <= S_START;
 	      end
 	    	
 	    S_START:
@@ -84,6 +84,7 @@ module rs232_ser
 		 tx_n <= 1'b1; // assert the start bit
 		 if( launch_cnt == LAUNCH_CNT_MAX )
 		   begin
+		      shift_reg <= tx_fifo_data;
 		      launch_cnt <= {NBITS_LAUNCH_CNT-1{1'b0}};
 		      fsm <= S_SHIFT;
 	           end

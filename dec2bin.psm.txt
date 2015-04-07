@@ -1,0 +1,228 @@
+; This PicoBlaze program demonstrates how to take a decimal number stored as an ASCII
+; string in 10 bytes of memory and convert it into a 32 bit binary number stored in 4
+; bytes of memory.
+;
+; This algorithm uses multiple 8-bit addition with carry.
+;
+; The test routine tries these two examples:
+;
+;   Decimal Input    Hexadecimal Result
+;   4294907501       FFFF166D
+;   4027448014       FOODFACE
+;
+; This program calls test_routine to demonstrate the use of these procedures:
+;
+;   zero_decimal_memory
+;   zero_binary_memory
+;   convert_to_binary
+;   multiply_binary_by_ten
+;   add_to_binary
+;
+; Your program should reuse these procedures, associated named register and
+; constant declarations.
+;
+; The number of decimal digits can be changed by modifying decimal_address_left and
+; decimal_address_right. The number of binary bytes can be changed by modifying
+; binary_address_left and binary_address_right.
+;
+; This program was developed using the IvySim PicoBlaze Debugger:
+;
+;   www.ivysim.com/picoblaze/debug/
+;
+; Copyright (c) 2010 Ivybridge Simulation
+; 3, April 2010
+; www.ivysim.com
+;
+
+  constant character_0, 30
+  constant character_1, 31
+  constant character_2, 32
+  constant character_3, 33
+  constant character_4, 34
+  constant character_5, 35
+  constant character_6, 36
+  constant character_7, 37
+  constant character_8, 38
+  constant character_9, 39
+  constant character_A, 41
+  constant character_B, 42
+  constant character_C, 43
+  constant character_D, 44
+  constant character_E, 45
+  constant character_F, 46
+
+  constant binary_address_right, 0C
+  constant binary_address_left,  0F  ; Four bytes, 32 bits, 8 hex digits
+
+  constant decimal_address_right, 00
+  constant decimal_address_left,  09  ; Ten bytes, ten characters, 10 decimal digits
+
+  namereg s0, reg0
+  namereg s1, reg1
+  namereg s2, reg2
+  namereg s3, reg3
+  namereg s4, reg4
+  namereg s5, reg5
+  namereg s6, memory_pointer_dec
+  namereg s8, memory_pointer_bin
+
+initialise:
+  disable interrupt
+
+main:
+  call    test_routine  ;<bp>
+jump      main
+
+
+
+zero_decimal_memory:
+  load    memory_pointer_dec, decimal_address_left
+  load    reg1, 00
+zero_decimal_memory_loop:
+  store   reg1, (memory_pointer_dec)
+  compare memory_pointer_dec, decimal_address_right
+return    z ;Return when all dec digits are zero
+  sub     memory_pointer_dec, 01
+jump      zero_decimal_memory_loop
+
+zero_binary_memory:
+  load    memory_pointer_bin, binary_address_left
+  load    reg1, 00
+zero_binary_memory_loop:
+  store   reg1, (memory_pointer_bin)
+  compare memory_pointer_bin, binary_address_right
+return    z
+  sub     memory_pointer_bin, 01
+jump      zero_binary_memory_loop
+
+; Convert from decimal to binary
+;
+; Strategy is:
+;   Zero binary memory
+;   Loop ten times, once for each decimal digit, left to right
+;     Multiply binary by ten
+;       From left to right bytes, add 9 times
+;         Ripple carry to the left
+;     Add decimal digit to the right byte
+;       Convert from ASCII to binary (0-9)
+;       Ripple carry bits to the left
+convert_to_binary:
+  call    zero_binary_memory
+  load    memory_pointer_dec, decimal_address_left          ; <BP>
+convert_to_binary_loop:
+  call    multiply_binary_by_ten
+  fetch   reg1, (memory_pointer_dec)
+  sub     reg1, character_0         ; No checking, must be 0-9
+  load    memory_pointer_bin, binary_address_right
+  call    add_to_binary
+  compare memory_pointer_dec, decimal_address_right
+return    z
+  sub     memory_pointer_dec, 01
+jump      convert_to_binary_loop
+
+; Multiply the binary number by 10
+; reg3 Binary byte address, descending left to right.
+;      Necessary because memory_pointer_bin increments while carrying.
+; reg4 Binary byte to add 9x.
+; reg5 Multiple addition counter: 8,7,6,5,4,3,2,1,0
+multiply_binary_by_ten:
+  load    reg3, binary_address_left
+multiply_binary_by_ten_loop:
+  load    memory_pointer_bin, reg3
+  fetch   reg4, (memory_pointer_bin)
+  load    reg5, 08
+multiply_binary_by_ten_loop2:
+  load    reg1, reg4
+  load    memory_pointer_bin, reg3
+  call    add_to_binary
+  sub     reg5, 01
+jump      nc, multiply_binary_by_ten_loop2  ; Loop 9 times
+  compare reg3, binary_address_right
+return    z ; when all binary bytes have been added 9x
+  sub     reg3, 01
+jump      multiply_binary_by_ten_loop
+
+; Add reg1 to the binary byte at address memory_pointer_bin.
+add_to_binary:
+  fetch   reg2, (memory_pointer_bin)
+  add     reg2, reg1
+  store   reg2, (memory_pointer_bin)
+return    nc ; when nothing to ripple carry
+  compare memory_pointer_bin, binary_address_left
+return    z  ; when no more bytes to carry to
+  load    reg1, 01
+  add     memory_pointer_bin, 01
+  call    add_to_binary ; Carry 1 into binary byte to the left
+return
+
+test_routine:
+  call    zero_decimal_memory  ;<bp>
+  ; Load the decimal number 4294907501 in the decimal scratch pad memory area
+  load    memory_pointer_dec, decimal_address_left  ;<bp>
+  load    reg1, character_4
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_2
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_9
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_4
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_9
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_0
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_7
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_5
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_0
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_1
+  store   reg1, (memory_pointer_dec) 
+  call    convert_to_binary  ;<bp>
+  ; Should see 0xFFFF166D in binary memory address
+  call    zero_decimal_memory  ;<bp>
+  ; Load the decimal number 4027448014 in the decimal scratch pad memory area
+  load    memory_pointer_dec, decimal_address_left  ;<bp>
+  load    reg1, character_4
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_0
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_2
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_7
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_4
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_4
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_8
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_0
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_1
+  store   reg1, (memory_pointer_dec) 
+  sub     memory_pointer_dec, 01
+  load    reg1, character_4
+  store   reg1, (memory_pointer_dec) 
+  call    convert_to_binary  ;<bp>
+  ; Should see 0xFOODFACE in binary memory address
+return
+

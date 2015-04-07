@@ -1,5 +1,7 @@
-MO rs232_ser NULL rs232_ser.v vlg55/rs232__ser.bin 1428346655
-MO posedge_detector NULL posedge_detector.v vlg78/posedge__detector.bin 1428346655
-MO rs232_des NULL rs232_des.v vlg5F/rs232__des.bin 1428346655
-MO sync NULL sync.v vlg01/sync.bin 1428346655
+MO rs232_ser NULL rs232_ser.v vlg55/rs232__ser.bin 1428411745
+MO posedge_detector NULL posedge_detector.v vlg78/posedge__detector.bin 1428411745
+MO rs232_des NULL rs232_des.v vlg5F/rs232__des.bin 1428411745
+MO sync NULL sync.v vlg01/sync.bin 1428411745
 MO loopback_top NULL loopback_top.v vlg1D/loopback__top.bin 1428346655
+MO fifo_16_8_dis NULL ipcore_dir/fifo_16_8_dis.v vlg78/fifo__16__8__dis.bin 1428411745
+MO rs232_serdes NULL rs232_serdes.v vlg31/rs232__serdes.bin 1428411745

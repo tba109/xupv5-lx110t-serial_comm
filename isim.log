@@ -1,5 +1,5 @@
 ISim log file
-Running: C:\cygwin64\home\volundr\sat_erp\firmware\xupv5-lx110t-serial_comm\loopback_top_tb_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb_isim_beh.wdb 
+Running: C:\cygwin64\home\volundr\sat_erp\firmware\xupv5-lx110t-serial_comm\rs232_serdes_tb_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes_tb_isim_beh.wdb 
 ISim P.20131013 (signature 0x7708f090)
 ----------------------------------------------------------------------
 WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue to function, but you no longer qualify for Xilinx software updates or new releases.
@@ -7,6 +7,7 @@ WARNING:Security:42 - Your software subscription period has lapsed. Your current
 
 ----------------------------------------------------------------------
 This is a Full version of ISim.
+WARNING: File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.v" Line 99.  For instance uut/TX_FIFO_16_8/, width 8 of formal port dout is not equal to width 1 of actual signal tx_fifo_dout.
 Time resolution is 1 ps
 # onerror resume
 # wave add /
@@ -14,21 +15,50 @@ Time resolution is 1 ps
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
 # run 10 ms
-Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 100
+Stopped at time : 2426038 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes_tb.v" Line 104
 # run 10 ms
-# restart
-# run 10 ms
+ISim P.20131013 (signature 0x7708f090)
+----------------------------------------------------------------------
+WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue to function, but you no longer qualify for Xilinx software updates or new releases.
+
+
+----------------------------------------------------------------------
+This is a Full version of ISim.
+WARNING: File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.v" Line 99.  For instance uut/TX_FIFO_16_8/, width 8 of formal port dout is not equal to width 1 of actual signal tx_fifo_dout.
+# run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 100
 # run 10 ms
-# restart
+Stopped at time : 2696038 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes_tb.v" Line 104
 # run 10 ms
+ISim P.20131013 (signature 0x7708f090)
+----------------------------------------------------------------------
+WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue to function, but you no longer qualify for Xilinx software updates or new releases.
+
+
+----------------------------------------------------------------------
+This is a Full version of ISim.
+WARNING: File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.v" Line 99.  For instance uut/TX_FIFO_16_8/, width 8 of formal port dout is not equal to width 1 of actual signal tx_fifo_dout.
+# run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 100
 # run 10 ms
-# restart
+Stopped at time : 379271 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes_tb.v" Line 104
+# run 10 ms
+# run 10 ms
+ISim P.20131013 (signature 0x7708f090)
+----------------------------------------------------------------------
+WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue to function, but you no longer qualify for Xilinx software updates or new releases.
+
+
+----------------------------------------------------------------------
+This is a Full version of ISim.
+WARNING: File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes.v" Line 99.  For instance uut/TX_FIFO_16_8/, width 8 of formal port dout is not equal to width 1 of actual signal tx_fifo_dout.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# run 10 ms
+Stopped at time : 2696038 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes_tb.v" Line 104
 ISim P.20131013 (signature 0x7708f090)
 ----------------------------------------------------------------------
 WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue to function, but you no longer qualify for Xilinx software updates or new releases.
@@ -40,7 +70,7 @@ This is a Full version of ISim.
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
 # run 10 ms
-Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 100
+Stopped at time : 2696038 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes_tb.v" Line 104
 # run 10 ms
 ISim P.20131013 (signature 0x7708f090)
 ----------------------------------------------------------------------
@@ -53,18 +83,5 @@ This is a Full version of ISim.
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
 # run 10 ms
-Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 100
-# run 10 ms
-ISim P.20131013 (signature 0x7708f090)
-----------------------------------------------------------------------
-WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue to function, but you no longer qualify for Xilinx software updates or new releases.
-
-
-----------------------------------------------------------------------
-This is a Full version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-# run 10 ms
-Stopped at time : 1354258 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/loopback_top_tb.v" Line 100
+Stopped at time : 3596158 ns : File "C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/rs232_serdes_tb.v" Line 115
 # run 10 ms

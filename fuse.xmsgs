@@ -5,8 +5,5 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="1330" delta="unknown" >"fncs.h" Line 2: Function <arg fmt="%s" index="1">clogb2</arg> has no return value assignment
-</msg>
-
 </messages>
 

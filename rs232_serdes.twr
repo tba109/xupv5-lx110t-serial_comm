@@ -1,0 +1,92 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx_ISE\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s
+1 -n 3 -fastpaths -xml rs232_serdes.twx rs232_serdes.ncd -o rs232_serdes.twr
+rs232_serdes.pcf
+
+Design file:              rs232_serdes.ncd
+Physical constraint file: rs232_serdes.pcf
+Device,package,speed:     xc5vlx110t,ff1136,-1 (PRODUCTION 1.73 2013-10-13, STEPPING level 0)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2698 - No timing constraints found, doing default enumeration.
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Setup/Hold to clock clk
+------------------+------------+------------+------------------+--------+
+                  |Max Setup to|Max Hold to |                  | Clock  |
+Source            | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
+------------------+------------+------------+------------------+--------+
+rst_n             |   -0.163(R)|    2.482(R)|clk_BUFGP         |   0.000|
+rx                |   -0.777(R)|    3.029(R)|clk_BUFGP         |   0.000|
+rx_fifo_rd_en_in  |    0.890(R)|    2.106(R)|clk_BUFGP         |   0.000|
+tx_fifo_data_in<0>|    0.156(R)|    2.363(R)|clk_BUFGP         |   0.000|
+tx_fifo_data_in<1>|   -0.324(R)|    2.656(R)|clk_BUFGP         |   0.000|
+tx_fifo_data_in<2>|    0.028(R)|    2.333(R)|clk_BUFGP         |   0.000|
+tx_fifo_data_in<3>|    0.170(R)|    2.204(R)|clk_BUFGP         |   0.000|
+tx_fifo_data_in<4>|   -0.177(R)|    2.495(R)|clk_BUFGP         |   0.000|
+tx_fifo_data_in<5>|   -0.024(R)|    2.355(R)|clk_BUFGP         |   0.000|
+tx_fifo_data_in<6>|   -0.089(R)|    2.416(R)|clk_BUFGP         |   0.000|
+tx_fifo_data_in<7>|   -0.146(R)|    2.465(R)|clk_BUFGP         |   0.000|
+tx_fifo_wr_en_in  |    1.336(R)|    1.555(R)|clk_BUFGP         |   0.000|
+------------------+------------+------------+------------------+--------+
+
+Clock clk to Pad
+-------------------+------------+------------------+--------+
+                   | clk (edge) |                  | Clock  |
+Destination        |   to PAD   |Internal Clock(s) | Phase  |
+-------------------+------------+------------------+--------+
+rx_fifo_dout_out<0>|    9.043(R)|clk_BUFGP         |   0.000|
+rx_fifo_dout_out<1>|    8.856(R)|clk_BUFGP         |   0.000|
+rx_fifo_dout_out<2>|    8.866(R)|clk_BUFGP         |   0.000|
+rx_fifo_dout_out<3>|    8.843(R)|clk_BUFGP         |   0.000|
+rx_fifo_dout_out<4>|    8.957(R)|clk_BUFGP         |   0.000|
+rx_fifo_dout_out<5>|    8.660(R)|clk_BUFGP         |   0.000|
+rx_fifo_dout_out<6>|    8.958(R)|clk_BUFGP         |   0.000|
+rx_fifo_dout_out<7>|    8.873(R)|clk_BUFGP         |   0.000|
+rx_fifo_empty_out  |    8.841(R)|clk_BUFGP         |   0.000|
+tx                 |    8.846(R)|clk_BUFGP         |   0.000|
+tx_fifo_dout_out<0>|    8.842(R)|clk_BUFGP         |   0.000|
+tx_fifo_full_out   |    8.983(R)|clk_BUFGP         |   0.000|
+-------------------+------------+------------------+--------+
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    2.629|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Analysis completed Tue Apr 07 09:08:05 2015 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 418 MB
+
+
+

@@ -1,0 +1,203 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Tyler Anderson Tue, Apr 07, 2015 10:07:50 AM
+;;
+;; Convert 8-character hex commands to 32-bit commands.
+;; Use linefeed or space as sentinel for end of command. 
+;;
+;; Borrowed a few ideas from
+;; http://www.ivysim.com/picoblaze/dec2bin/
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; The ASCII characters we are looking for
+;; http://www.asciitable.com/
+;;
+CONSTANT ASCII_lf,    0a
+CONSTANT ASCII_space, 20
+CONSTANT ASCII_0,     30
+CONSTANT ASCII_1,     31
+CONSTANT ASCII_2,     32
+CONSTANT ASCII_3,     33
+CONSTANT ASCII_4,     34
+CONSTANT ASCII_5,     35
+CONSTANT ASCII_6,     36
+CONSTANT ASCII_7,     37
+CONSTANT ASCII_8,     38
+CONSTANT ASCII_9,     39
+CONSTANT ASCII_A,     41
+CONSTANT ASCII_B,     42
+CONSTANT ASCII_C,     43
+CONSTANT ASCII_D,     44
+CONSTANT ASCII_E,     45
+CONSTANT ASCII_F,     46
+CONSTANT ASCII_a,     61
+CONSTANT ASCII_b,     62
+CONSTANT ASCII_c,     63
+CONSTANT ASCII_d,     64
+CONSTANT ASCII_e,     65
+CONSTANT ASCII_f,     66
+
+;; Some port id addresses
+;;
+CONSTANT RX_FIFO_EMPTY , 01
+CONSTANT RX_FIFO_READ  , 02
+CONSTANT CMD_FIFO_FULL , 03
+CONSTANT CMD_FIFO_DATA0, 04
+CONSTANT CMD_FIFO_DATA1, 05
+CONSTANT CMD_FIFO_DATA2, 06
+CONSTANT CMD_FIFO_DATA3, 07
+CONSTANT CMD_FIFO_WRITE, 08
+CONSTANT TX_FIFO_FULL  , 09
+CONSTANT TX_FIFO_WRITE , 0a
+CONSTANT RSP_FIFO_EMPTY, 0b
+CONSTANT RSP_FIFO_READ0, 0c
+CONSTANT RSP_FIFO_READ1, 0d
+CONSTANT RSP_FIFO_READ2, 0e
+CONSTANT RSP_FIFO_READ3, 0f
+
+;; Some useful scratch pad memory addresses
+;;
+CONSTANT ASCII_ADR_LO, 00
+CONSTANT ASCII_ADR_HI, 08
+CONSTANT BIN_ADR_LO  , 09
+CONSTANT BIN_ADR_HI  , 0c
+CONSTANT MATCH_ADR_LO, 0d
+CONSTANT MATCH_ADR_HI, 22
+CONSTANT MATCH_ADR_NO, MATCH_ADR_HI+1
+
+;; Some useful register definitions
+;;
+NAMEREG xreg      , s0
+NAMEREG yreg      , s1
+NAMEREG ascii_ptr , s2
+NAMEREG bin_eqv   , s3
+NAMEREG match_ptr , s4
+NAMEREG bin_nyb_hi, s5
+NAMEREG bin_nyb_lo, s6
+NAMEREG retval    , sF
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	        ;; No interrupt, and initialize the scratch pad with characters to be matched
+		;;
+	  init: DISABLE INTERRUPT                  
+	  	LOAD    asci_ptr   , ASCII_ADR_HI
+		LOAD    xreg       , MATCH_ADR_LO
+	        STORE   ASCII_0    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_1    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_2    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_3    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_4    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_5    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_6    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_7    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_8    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_9    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_a    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_b    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_c    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_d    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_e    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_f    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_A    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_B    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_C    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_D    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_E    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_F    , xreg
+				
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;; Handle new data from receiver or response FIFO
+		;;
+  poll_rx_fifo: INPUT   xreg, RX_FIFO_EMPTY ;; Poll rx fifo empty.
+	        COMPARE xreg, 0             ;; Is rx fifo not empty?
+		CALL    Z   , read_rx       ;; If no, read rx and store in memory
+
+                ;; TBA_NOTE: Other stuff for response FIFO needs to go here!!!
+
+		JUMP          poll_rx_fifo  ;; Spin here forever
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;; Read in the RSP FIFO and store its contents in scratch pad memory
+		;; Store the result in xreg
+		;;
+   get_rx_char: INPUT   xreg, RX_FIFO_EMPTY     ;; TBA_NOTE: Add a timeout!!!
+                COMPARE xreg, 0
+		JUMP    NZ  , get_rx_char
+		INPUT   xreg, RX_FIFO_READ
+		JUMP          return0
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;; Poll for response data and, if pending, read it in
+		;;
+       read_rx: CALL    Z        , get_rx_char      ;; get the character, stored in xreg 
+		STORE   xreg     , (ascii_ptr)
+		SUB     ascii_ptr, 01
+		COMPARE ascii_ptr, ASCII_ADR_LOW
+		JUMP    NZ       , decode_ascii
+
+
+write_cmd_fifo:
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;; Read in the RSP FIFO and store its contents in scratch pad memory
+		;; Store the result in xreg
+		;;
+     test_sent: FETCH   xreg, (ascii_ptr)
+                COMPARE xreg, ascii_lf
+		JUMP    Z   , return0
+		COMPARE xreg, ascii_space
+		JUMP    Z   , return0
+		JUMP          return1
+
+
+
+hexchar_to_bin: LOAD    match_ptr, MATCH_ADR_LO
+  		LOAD    bin_eqv  , 0
+  		FETCH   xreg     , (ascii_ptr)
+		FETCH   yreg     , (match_ptr)
+                COMPARE xreg     , yreg           
+		RETURN  Z                        ;; return if we found an ASCII match
+		ADD     bin_eqv  , 01
+		ADD     match_ptr, 01
+		COMPARE match_ptr, MATCH_ADR_NO
+		RETURN  Z
+		JUMP    NZ       , ascii_to_bin
+
+   store_ascii: 
+  decode_ascii: LOAD    ascii_ptr, ASCII_ADR_HI
+                CALL               hexchar_to_bin
+		COMPARE retval   , 00
+		JUMP
+
+      code_bin: 
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	        ;; I think these guys should each save a line of code on return
+		;; If anything, they make the code read more cleanly
+		;;
+       return0: LOAD retval, 00 ;; generic return 0
+                RETURN
+       retval1: LOAD retval, 01 ;; generic return 1
+                RETURN
