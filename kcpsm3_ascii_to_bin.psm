@@ -75,14 +75,15 @@ NAMEREG bin_eqv   , s3
 NAMEREG match_ptr , s4
 NAMEREG bin_nyb_hi, s5
 NAMEREG bin_nyb_lo, s6
+NAMEREG cnt0      , SD
+NAMEREG cnt1      , sE
 NAMEREG retval    , sF
 
-                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	        ;; No interrupt, and initialize the scratch pad with characters to be matched
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	        ;; No interrupt, and initialize the scratch pad with characters to be 
+                ;; matched
 		;;
 	  init: DISABLE INTERRUPT                  
-	  	LOAD    asci_ptr   , ASCII_ADR_HI
-		LOAD    xreg       , MATCH_ADR_LO
 	        STORE   ASCII_0    , xreg
 		ADD     xreg       , 01
 		STORE   ASCII_1    , xreg
@@ -127,40 +128,66 @@ NAMEREG retval    , sF
 		ADD     xreg       , 01
 		STORE   ASCII_F    , xreg
 				
-                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		;; Handle new data from receiver or response FIFO
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;; Handle new data from receiver FIFO
 		;;
-  poll_rx_fifo: INPUT   xreg, RX_FIFO_EMPTY ;; Poll rx fifo empty.
-	        COMPARE xreg, 0             ;; Is rx fifo not empty?
-		CALL    Z   , read_rx       ;; If no, read rx and store in memory
+  poll_rx_fifo: INPUT   xreg  , RX_FIFO_EMPTY ;; Poll rx fifo empty.
+	        COMPARE xreg  , 0             ;; Does rx fifo have something?
+		CALL    Z     , read_rx       ;; If yes, read rx and store in memory
+		COMPARE retval, 0             ;; Was read successful?
+                JUMP    NZ    , poll_rsp_fifo ;; Skip over rest of RX if error
 
-                ;; TBA_NOTE: Other stuff for response FIFO needs to go here!!!
+                ;; TBA_NOTE: RX parsing here!!!!
 
 		JUMP          poll_rx_fifo  ;; Spin here forever
-
-                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		;; Read in the RSP FIFO and store its contents in scratch pad memory
-		;; Store the result in xreg
+                
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;; Handle new data from response FIFO
 		;;
-   get_rx_char: INPUT   xreg, RX_FIFO_EMPTY     ;; TBA_NOTE: Add a timeout!!!
-                COMPARE xreg, 0
-		JUMP    NZ  , get_rx_char
-		INPUT   xreg, RX_FIFO_READ
-		JUMP          return0
+ poll_rsp_fifo: ;; TBA_NOTE: Write this tomorrow
 
-                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		;; Poll for response data and, if pending, read it in
 		;;
-       read_rx: CALL    Z        , get_rx_char      ;; get the character, stored in xreg 
-		STORE   xreg     , (ascii_ptr)
+                ;; Returns: 0, command successfully read from rx fifo
+                ;;          1, command not successfully read from rx fifo
+       read_rx: LOAD    ascii_ptr, ASCII_ADR_HI ;; setup 
+		LOAD    xreg     , MATCH_ADR_LO ;; setup
+    read_rx_l1: CALL               get_rx_char  ;; get the character, store in xreg 
+		COMPARE retval   , 1            ;; check for an error
+		JUMP    Z        , return1      ;; return 1 if error
+                STORE   xreg     , (ascii_ptr)
 		SUB     ascii_ptr, 01
 		COMPARE ascii_ptr, ASCII_ADR_LOW
-		JUMP    NZ       , decode_ascii
+		JUMP    NZ       , read_rx
+		JUMP               return0
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;; Read the RX FIFO and store its contents in scratch pad memory and
+		;; store the result in xreg. 
+                ;; 
+                ;; Returns: 0, character read successfully
+                ;;          1, character not read
+		;;
+   get_rx_char: LOAD    cnt0, ff
+get_rx_char_l1: LOAD    cnt1, ff
+get_rx_char_l2: INPUT   xreg, RX_FIFO_EMPTY
+                COMPARE xreg, 0
+                JUMP    z   , get_rx_char_rd
+		SUB     cnt1, 1
+                COMPARE cnt1, 0
+                JUMP    Z   , get_rx_char_l1
+                SUB     cnt0, 1
+                COMPARE cnt0, 0
+                JUMP    Z,    return1
+                JUMP          get_rx_char
+get_rx_char_rd:	INPUT   xreg, RX_FIFO_READ
+                JUMP          return0
 
 
 write_cmd_fifo:
 
-                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		;; Read in the RSP FIFO and store its contents in scratch pad memory
 		;; Store the result in xreg
 		;;
@@ -170,9 +197,7 @@ write_cmd_fifo:
 		COMPARE xreg, ascii_space
 		JUMP    Z   , return0
 		JUMP          return1
-
-
-
+				
 hexchar_to_bin: LOAD    match_ptr, MATCH_ADR_LO
   		LOAD    bin_eqv  , 0
   		FETCH   xreg     , (ascii_ptr)
