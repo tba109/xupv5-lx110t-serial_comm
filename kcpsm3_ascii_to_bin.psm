@@ -60,24 +60,22 @@ CONSTANT RSP_FIFO_READ3, 0f
 ;;
 CONSTANT ASCII_ADR_LO, 00
 CONSTANT ASCII_ADR_HI, 08
-CONSTANT BIN_ADR_LO  , 09
-CONSTANT BIN_ADR_HI  , 0c
-CONSTANT MATCH_ADR_LO, 0d
-CONSTANT MATCH_ADR_HI, 22
-CONSTANT MATCH_ADR_NO, MATCH_ADR_HI+1
+CONSTANT BIN_ADR_LO  , ASCII_ADR_HI + 1
+CONSTANT BIN_ADR_HI  , BIN_ADR_LOW  + 7
+CONSTANT MATCH_ADR_LO, BIN_ADR_HI   + 1
+CONSTANT MATCH_ADR_HI, BIN_ADR_LOW  + 
 
 ;; Some useful register definitions
 ;;
-NAMEREG xreg      , s0
-NAMEREG yreg      , s1
-NAMEREG ascii_ptr , s2
-NAMEREG bin_eqv   , s3
-NAMEREG match_ptr , s4
-NAMEREG bin_nyb_hi, s5
-NAMEREG bin_nyb_lo, s6
-NAMEREG cnt0      , SD
-NAMEREG cnt1      , sE
-NAMEREG retval    , sF
+NAMEREG xreg       , s0
+NAMEREG yreg       , s1
+NAMEREG ascii_ptr  , s2
+NAMEREG bin_eqv    , s3
+NAMEREG bin_eqb_ptr, s4
+NAMEREG match_ptr  , s5
+NAMEREG cnt0       , SD
+NAMEREG cnt1       , sE
+NAMEREG retval     , sF
 
                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	        ;; No interrupt, and initialize the scratch pad with characters to be 
@@ -126,67 +124,112 @@ NAMEREG retval    , sF
 		ADD     xreg       , 01
 		STORE   ASCII_E    , xreg
 		ADD     xreg       , 01
-		STORE   ASCII_F    , xreg
-				
+		STORE   ASCII_F    , xreg				
+                ;;
                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		;; Handle new data from receiver FIFO
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;; This is the main loop 
 		;;
+  
+                ;; Look for new data from receiver FIFO
+                ;;
   poll_rx_fifo: INPUT   xreg  , RX_FIFO_EMPTY ;; Poll rx fifo empty.
 	        COMPARE xreg  , 0             ;; Does rx fifo have something?
 		CALL    Z     , read_rx       ;; If yes, read rx and store in memory
-		COMPARE retval, 0             ;; Was read successful?
-                JUMP    NZ    , poll_rsp_fifo ;; Skip over rest of RX if error
-
-                ;; TBA_NOTE: RX parsing here!!!!
-
-		JUMP          poll_rx_fifo  ;; Spin here forever
+                JUMP    NZ    , poll_rsp_fifo ;; If no, skip to polling rsp fifo
+                COMPARE retval, 0             ;; Was read successful?
+                CALL    Z     , rx_parse      ;; If yes, convert rx ascii to binary
+                JUMP    NZ    , poll_rsp_fifo ;; If no, skip to polling rsp fifo
+		COMPARE retval, 0             ;; Was parsing successful?                
+                CALL    Z     , write_cmd     ;; If yes, write binary to cmd fifo
+             ;; JUMP    NZ    , poll_rsp_fifo ;; In no, skip to polling rsp fifo (fallthru)
                 
-		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		;; Handle new data from response FIFO
+		;; Look for new data from response FIFO
 		;;
  poll_rsp_fifo: ;; TBA_NOTE: Write this tomorrow
+
+		JUMP          poll_rx_fifo  ;; Spin here forever
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		;; Poll for response data and, if pending, read it in
 		;;
                 ;; Returns: 0, command successfully read from rx fifo
                 ;;          1, command not successfully read from rx fifo
-       read_rx: LOAD    ascii_ptr, ASCII_ADR_HI ;; setup 
-		LOAD    xreg     , MATCH_ADR_LO ;; setup
-    read_rx_l1: CALL               get_rx_char  ;; get the character, store in xreg 
-		COMPARE retval   , 1            ;; check for an error
-		JUMP    Z        , return1      ;; return 1 if error
-                STORE   xreg     , (ascii_ptr)
-		SUB     ascii_ptr, 01
-		COMPARE ascii_ptr, ASCII_ADR_LOW
-		JUMP    NZ       , read_rx
-		JUMP               return0
+       read_rx: LOAD    ascii_ptr, ASCII_ADR_HI + 1 ;; setup 
+    read_rx_l1: CALL               get_rx_char      ;; Go get the char, store in xreg 
+		COMPARE retval   , 01               ;; Did we successfully read a char?
+		JUMP    Z        , return1          ;; If no, return 1
+                SUB     ascii_ptr, 01               ;; If yes, calc new char's mem loc
+		STORE   xreg     , (ascii_ptr)      ;; Store new char
+		COMPARE ascii_ptr, ASCII_ADR_LOW    ;; Are we done reading chars?
+		JUMP    NZ       , read_rx_l1       ;; If no, loop
+		JUMP               return0          ;; If yes, return 0
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		;; Read the RX FIFO and store its contents in scratch pad memory and
-		;; store the result in xreg. 
+		;; Read the RX FIFO and store its contents in xreg. 
                 ;; 
                 ;; Returns: 0, character read successfully
                 ;;          1, character not read
 		;;
-   get_rx_char: LOAD    cnt0, ff
-get_rx_char_l1: LOAD    cnt1, ff
-get_rx_char_l2: INPUT   xreg, RX_FIFO_EMPTY
-                COMPARE xreg, 0
-                JUMP    z   , get_rx_char_rd
-		SUB     cnt1, 1
-                COMPARE cnt1, 0
-                JUMP    Z   , get_rx_char_l1
-                SUB     cnt0, 1
-                COMPARE cnt0, 0
-                JUMP    Z,    return1
-                JUMP          get_rx_char
-get_rx_char_rd:	INPUT   xreg, RX_FIFO_READ
-                JUMP          return0
+   get_rx_char: LOAD    cnt0, ff                    ;; Init outer counter
+get_rx_char_l1: LOAD    cnt1, ff                    ;; Init inner counter
+get_rx_char_l2: INPUT   xreg, RX_FIFO_EMPTY         ;; read the rx fifo empty signal
+                COMPARE xreg, 0                     ;; Does rx fifo have something?
+                JUMP    Z   , get_rx_char_rd        ;; If yes, go read it in
+		SUB     cnt1, 1                     ;; If no, decrement inner counter
+                COMPARE cnt1, 0                     ;; Has inner counter expired?
+                JUMP    NZ  , get_rx_char_l2        ;; If no, loop inner 
+                SUB     cnt0, 1                     ;; In yes, decrement outer counter
+                COMPARE cnt0, 0                     ;; Has outer counter expired?
+                JUMP    Z   , get_rx_char_l1        ;; If no, loop outer
+                JUMP    Z,    return1               ;; If yes, we've failed! Return 1!
+get_rx_char_rd:	INPUT   xreg, RX_FIFO_READ          ;; Read in RX FIFO
+                JUMP          return0               ;; Success! Return 0!
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;; Parse through the ascii rx packet, testing the current character
+                ;; against our constant array of matching characters. Store the binary
+                ;; equivalent result in scratch pad memory.
+                ;;
+                ;; We expect 8 hexchars ('0' thru '9', 'a' thru 'f', or 'A' thru 'F') 
+                ;; followed by a sentinel '\n' or ' '. We require *exactly* this pattern.
+                ;; If anything is amiss, abort.
+                ;; 
+                ;; Returns: 0, parse sucessful
+                ;;          1, parse aborted
+		;;
+      rx_parse: LOAD    ascii_ptr, ASCII_ADR_HI  ;; Init the ascii pointer
+   rx_parse_l2: LOAD    match_ptr, MATCH_ADR_LO  ;; Init match adr
+  		LOAD    bin_eqv  , 0             ;; Init binary equivalent value
+   rx_parse_l1:	FETCH   xreg     , (ascii_ptr)   ;; Get the first hexchar
+		FETCH   yreg     , (match_ptr)   ;; Get the first match for test
+                COMPARE xreg     , yreg          ;; Does hexchar match?  
+		JUMP    Z        , rx_parse_sbe  ;; If yes, store binary equiv
+                COMPARE match_ptr, MATCH_ADR_HI  ;; Have we tested all match?
+                JUMP    Z        , return1       ;; If yes, match failed! Abort!
+                
+                ADD     match_ptr, 1             ;; If no, increment match address
+                ADD     bin_eqv  , 1             ;; If no, increment binary equiv
+                JUMP               rx_parse_l1   ;; Loop
 
-write_cmd_fifo:
-
+  rx_parse_sbe: ;; Store the binary equivalent at binary equivalent pointer
+                ;; Increment binary equivalent pointer
+  rx_parse_dap: ;; Increment ascii pointer
+                ;; Have we found all 8 characters?
+                ;; If yes, get the sentinel
+                ;; If no, jump to l2
+                
+  
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+           
                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		;; Read in the RSP FIFO and store its contents in scratch pad memory
 		;; Store the result in xreg
@@ -197,32 +240,17 @@ write_cmd_fifo:
 		COMPARE xreg, ascii_space
 		JUMP    Z   , return0
 		JUMP          return1
-				
-hexchar_to_bin: LOAD    match_ptr, MATCH_ADR_LO
-  		LOAD    bin_eqv  , 0
-  		FETCH   xreg     , (ascii_ptr)
-		FETCH   yreg     , (match_ptr)
-                COMPARE xreg     , yreg           
-		RETURN  Z                        ;; return if we found an ASCII match
-		ADD     bin_eqv  , 01
-		ADD     match_ptr, 01
-		COMPARE match_ptr, MATCH_ADR_NO
-		RETURN  Z
-		JUMP    NZ       , ascii_to_bin
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-   store_ascii: 
-  decode_ascii: LOAD    ascii_ptr, ASCII_ADR_HI
-                CALL               hexchar_to_bin
-		COMPARE retval   , 00
-		JUMP
-
-      code_bin: 
-
-                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	        ;; I think these guys should each save a line of code on return
 		;; If anything, they make the code read more cleanly
 		;;
        return0: LOAD retval, 00 ;; generic return 0
                 RETURN
+       
        retval1: LOAD retval, 01 ;; generic return 1
                 RETURN
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
