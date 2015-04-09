@@ -47,14 +47,18 @@ CONSTANT CMD_FIFO_DATA0, 04
 CONSTANT CMD_FIFO_DATA1, 05
 CONSTANT CMD_FIFO_DATA2, 06
 CONSTANT CMD_FIFO_DATA3, 07
-CONSTANT CMD_FIFO_WRITE, 08
-CONSTANT TX_FIFO_FULL  , 09
-CONSTANT TX_FIFO_WRITE , 0a
-CONSTANT RSP_FIFO_EMPTY, 0b
-CONSTANT RSP_FIFO_READ0, 0c
-CONSTANT RSP_FIFO_READ1, 0d
-CONSTANT RSP_FIFO_READ2, 0e
-CONSTANT RSP_FIFO_READ3, 0f
+CONSTANT CMD_FIFO_DATA4, 08
+CONSTANT CMD_FIFO_DATA5, 09
+CONSTANT CMD_FIFO_DATA6, 0a
+CONSTANT CMD_FIFO_DATA07 0b
+CONSTANT CMD_FIFO_WRITE, 0c
+CONSTANT TX_FIFO_FULL  , 0d
+CONSTANT TX_FIFO_WRITE , 0e
+CONSTANT RSP_FIFO_EMPTY, 0f
+CONSTANT RSP_FIFO_READ0, 10
+CONSTANT RSP_FIFO_READ1, 11
+CONSTANT RSP_FIFO_READ2, 12
+CONSTANT RSP_FIFO_READ3, 13
 
 ;; Some useful scratch pad memory addresses
 ;;
@@ -63,7 +67,7 @@ CONSTANT ASCII_ADR_HI, 08
 CONSTANT BIN_ADR_LO  , ASCII_ADR_HI + 1
 CONSTANT BIN_ADR_HI  , BIN_ADR_LOW  + 7
 CONSTANT MATCH_ADR_LO, BIN_ADR_HI   + 1
-CONSTANT MATCH_ADR_HI, BIN_ADR_LOW  + 
+CONSTANT MATCH_ADR_HI, BIN_ADR_LOW  + 22
 
 ;; Some useful register definitions
 ;;
@@ -71,8 +75,9 @@ NAMEREG xreg       , s0
 NAMEREG yreg       , s1
 NAMEREG ascii_ptr  , s2
 NAMEREG bin_eqv    , s3
-NAMEREG bin_eqb_ptr, s4
+NAMEREG bin_ptr    , s4
 NAMEREG match_ptr  , s5
+NAMEREG cmd_pid    , s6
 NAMEREG cnt0       , SD
 NAMEREG cnt1       , sE
 NAMEREG retval     , sF
@@ -134,18 +139,28 @@ NAMEREG retval     , sF
   
                 ;; Look for new data from receiver FIFO
                 ;;
-  poll_rx_fifo: INPUT   xreg  , RX_FIFO_EMPTY ;; Poll rx fifo empty.
-	        COMPARE xreg  , 0             ;; Does rx fifo have something?
-                JUMP    NZ    , poll_rsp_fifo ;; If no, go poll rsp fifo
-                CALL    Z     , read_rx       ;; If yes, read rx and store in memory
-                COMPARE retval, 0             ;; Was read successful?
-                JUMP    NZ    , poll_rsp_fifo ;; If no, skip to polling rsp fifo
-                CALL    Z     , rx_parse      ;; If yes, convert rx ascii to binary
-		COMPARE retval, 0             ;; Was parsing successful?                
-                JUMP    NZ    , poll_rsp_fifo ;; If no, skip to polling rsp fifo
-                CALL    Z     , write_cmd     ;; If yes, write binary to cmd fifo
- poll_rsp_fifo: ;; TBA_NOTE: Write this tomorrow
-		JUMP            poll_rx_fifo  ;; Spin forever
+  poll_rx_fifo: INPUT   xreg  , RX_FIFO_EMPTY  ;; Poll rx fifo empty.
+	        COMPARE xreg  , 0              ;; Does rx fifo have something?
+                JUMP    NZ    , poll_rsp_fifo  ;; If no, go poll rsp fifo
+                CALL            read_rx        ;; Read rx and store in memory
+                COMPARE retval, 0              ;; Was read successful?
+                JUMP    NZ    , poll_rsp_fifo  ;; If no, skip to polling rsp fifo
+                CALL            rx_parse       ;; Convert rx ascii to binary
+		COMPARE retval, 0              ;; Was parsing successful?                
+                JUMP    NZ    , poll_rsp_fifo  ;; If no, skip to polling rsp fifo
+                CALL            write_cmd      ;; Write binary to cmd fifo
+ 
+ poll_rsp_fifo: INPUT   xreg  , RSP_FIFO_EMPTY ;; Poll rsp fifo empty.
+                COMPARE xreg  , 0              ;; Does rsp fifo have something?
+                JUMP    NZ    , poll_rx_fifo   ;; In no, go poll rx fifo
+                CALL            read_rsp       ;; Read rsp and store in memory
+                COMPARE retval, 0              ;; Was read successful?
+                JUMP    NZ    , poll_rx_fifo   ;; If no, skip to polling rx fifo  
+		CALL            rsp_parse      ;; Convert rsp binary to ascii
+                COMPARE retval, 0              ;; Was parsing successful?
+                JUMP    NZ    , poll_rx_fifo   ;; If no, skip to polling rx fifo
+                CALL            write_tx       ;; Write ascii to tx fifo
+                JUMP            poll_rx_fifo   ;; Spin forever
                 ;;
                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -242,21 +257,22 @@ get_rx_char_rd:	INPUT   xreg, RX_FIFO_READ          ;; Read in RX FIFO
   write_cmd_l1: LOAD    cnt1, ff              ;; Init inner counter
   write_cmd_l2: INPUT   xreg, CMD_FIFO_FULL   ;; Read the CMD FIFO full signal
 		COMPARE xreg, 0               ;; Is CMD_FIFO full?
-		JUMP    Z   , write_cmd_write ;; If no, set command nybbles and write
-		;; Decrement inner couter
-		;; Loop inner if not expired
-		;; Decrement outer counter
-		;; Loop outer if not expired
-		;; FAIL! Return 1!
+		JUMP    Z   , cmd_wr          ;; If no, set command nybbles and write
+		SUB     cnt1, 1               ;; Decrement inner couter
+		JUMP    NZ  , write_cmd_l2    ;; Loop inner if not expired
+                SUB     cnt0, 1               ;; Decrement outer counter
+                JUMP    NZ  , write_cmd_l1    ;; Loop outer if not expired
+		JUMP          return1         ;; FAIL! Return 1!
 
-        cmd_wr: LOAD    bin_ptr, BIN_ADR_LO ;; Init binary pointer
-        cmd_wr_l1:        FETCH   bin_eqv, (bin_ptr) ;; Get the binary equivalent from memory
-		OUTPUT  bin_eqv, bin_ptr  ;; Set the output nybble
-		ADD     bin_ptr, 01       ;; Incrememt bin_ptr
+        cmd_wr: LOAD    bin_ptr, BIN_ADR_LO     ;; Init binary pointer
+                LOAD    cmd_pid, CMD_FIFO_DATA0 ;; Init command port id pointer
+     cmd_wr_l1: FETCH   bin_eqv, (bin_ptr)      ;; Get the bin eqv from memory
+		OUTPUT  bin_eqv, cmd_pid        ;; Set the output nybble
+		ADD     bin_ptr, 01             ;; Incrememt bin_ptr
+                ADD     cmd_pid, 01             ;; Increment cmd_pid
 		COMPARE bin_ptr, BIN_ADR_HI + 1 ;; Are we done writting?
-		JUMP    NZ     , ;; If no, loop.
-		;; Return 0
-                ;;
+		JUMP    NZ     , cmd_wr_l1      ;; If no, loop.
+		JUMP           , return0        ;; Done 
                 ;;
                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
