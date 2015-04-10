@@ -1,0 +1,2184 @@
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Tyler Anderson Tue, Apr 07, 2015 10:07:50 AM
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Convert incoming ascii hex character commands to 32-bit
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; binary commands. For receiving, u 'x' as start character.
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; For transmitting, use 'q' as the start character. Use
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; linefeed or space as sentinel for stop.
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Used a few ideas from
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; http://www.ivysim.com/picoblaze/dec2bin/
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; The ASCII characters we are looking for
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; http://www.asciitable.com/
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_x
+   OPERAND2-78
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_q
+   OPERAND2-71
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_lf
+   OPERAND2-0A
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_space
+   OPERAND2-20
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_0
+   OPERAND2-30
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_1
+   OPERAND2-31
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_2
+   OPERAND2-32
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_3
+   OPERAND2-33
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_4
+   OPERAND2-34
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_5
+   OPERAND2-35
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_6
+   OPERAND2-36
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_7
+   OPERAND2-37
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_8
+   OPERAND2-38
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_9
+   OPERAND2-39
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_A
+   OPERAND2-41
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_B
+   OPERAND2-42
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_C
+   OPERAND2-43
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_D
+   OPERAND2-44
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_E
+   OPERAND2-45
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_F
+   OPERAND2-46
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Some port id addresses
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-RX_FIFO_EMPTY
+   OPERAND2-00
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-RX_FIFO_READ
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-TX_FIFO_FULL
+   OPERAND2-10
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-TX_FIFO_WRITE
+   OPERAND2-11
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-CMD_FIFO_DATA0
+   OPERAND2-20
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-CMD_FIFO_DATA1
+   OPERAND2-21
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-CMD_FIFO_DATA2
+   OPERAND2-22
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-CMD_FIFO_DATA3
+   OPERAND2-23
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-CMD_FIFO_DATA4
+   OPERAND2-24
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-CMD_FIFO_DATA5
+   OPERAND2-25
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-CMD_FIFO_DATA6
+   OPERAND2-26
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-CMD_FIFO_DATA7
+   OPERAND2-27
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-CMD_FIFO_FULL
+   OPERAND2-28
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-CMD_FIFO_WRITE
+   OPERAND2-29
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-RSP_FIFO_DATA0
+   OPERAND2-40
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-RSP_FIFO_DATA1
+   OPERAND2-41
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-RSP_FIFO_DATA2
+   OPERAND2-42
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-RSP_FIFO_DATA3
+   OPERAND2-43
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-RSP_FIFO_DATA4
+   OPERAND2-44
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-RSP_FIFO_DATA5
+   OPERAND2-45
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-RSP_FIFO_DATA6
+   OPERAND2-46
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-RSP_FIFO_DATA7
+   OPERAND2-47
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-RSP_FIFO_EMPTY
+   OPERAND2-48
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-RSP_FIFO_READ
+   OPERAND2-49
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Some useful scratch pad memory addresses
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_ADR_LO
+   OPERAND2-00
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_ADR_HI
+   OPERAND2-07
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-BIN_ADR_LO
+   OPERAND2-08
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-BIN_ADR_HI
+   OPERAND2-0F
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-MATCH_ADR_LO
+   OPERAND2-10
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-MATCH_ADR_HI
+   OPERAND2-1F
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Some useful "Out of Range High" (ORH)
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; and "Out of Range Low" (ORL) addresses
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; for checking loop conditions
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_ADR_ORL
+   OPERAND2-FF
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-ASCII_ADR_ORH
+   OPERAND2-08
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-BIN_ADR_ORL
+   OPERAND2-07
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-BIN_ADR_ORH
+   OPERAND2-10
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-MATCH_ADR_ORL
+   OPERAND2-0F
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-MATCH_ADR_ORH
+   OPERAND2-20
+    COMMENT-
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Some useful register definitions
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-NAMEREG
+   OPERAND1-s0
+   OPERAND2-xreg
+    COMMENT-;; general purpose variable
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-NAMEREG
+   OPERAND1-s1
+   OPERAND2-yreg
+    COMMENT-;; general purpose variable
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-NAMEREG
+   OPERAND1-s2
+   OPERAND2-ascii_ptr
+    COMMENT-;; pointer to ascii rx or rsp hex chars in scratch pad memory
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-NAMEREG
+   OPERAND1-s3
+   OPERAND2-bin_eqv
+    COMMENT-;; tracks ascii pointer to find binary equivalent of hex char
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-NAMEREG
+   OPERAND1-s4
+   OPERAND2-bin_ptr
+    COMMENT-;; pointer to binary rx or rsp nybble in scratch pad memory
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-NAMEREG
+   OPERAND1-s5
+   OPERAND2-match_ptr
+    COMMENT-;; pointer to constant array of hex chars to match to rx or rsp
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-NAMEREG
+   OPERAND1-s6
+   OPERAND2-cmd_pid
+    COMMENT-;; Port id variable for command writing
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-NAMEREG
+   OPERAND1-s7
+   OPERAND2-rsp_pid
+    COMMENT-;; Port id variable for response reading
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-NAMEREG
+   OPERAND1-sD
+   OPERAND2-cnt0
+    COMMENT-;; generic counter variable
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-NAMEREG
+   OPERAND1-sE
+   OPERAND2-cnt1
+    COMMENT-;; generic counter variable
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-NAMEREG
+   OPERAND1-sF
+   OPERAND2-retval
+    COMMENT-;; return value for subroutines
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; No interrupt, and initialize the scratch pad with hexchar array to be
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; matched
+    ADDRESS-000
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-000
+      LABEL-init
+INSTRUCTION-DISABLE
+   OPERAND1-INTERRUPT
+   OPERAND2-
+    COMMENT-
+    ADDRESS-001
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-match_ptr
+   OPERAND2-MATCH_ADR_LO
+    COMMENT-
+    ADDRESS-002
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_0
+    COMMENT-
+    ADDRESS-003
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-004
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-005
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_1
+    COMMENT-
+    ADDRESS-006
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-007
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-008
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_2
+    COMMENT-
+    ADDRESS-009
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-00A
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-00B
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_3
+    COMMENT-
+    ADDRESS-00C
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-00D
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-00E
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_4
+    COMMENT-
+    ADDRESS-00F
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-010
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-011
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_5
+    COMMENT-
+    ADDRESS-012
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-013
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-014
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_6
+    COMMENT-
+    ADDRESS-015
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-016
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-017
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_7
+    COMMENT-
+    ADDRESS-018
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-019
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-01A
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_8
+    COMMENT-
+    ADDRESS-01B
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-01C
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-01D
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_9
+    COMMENT-
+    ADDRESS-01E
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-01F
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-020
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_A
+    COMMENT-
+    ADDRESS-021
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-022
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-023
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_B
+    COMMENT-
+    ADDRESS-024
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-025
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-026
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_C
+    COMMENT-
+    ADDRESS-027
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-028
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-029
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_D
+    COMMENT-
+    ADDRESS-02A
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-02B
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-02C
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_E
+    COMMENT-
+    ADDRESS-02D
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-02E
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-02F
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_F
+    COMMENT-
+    ADDRESS-030
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-
+    ADDRESS-031
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-
+    ADDRESS-032
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-032
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-032
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-032
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; This is the main loop
+    ADDRESS-032
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-032
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Look for new data from receiver FIFO
+    ADDRESS-032
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-032
+      LABEL-poll_rx_fifo
+INSTRUCTION-INPUT
+   OPERAND1-xreg
+   OPERAND2-RX_FIFO_EMPTY
+    COMMENT-;; Poll rx fifo empty.
+    ADDRESS-033
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-xreg
+   OPERAND2-00
+    COMMENT-;; Does rx fifo have something?
+    ADDRESS-034
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-poll_rsp_fifo
+    COMMENT-;; If no, go poll rsp fifo
+    ADDRESS-035
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-read_rx
+   OPERAND2-
+    COMMENT-;; Read rx and store in memory
+    ADDRESS-036
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-retval
+   OPERAND2-00
+    COMMENT-;; Was read successful?
+    ADDRESS-037
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-poll_rsp_fifo
+    COMMENT-;; If no, skip to polling rsp fifo
+    ADDRESS-038
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-rx_parse
+   OPERAND2-
+    COMMENT-;; Convert rx ascii to binary
+    ADDRESS-039
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-retval
+   OPERAND2-00
+    COMMENT-;; Was parsing successful?
+    ADDRESS-03A
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-poll_rsp_fifo
+    COMMENT-;; If no, skip to polling rsp fifo
+    ADDRESS-03B
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-write_cmd
+   OPERAND2-
+    COMMENT-;; Write binary to cmd fifo
+    ADDRESS-03C
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Look for new data from the response FIFO
+    ADDRESS-03C
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-03C
+      LABEL-poll_rsp_fifo
+INSTRUCTION-INPUT
+   OPERAND1-xreg
+   OPERAND2-RSP_FIFO_EMPTY
+    COMMENT-;; Poll rsp fifo empty.
+    ADDRESS-03D
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-xreg
+   OPERAND2-00
+    COMMENT-;; Does rsp fifo have something?
+    ADDRESS-03E
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-poll_rx_fifo
+    COMMENT-;; In no, go poll rx fifo
+    ADDRESS-03F
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-read_rsp
+   OPERAND2-
+    COMMENT-;; Read rsp and store in memory
+    ADDRESS-040
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-retval
+   OPERAND2-00
+    COMMENT-;; Was read successful?
+    ADDRESS-041
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-poll_rx_fifo
+    COMMENT-;; If no, skip to polling rx fifo
+    ADDRESS-042
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-rsp_parse
+   OPERAND2-
+    COMMENT-;; Convert rsp binary to ascii
+    ADDRESS-043
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-write_tx
+   OPERAND2-
+    COMMENT-;; Write ascii to tx fifo
+    ADDRESS-044
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-poll_rx_fifo
+   OPERAND2-
+    COMMENT-;; Spin forever
+    ADDRESS-045
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-045
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-045
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-045
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Wait for rx fifo to have 'x', which is the start char. Then read it in
+    ADDRESS-045
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; and store all hexchars of command. (Note: these are parsed later.)
+    ADDRESS-045
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Finally, read in one more char and return an error if it's not the
+    ADDRESS-045
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; sentinel. If, at any point, you timeout while waiting for the rx fifo,
+    ADDRESS-045
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; abort and return 1.
+    ADDRESS-045
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-045
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Returns: 0, command successfully read from rx fifo
+    ADDRESS-045
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;          1, command not successfully read from rx fifo
+    ADDRESS-045
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-045
+      LABEL-read_rx
+INSTRUCTION-CALL
+   OPERAND1-get_rx_char
+   OPERAND2-
+    COMMENT-;; Get a char from the rx fifo
+    ADDRESS-046
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-retval
+   OPERAND2-01
+    COMMENT-;; Did we timeout?
+    ADDRESS-047
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-Z
+   OPERAND2-return1
+    COMMENT-;; If yes, return with an error
+    ADDRESS-048
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-xreg
+   OPERAND2-ASCII_x
+    COMMENT-;; Is it the start character?
+    ADDRESS-049
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-read_rx
+    COMMENT-;; If no, loop read_rx
+    ADDRESS-04A
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-ascii_ptr
+   OPERAND2-ASCII_ADR_HI
+    COMMENT-;; Init ascii pointer
+    ADDRESS-04B
+      LABEL-read_rx_l1
+INSTRUCTION-CALL
+   OPERAND1-get_rx_char
+   OPERAND2-
+    COMMENT-;; Go get the char, store in xreg
+    ADDRESS-04C
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-retval
+   OPERAND2-01
+    COMMENT-;; Did we successfully read a char?
+    ADDRESS-04D
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-Z
+   OPERAND2-return1
+    COMMENT-;; If no, return 1
+    ADDRESS-04E
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(ascii_ptr)
+    COMMENT-;; Store new char
+    ADDRESS-04F
+      LABEL-
+INSTRUCTION-SUB
+   OPERAND1-ascii_ptr
+   OPERAND2-01
+    COMMENT-;; Calc new char's mem loc
+    ADDRESS-050
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-ascii_ptr
+   OPERAND2-ASCII_ADR_ORL
+    COMMENT-;; Are we done reading chars?
+    ADDRESS-051
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-read_rx_l1
+    COMMENT-;; If no, loop l1
+    ADDRESS-052
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-get_rx_char
+   OPERAND2-
+    COMMENT-;; Get the last character
+    ADDRESS-053
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-retval
+   OPERAND2-01
+    COMMENT-;; Did we timeout?
+    ADDRESS-054
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-Z
+   OPERAND2-return1
+    COMMENT-;; If yes, return with error
+    ADDRESS-055
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-xreg
+   OPERAND2-ASCII_lf
+    COMMENT-;; Is it linefeed?
+    ADDRESS-056
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-Z
+   OPERAND2-return0
+    COMMENT-;; If yes, SUCCESS! Return 0!
+    ADDRESS-057
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-xreg
+   OPERAND2-ASCII_space
+    COMMENT-;; Is it space?
+    ADDRESS-058
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-Z
+   OPERAND2-return0
+    COMMENT-;; If yes, SUCCESS! Return 0!
+    ADDRESS-059
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-return1
+   OPERAND2-
+    COMMENT-;; FAIL! No sentinel! Return 1!
+    ADDRESS-05A
+      LABEL-get_rx_char
+INSTRUCTION-LOAD
+   OPERAND1-cnt0
+   OPERAND2-ff
+    COMMENT-;; Init outer counter
+    ADDRESS-05B
+      LABEL-get_rx_char_l1
+INSTRUCTION-LOAD
+   OPERAND1-cnt1
+   OPERAND2-ff
+    COMMENT-;; Init inner counter
+    ADDRESS-05C
+      LABEL-get_rx_char_l2
+INSTRUCTION-INPUT
+   OPERAND1-xreg
+   OPERAND2-RX_FIFO_EMPTY
+    COMMENT-;; read the rx fifo empty signal
+    ADDRESS-05D
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-xreg
+   OPERAND2-00
+    COMMENT-;; Does rx fifo have something?
+    ADDRESS-05E
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-Z
+   OPERAND2-get_rx_char_rd
+    COMMENT-;; If yes, go read it in
+    ADDRESS-05F
+      LABEL-
+INSTRUCTION-SUB
+   OPERAND1-cnt1
+   OPERAND2-01
+    COMMENT-;; Decrement inner counter
+    ADDRESS-060
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-get_rx_char_l2
+    COMMENT-;; Loop inner if not expired
+    ADDRESS-061
+      LABEL-
+INSTRUCTION-SUB
+   OPERAND1-cnt0
+   OPERAND2-01
+    COMMENT-;; Decrement outer counter
+    ADDRESS-062
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-get_rx_char_l1
+    COMMENT-;; Loop outer if not expired
+    ADDRESS-063
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-return1
+   OPERAND2-
+    COMMENT-;; FAIL! Return 1!
+    ADDRESS-064
+      LABEL-get_rx_char_rd
+INSTRUCTION-INPUT
+   OPERAND1-xreg
+   OPERAND2-RX_FIFO_READ
+    COMMENT-;; Read in RX FIFO
+    ADDRESS-065
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-return0
+   OPERAND2-
+    COMMENT-;; SUCCESS! Return 0!
+    ADDRESS-066
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-066
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-066
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-066
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Parse through the ascii rx packet, testing the current character
+    ADDRESS-066
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; against our constant array of matching characters. Store the binary
+    ADDRESS-066
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; equivalent result in scratch pad memory.
+    ADDRESS-066
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-066
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; We require 8 hexchars ('0' thru '9' or 'A' thru 'F'). If anything is
+    ADDRESS-066
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; amiss, abort.
+    ADDRESS-066
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-066
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Returns: 0, parse sucessful
+    ADDRESS-066
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;          1, parse aborted
+    ADDRESS-066
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-066
+      LABEL-rx_parse
+INSTRUCTION-LOAD
+   OPERAND1-ascii_ptr
+   OPERAND2-ASCII_ADR_LO
+    COMMENT-;; Init the ascii pointer
+    ADDRESS-067
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-bin_ptr
+   OPERAND2-BIN_ADR_LO
+    COMMENT-;; Init the binary pointer
+    ADDRESS-068
+      LABEL-rx_parse_l2
+INSTRUCTION-LOAD
+   OPERAND1-match_ptr
+   OPERAND2-MATCH_ADR_LO
+    COMMENT-;; Init match pointer
+    ADDRESS-069
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-bin_eqv
+   OPERAND2-00
+    COMMENT-;; Init binary equivalent value
+    ADDRESS-06A
+      LABEL-rx_parse_l1
+INSTRUCTION-FETCH
+   OPERAND1-xreg
+   OPERAND2-(ascii_ptr)
+    COMMENT-;; Get the first hexchar
+    ADDRESS-06B
+      LABEL-
+INSTRUCTION-FETCH
+   OPERAND1-yreg
+   OPERAND2-(match_ptr)
+    COMMENT-;; Get the first match for test
+    ADDRESS-06C
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-xreg
+   OPERAND2-yreg
+    COMMENT-;; Does hexchar match?
+    ADDRESS-06D
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-Z
+   OPERAND2-rx_parse_sbe
+    COMMENT-;; If yes, store binary equiv
+    ADDRESS-06E
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-match_ptr
+   OPERAND2-MATCH_ADR_HI
+    COMMENT-;; Have we tested all match?
+    ADDRESS-06F
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-Z
+   OPERAND2-return1
+    COMMENT-;; If yes, match failed! Abort!
+    ADDRESS-070
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-;; If no, increment match address
+    ADDRESS-071
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-bin_eqv
+   OPERAND2-01
+    COMMENT-;; If no, increment binary equiv
+    ADDRESS-072
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-rx_parse_l1
+   OPERAND2-
+    COMMENT-;; Loop
+    ADDRESS-073
+      LABEL-rx_parse_sbe
+INSTRUCTION-STORE
+   OPERAND1-bin_eqv
+   OPERAND2-(bin_ptr)
+    COMMENT-;; Store bin equiv at bin pointer
+    ADDRESS-074
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-bin_ptr
+   OPERAND2-01
+    COMMENT-;; Increment bin pointer
+    ADDRESS-075
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-ascii_ptr
+   OPERAND2-01
+    COMMENT-;; Increment ascii pointer
+    ADDRESS-076
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-ascii_ptr
+   OPERAND2-ASCII_ADR_ORH
+    COMMENT-;; Parsed all 8 characters?
+    ADDRESS-077
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-rx_parse_l2
+    COMMENT-;; If no, loop l2
+    ADDRESS-078
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-return0
+   OPERAND2-
+    COMMENT-;; Success! Return 0!
+    ADDRESS-079
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-079
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-079
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-079
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Write all nybbles of the command word. Wait for CMD FIFO not full.
+    ADDRESS-079
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; If timeout, abort and return 1.
+    ADDRESS-079
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-079
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Returns: 0, CMD word successfully written to CMD FIFO
+    ADDRESS-079
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;          1, CMD word not successfully written to CMD FIFO
+    ADDRESS-079
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-079
+      LABEL-write_cmd
+INSTRUCTION-LOAD
+   OPERAND1-cnt0
+   OPERAND2-ff
+    COMMENT-;; Init outer counter
+    ADDRESS-07A
+      LABEL-write_cmd_l1
+INSTRUCTION-LOAD
+   OPERAND1-cnt1
+   OPERAND2-ff
+    COMMENT-;; Init inner counter
+    ADDRESS-07B
+      LABEL-write_cmd_l2
+INSTRUCTION-INPUT
+   OPERAND1-xreg
+   OPERAND2-CMD_FIFO_FULL
+    COMMENT-;; Read the CMD FIFO full signal
+    ADDRESS-07C
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-xreg
+   OPERAND2-00
+    COMMENT-;; Is CMD_FIFO full?
+    ADDRESS-07D
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-Z
+   OPERAND2-cmd_wr
+    COMMENT-;; If no, set command nybbles and write
+    ADDRESS-07E
+      LABEL-
+INSTRUCTION-SUB
+   OPERAND1-cnt1
+   OPERAND2-01
+    COMMENT-;; Decrement inner couter
+    ADDRESS-07F
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-write_cmd_l2
+    COMMENT-;; Loop inner if not expired
+    ADDRESS-080
+      LABEL-
+INSTRUCTION-SUB
+   OPERAND1-cnt0
+   OPERAND2-01
+    COMMENT-;; Decrement outer counter
+    ADDRESS-081
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-write_cmd_l1
+    COMMENT-;; Loop outer if not expired
+    ADDRESS-082
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-return1
+   OPERAND2-
+    COMMENT-;; FAIL! Return 1!
+    ADDRESS-083
+      LABEL-cmd_wr
+INSTRUCTION-LOAD
+   OPERAND1-bin_ptr
+   OPERAND2-BIN_ADR_LO
+    COMMENT-;; Init binary pointer
+    ADDRESS-084
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-cmd_pid
+   OPERAND2-CMD_FIFO_DATA0
+    COMMENT-;; Init command port id pointer
+    ADDRESS-085
+      LABEL-cmd_wr_l1
+INSTRUCTION-FETCH
+   OPERAND1-bin_eqv
+   OPERAND2-(bin_ptr)
+    COMMENT-;; Get the bin eqv from memory
+    ADDRESS-086
+      LABEL-
+INSTRUCTION-OUTPUT
+   OPERAND1-bin_eqv
+   OPERAND2-(cmd_pid)
+    COMMENT-;; Set the output nybble
+    ADDRESS-087
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-bin_ptr
+   OPERAND2-01
+    COMMENT-;; Incrememt bin_ptr
+    ADDRESS-088
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-cmd_pid
+   OPERAND2-01
+    COMMENT-;; Increment cmd_pid
+    ADDRESS-089
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-bin_ptr
+   OPERAND2-BIN_ADR_ORH
+    COMMENT-;; Are we done writing?
+    ADDRESS-08A
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-cmd_wr_l1
+    COMMENT-;; If no, loop.
+    ADDRESS-08B
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-return0
+   OPERAND2-
+    COMMENT-;; Done
+    ADDRESS-08C
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-08C
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-08C
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-08C
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Poll for RSP FIFO not empty and read all nybbles of response word,
+    ADDRESS-08C
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; storing them in memory.
+    ADDRESS-08C
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-08C
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Returns: 0, RSP word successfully read from RSP FIFO and stored
+    ADDRESS-08C
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;          1, RSP word not successful read from RSP FIFO and stored
+    ADDRESS-08C
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-08C
+      LABEL-read_rsp
+INSTRUCTION-INPUT
+   OPERAND1-xreg
+   OPERAND2-RSP_FIFO_EMPTY
+    COMMENT-;; Poll rsp fifo empty
+    ADDRESS-08D
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-xreg
+   OPERAND2-00
+    COMMENT-;; Does rsp fifo have something?
+    ADDRESS-08E
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-return1
+    COMMENT-;; If no, return 1
+    ADDRESS-08F
+      LABEL-
+INSTRUCTION-OUTPUT
+   OPERAND1-xreg
+   OPERAND2-RSP_FIFO_READ
+    COMMENT-;; Read rsp fifo
+    ADDRESS-090
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-bin_ptr
+   OPERAND2-BIN_ADR_LO
+    COMMENT-;; Init binary pointer
+    ADDRESS-091
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-rsp_pid
+   OPERAND2-RSP_FIFO_DATA0
+    COMMENT-;; Init response port id
+    ADDRESS-092
+      LABEL-read_rsp_l1
+INSTRUCTION-INPUT
+   OPERAND1-bin_eqv
+   OPERAND2-(rsp_pid)
+    COMMENT-;; Read rsp nybble
+    ADDRESS-093
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-bin_eqv
+   OPERAND2-(bin_ptr)
+    COMMENT-;; Store rsp nybble
+    ADDRESS-094
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-rsp_pid
+   OPERAND2-01
+    COMMENT-;; Increment rsp port id
+    ADDRESS-095
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-bin_ptr
+   OPERAND2-01
+    COMMENT-;; Increment binary pointer
+    ADDRESS-096
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-bin_ptr
+   OPERAND2-BIN_ADR_ORH
+    COMMENT-;; Are we done reading response?
+    ADDRESS-097
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-read_rsp_l1
+    COMMENT-;; If no, loop l1
+    ADDRESS-098
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-return0
+   OPERAND2-
+    COMMENT-;; If yes, return 0
+    ADDRESS-099
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-099
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-099
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-099
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Parse through the binary rsp packet, converting binary nybbles to
+    ADDRESS-099
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; hexchar equivalents. Store the result in scratch pad memory.
+    ADDRESS-099
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-099
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Returns: 0, success (should always find match)
+    ADDRESS-099
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-099
+      LABEL-rsp_parse
+INSTRUCTION-LOAD
+   OPERAND1-bin_ptr
+   OPERAND2-BIN_ADR_LO
+    COMMENT-;; Init the binary pointer
+    ADDRESS-09A
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-ascii_ptr
+   OPERAND2-ASCII_ADR_LO
+    COMMENT-;; Init the ascii pointer
+    ADDRESS-09B
+      LABEL-rsp_parse_l2
+INSTRUCTION-LOAD
+   OPERAND1-match_ptr
+   OPERAND2-MATCH_ADR_LO
+    COMMENT-;; Init the match pointer
+    ADDRESS-09C
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-bin_eqv
+   OPERAND2-00
+    COMMENT-;; Init the binary equivalent
+    ADDRESS-09D
+      LABEL-
+INSTRUCTION-FETCH
+   OPERAND1-xreg
+   OPERAND2-(bin_ptr)
+    COMMENT-;; Get the nybble
+    ADDRESS-09E
+      LABEL-rsp_parse_l1
+INSTRUCTION-COMPARE
+   OPERAND1-xreg
+   OPERAND2-bin_eqv
+    COMMENT-;; Did we find a match?
+    ADDRESS-09F
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-Z
+   OPERAND2-rsp_parse_sam
+    COMMENT-;; If yes, store ascii match
+    ADDRESS-0A0
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-bin_ptr
+   OPERAND2-BIN_ADR_ORH
+    COMMENT-;; Are we done parsing response?
+    ADDRESS-0A1
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-Z
+   OPERAND2-return0
+    COMMENT-;; If yes, succecss! Return 0!
+    ADDRESS-0A2
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-match_ptr
+   OPERAND2-01
+    COMMENT-;; Increment match pointer
+    ADDRESS-0A3
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-bin_eqv
+   OPERAND2-01
+    COMMENT-;; Increment binary equivalent
+    ADDRESS-0A4
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-rsp_parse_l1
+   OPERAND2-
+    COMMENT-;; Loop l1
+    ADDRESS-0A5
+      LABEL-rsp_parse_sam
+INSTRUCTION-FETCH
+   OPERAND1-xreg
+   OPERAND2-(match_ptr)
+    COMMENT-;; Get the hexchar
+    ADDRESS-0A6
+      LABEL-
+INSTRUCTION-STORE
+   OPERAND1-xreg
+   OPERAND2-(ascii_ptr)
+    COMMENT-;; Store it in scratch pad memory
+    ADDRESS-0A7
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-bin_ptr
+   OPERAND2-01
+    COMMENT-;; Increment the binary pointer
+    ADDRESS-0A8
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-ascii_ptr
+   OPERAND2-01
+    COMMENT-;; Increment the ascii pointer
+    ADDRESS-0A9
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-rsp_parse_l2
+   OPERAND2-
+    COMMENT-;; Go process the next character
+    ADDRESS-0AA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-0AA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-0AA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-0AA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Write a start character. Then write all hexchars to the tx fifo.
+    ADDRESS-0AA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Finally, write a sentinel linefeed. Block at tx fifo full. Note that
+    ADDRESS-0AA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; as long as the transmitter is draining the tx fifo at some point,
+    ADDRESS-0AA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; hangups won't happen here.
+    ADDRESS-0AA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-0AA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Returns: 0, success (should always be able to write, eventually...)
+    ADDRESS-0AA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-0AA
+      LABEL-write_tx
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_q
+    COMMENT-;; Init xreg with the starting char
+    ADDRESS-0AB
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-wr_tx_l1
+   OPERAND2-
+    COMMENT-;; Write the start character
+    ADDRESS-0AC
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-ascii_ptr
+   OPERAND2-ASCII_ADR_LO
+    COMMENT-;; Init the ascii pointer
+    ADDRESS-0AD
+      LABEL-write_tx_l1
+INSTRUCTION-FETCH
+   OPERAND1-xreg
+   OPERAND2-(ascii_ptr)
+    COMMENT-;; Get the hexchar from memory
+    ADDRESS-0AE
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-wr_tx_l1
+   OPERAND2-
+    COMMENT-;; Write the hexchar to tx fifo
+    ADDRESS-0AF
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-ascii_ptr
+   OPERAND2-01
+    COMMENT-;; Increment ascii pointer
+    ADDRESS-0B0
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-ascii_ptr
+   OPERAND2-ASCII_ADR_ORH
+    COMMENT-;; Are we done?
+    ADDRESS-0B1
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-NZ
+   OPERAND2-write_tx_l1
+    COMMENT-;; If no, loop l1
+    ADDRESS-0B2
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-xreg
+   OPERAND2-ASCII_lf
+    COMMENT-;; Init xreg with the sentinel
+    ADDRESS-0B3
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-wr_tx_l1
+   OPERAND2-
+    COMMENT-;; Write the sentinel
+    ADDRESS-0B4
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-return0
+   OPERAND2-
+    COMMENT-;; Success! Return 0!
+    ADDRESS-0B5
+      LABEL-wr_tx_l1
+INSTRUCTION-INPUT
+   OPERAND1-yreg
+   OPERAND2-TX_FIFO_FULL
+    COMMENT-;; Get tx fifo full flag
+    ADDRESS-0B6
+      LABEL-
+INSTRUCTION-COMPARE
+   OPERAND1-yreg
+   OPERAND2-01
+    COMMENT-;; Is the tx fifo full?
+    ADDRESS-0B7
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-Z
+   OPERAND2-wr_tx_l1
+    COMMENT-;; If yes, loop l1
+    ADDRESS-0B8
+      LABEL-
+INSTRUCTION-OUTPUT
+   OPERAND1-xreg
+   OPERAND2-TX_FIFO_WRITE
+    COMMENT-;; Write hexchar to the tx fifo
+    ADDRESS-0B9
+      LABEL-
+INSTRUCTION-RETURN
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; Done writing, return
+    ADDRESS-0BA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-0BA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-0BA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ADDRESS-0BA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; These guys save a line of code on return. (They make the code
+    ADDRESS-0BA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;; shorter, too.)
+    ADDRESS-0BA
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-0BA
+      LABEL-return0
+INSTRUCTION-LOAD
+   OPERAND1-retval
+   OPERAND2-00
+    COMMENT-;; generic return 0
+    ADDRESS-0BB
+      LABEL-
+INSTRUCTION-RETURN
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+    ADDRESS-0BC
+      LABEL-return1
+INSTRUCTION-LOAD
+   OPERAND1-retval
+   OPERAND2-01
+    COMMENT-;; generic return 1
+    ADDRESS-0BD
+      LABEL-
+INSTRUCTION-RETURN
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+    ADDRESS-0BE
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;
+    ADDRESS-0BE
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

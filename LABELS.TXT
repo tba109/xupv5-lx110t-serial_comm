@@ -1,0 +1,31 @@
+Table of addresses and their specified labels.
+
+000  init
+032  poll_rx_fifo
+03C  poll_rsp_fifo
+045  read_rx
+04B  read_rx_l1
+05A  get_rx_char
+05B  get_rx_char_l1
+05C  get_rx_char_l2
+064  get_rx_char_rd
+066  rx_parse
+068  rx_parse_l2
+06A  rx_parse_l1
+073  rx_parse_sbe
+079  write_cmd
+07A  write_cmd_l1
+07B  write_cmd_l2
+083  cmd_wr
+085  cmd_wr_l1
+08C  read_rsp
+092  read_rsp_l1
+099  rsp_parse
+09B  rsp_parse_l2
+09E  rsp_parse_l1
+0A5  rsp_parse_sam
+0AA  write_tx
+0AD  write_tx_l1
+0B5  wr_tx_l1
+0BA  return0
+0BC  return1
