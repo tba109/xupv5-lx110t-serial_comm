@@ -1,0 +1,370 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Tyler Anderson Tue, Apr 07, 2015 10:07:50 AM
+;; 
+;; Convert incoming ascii hex character commands to 32-bit
+;; binary commands. For receiving, u 'x' as start character. 
+;; For transmitting, use 'q' as the start character. Use
+;; linefeed or space as sentinel for stop. 
+;;
+;; Used a few ideas from
+;; http://www.ivysim.com/picoblaze/dec2bin/
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; The ASCII characters we are looking for
+;; http://www.asciitable.com/
+;;
+CONSTANT ASCII_x      78
+CONSTANT ASCII_q      71
+CONSTANT ASCII_lf,    0a
+CONSTANT ASCII_space, 20
+CONSTANT ASCII_0,     30
+CONSTANT ASCII_1,     31
+CONSTANT ASCII_2,     32
+CONSTANT ASCII_3,     33
+CONSTANT ASCII_4,     34
+CONSTANT ASCII_5,     35
+CONSTANT ASCII_6,     36
+CONSTANT ASCII_7,     37
+CONSTANT ASCII_8,     38
+CONSTANT ASCII_9,     39
+CONSTANT ASCII_A,     41
+CONSTANT ASCII_B,     42
+CONSTANT ASCII_C,     43
+CONSTANT ASCII_D,     44
+CONSTANT ASCII_E,     45
+CONSTANT ASCII_F,     46
+
+;; Some port id addresses
+;;
+
+CONSTANT RX_FIFO_EMPTY , 00
+CONSTANT RX_FIFO_READ  , 01
+CONSTANT TX_FIFO_FULL  , 10
+CONSTANT TX_FIFO_WRITE , 11
+CONSTANT CMD_FIFO_DATA0, 20
+CONSTANT CMD_FIFO_DATA1, 21
+CONSTANT CMD_FIFO_DATA2, 22
+CONSTANT CMD_FIFO_DATA3, 23
+CONSTANT CMD_FIFO_DATA4, 24
+CONSTANT CMD_FIFO_DATA5, 25
+CONSTANT CMD_FIFO_DATA6, 26
+CONSTANT CMD_FIFO_DATA07 27
+CONSTANT CMD_FIFO_FULL , 28
+CONSTANT CMD_FIFO_WRITE, 29
+CONSTANT RSP_FIFO_DATA0, 40
+CONSTANT RSP_FIFO_DATA1, 41
+CONSTANT RSP_FIFO_DATA2, 42
+CONSTANT RSP_FIFO_DATA3, 43
+CONSTANT RSP_FIFO_DATA4, 44
+CONSTANT RSP_FIFO_DATA5, 45
+CONSTANT RSP_FIFO_DATA6, 46
+CONSTANT RSP_FIFO_DATA7, 47
+CONSTANT RSP_FIFO_EMPTY, 48
+CONSTANT RSP_FIFO_READ , 49
+
+;; Some useful scratch pad memory addresses
+;;
+CONSTANT ASCII_ADR_LO,               00
+CONSTANT ASCII_ADR_HI, ASCII_ADR_LO + 7
+CONSTANT BIN_ADR_LO  , ASCII_ADR_HI + 1
+CONSTANT BIN_ADR_HI  , BIN_ADR_LO   + 7
+CONSTANT MATCH_ADR_LO, BIN_ADR_HI   + 1
+CONSTANT MATCH_ADR_HI, MATCH_ADR_LO + 15
+
+;; Some useful register definitions
+;;
+NAMEREG xreg       , s0 ;; general purpose variable
+NAMEREG yreg       , s1 ;; general purpose variable
+NAMEREG ascii_ptr  , s2 ;; pointer to ascii rx or rsp hex chars in scratch pad memory
+NAMEREG bin_eqv    , s3 ;; tracks ascii pointer to find binary equivalent of hex char
+NAMEREG bin_ptr    , s4 ;; pointer to binary rx or rsp nybble in scratch pad memory
+NAMEREG match_ptr  , s5 ;; pointer to constant array of hex chars to match to rx or rsp
+NAMEREG cmd_pid    , s6 ;; Port id variable for command writing
+NAMEREG rsp_pid    , s7 ;; Port id variable for response reading
+NAMEREG cnt0       , SD ;; generic counter variable 
+NAMEREG cnt1       , sE ;; generic counter variable
+NAMEREG retval     , sF ;; return value for subroutines
+
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	        ;; No interrupt, and initialize the scratch pad with hexchar array to be 
+                ;; matched
+		;;
+	  init: DISABLE INTERRUPT  
+                LOAD    xreg       , MATCH_ADR_LO                
+	        STORE   ASCII_0    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_1    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_2    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_3    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_4    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_5    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_6    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_7    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_8    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_9    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_A    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_B    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_C    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_D    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_E    , xreg
+		ADD     xreg       , 01
+		STORE   ASCII_F    , xreg				
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;; This is the main loop 
+		;; 
+  
+                ;; Look for new data from receiver FIFO
+                ;;
+  poll_rx_fifo: INPUT   xreg  , RX_FIFO_EMPTY  ;; Poll rx fifo empty.
+	        COMPARE xreg  , 0              ;; Does rx fifo have something?
+                JUMP    NZ    , poll_rsp_fifo  ;; If no, go poll rsp fifo
+                CALL            read_rx        ;; Read rx and store in memory
+                COMPARE retval, 0              ;; Was read successful?
+                JUMP    NZ    , poll_rsp_fifo  ;; If no, skip to polling rsp fifo
+                CALL            rx_parse       ;; Convert rx ascii to binary
+                COMPARE retval, 0              ;; Was parsing successful?
+                JUMP    NZ    , poll_rsp_fifo  ;; If no, skip to polling rsp fifo
+                CALL            write_cmd      ;; Write binary to cmd fifo
+ 
+                ;; Look for new data from the response FIFO
+                ;; 
+ poll_rsp_fifo: INPUT   xreg  , RSP_FIFO_EMPTY ;; Poll rsp fifo empty.
+                COMPARE xreg  , 0              ;; Does rsp fifo have something?
+                JUMP    NZ    , poll_rx_fifo   ;; In no, go poll rx fifo
+                CALL            read_rsp       ;; Read rsp and store in memory
+                COMPARE retval, 0              ;; Was read successful?
+                JUMP    NZ    , poll_rx_fifo   ;; If no, skip to polling rx fifo  
+		CALL            rsp_parse      ;; Convert rsp binary to ascii
+                CALL            write_tx       ;; Write ascii to tx fifo
+   
+                JUMP            poll_rx_fifo   ;; Spin forever		
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;; Wait for rx fifo to have 'x', which is the start char. Then read it in
+                ;; and store all hexchars of command. (Note: these are parsed later.) 
+                ;; Finally, read in one more char and return an error if it's not the
+                ;; sentinel. If, at any point, you timeout while waiting for the rx fifo, 
+                ;; abort and return 1. 
+                ;;
+                ;; Returns: 0, command successfully read from rx fifo
+                ;;          1, command not successfully read from rx fifo
+                ;;
+       read_rx: CALL               get_rx_char       ;; Get a char from the rx fifo
+                COMPARE retval   , 1                 ;; Did we timeout?
+                JUMP    Z        , return1           ;; If yes, return with an error
+                COMPARE xreg     , ASCII_x           ;; Is it the start character?
+                JUMP    NZ       , read_rx           ;; If no, loop read_rx
+                LOAD    ascii_ptr, ASCII_ADR_HI      ;; Init ascii pointer 
+    read_rx_l1: CALL               get_rx_char       ;; Go get the char, store in xreg 
+		COMPARE retval   , 01                ;; Did we successfully read a char?
+		JUMP    Z        , return1           ;; If no, return 1
+                STORE   xreg     , (ascii_ptr)       ;; Store new char
+                SUB     ascii_ptr, 01                ;; Calc new char's mem loc
+                COMPARE ascii_ptr, ASCII_ADR_LOW - 1 ;; Are we done reading chars?
+                JUMP    NZ       , read_rx_l1        ;; If no, loop l1
+                CALL               get_rx_char       ;; Get the last character
+                COMPARE retval   , 1                 ;; Did we timeout?
+                JUMP    Z        , return1           ;; If yes, return with error
+                COMPARE xreg     , ASCII_lf          ;; Is it linefeed?
+		JUMP    Z        , return0           ;; If yes, SUCCESS! Return 0!
+		COMPARE xreg     , ASCII_space       ;; Is it space?
+		JUMP    Z        , return0           ;; If yes, SUCCESS! Return 0!
+		JUMP               return1           ;; FAIL! No sentinel found! Return 1!
+
+   get_rx_char: LOAD    cnt0, ff                    ;; Init outer counter
+get_rx_char_l1: LOAD    cnt1, ff                    ;; Init inner counter
+get_rx_char_l2: INPUT   xreg, RX_FIFO_EMPTY         ;; read the rx fifo empty signal
+                COMPARE xreg, 0                     ;; Does rx fifo have something?
+                JUMP    Z   , get_rx_char_rd        ;; If yes, go read it in
+		SUB     cnt1, 1                     ;; Decrement inner counter
+                JUMP    NZ  , get_rx_char_l2        ;; Loop inner if not expired
+                SUB     cnt0, 1                     ;; Decrement outer counter
+                JUMP    NZ  , get_rx_char_l1        ;; Loop outer if not expired
+                JUMP          return1               ;; FAIL! Return 1!
+get_rx_char_rd:	INPUT   xreg, RX_FIFO_READ          ;; Read in RX FIFO
+                JUMP          return0               ;; SUCCESS! Return 0!
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;; Parse through the ascii rx packet, testing the current character
+                ;; against our constant array of matching characters. Store the binary
+                ;; equivalent result in scratch pad memory.
+                ;;
+                ;; We require 8 hexchars ('0' thru '9' or 'A' thru 'F'). If anything is 
+                ;; amiss, abort.
+                ;; 
+                ;; Returns: 0, parse sucessful
+                ;;          1, parse aborted
+		;;
+      rx_parse: LOAD    ascii_ptr, ASCII_ADR_LO   ;; Init the ascii pointer
+                LOAD    bin_ptr  , BIN_ADR_LO     ;; Init the binary pointer
+   rx_parse_l2: LOAD    match_ptr, MATCH_ADR_LO   ;; Init match pointer
+  		LOAD    bin_eqv  , 0              ;; Init binary equivalent value
+   rx_parse_l1:	FETCH   xreg     , (ascii_ptr)    ;; Get the first hexchar
+		FETCH   yreg     , (match_ptr)    ;; Get the first match for test
+                COMPARE xreg     , yreg           ;; Does hexchar match?  
+		JUMP    Z        , rx_parse_sbe   ;; If yes, store binary equiv
+                COMPARE match_ptr, MATCH_ADR_HI   ;; Have we tested all match?
+                JUMP    Z        , return1        ;; If yes, match failed! Abort!
+                ADD     match_ptr, 1              ;; If no, increment match address
+                ADD     bin_eqv  , 1              ;; If no, increment binary equiv
+                JUMP               rx_parse_l1    ;; Loop
+		
+  rx_parse_sbe: STORE   bin_eqv  , (bin_ptr)      ;; Store bin equiv at bin pointer
+                ADD     bin_ptr  , 01             ;; Increment bin pointer
+                ADD     ascii_ptr, 01             ;; Increment ascii pointer
+                COMPARE ascii_ptr, ASCII_ADR_HI+1 ;; Parsed all 8 characters?
+                JUMP    NZ       , rx_parse_l2    ;; If no, loop l2 
+                JUMP               return0        ;; Success! Return 0!
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	        ;; Write all nybbles of the command word. Wait for CMD FIFO not full. 
+                ;; If timeout, abort and return 1.
+		;;
+		;; Returns: 0, CMD word successfully written to CMD FIFO
+		;;          1, CMD word not successfully written to CMD FIFO
+		;;
+     write_cmd: LOAD    cnt0, ff              ;; Init outer counter
+  write_cmd_l1: LOAD    cnt1, ff              ;; Init inner counter
+  write_cmd_l2: INPUT   xreg, CMD_FIFO_FULL   ;; Read the CMD FIFO full signal
+		COMPARE xreg, 0               ;; Is CMD_FIFO full?
+		JUMP    Z   , cmd_wr          ;; If no, set command nybbles and write
+		SUB     cnt1, 1               ;; Decrement inner couter
+		JUMP    NZ  , write_cmd_l2    ;; Loop inner if not expired
+                SUB     cnt0, 1               ;; Decrement outer counter
+                JUMP    NZ  , write_cmd_l1    ;; Loop outer if not expired
+		JUMP          return1         ;; FAIL! Return 1!
+
+        cmd_wr: LOAD    bin_ptr, BIN_ADR_LO     ;; Init binary pointer
+                LOAD    cmd_pid, CMD_FIFO_DATA0 ;; Init command port id pointer
+     cmd_wr_l1: FETCH   bin_eqv, (bin_ptr)      ;; Get the bin eqv from memory
+		OUTPUT  bin_eqv, cmd_pid        ;; Set the output nybble
+		ADD     bin_ptr, 01             ;; Incrememt bin_ptr
+                ADD     cmd_pid, 01             ;; Increment cmd_pid
+		COMPARE bin_ptr, BIN_ADR_HI + 1 ;; Are we done writing?
+		JUMP    NZ     , cmd_wr_l1      ;; If no, loop.
+		JUMP             return0        ;; Done 
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	        ;; Poll for RSP FIFO not empty and read all nybbles of response word,
+		;; storing them in memory.
+		;;
+		;; Returns: 0, RSP word successfully read from RSP FIFO and stored
+		;;          1, RSP word not successful read from RSP FIFO and stored
+		;;
+      read_rsp: INPUT   xreg       , RSP_FIFO_EMPTY ;; Poll rsp fifo empty
+                COMPARE xreg       , 0              ;; Does rsp fifo have something?
+                JUMP    NZ         , return1        ;; If no, return 1
+                OUTPUT  xreg       , RSP_FIFO_READ  ;; Read rsp fifo
+		LOAD    bin_ptr    , BIN_ADR_LO     ;; Init binary pointer
+		LOAD    rsp_pid    , RSP_FIFO_DATA0 ;; Init response port id
+   read_rsp_l1: INPUT   bin_eqv    , (rsp_pid)      ;; Read rsp nybble
+                STORE   bin_eqv    , (bin_ptr)      ;; Store rsp nybble
+		ADD     rsp_pid    , 1              ;; Increment rsp port id
+                ADD     bin_ptr    , 1              ;; Increment binary pointer
+                COMPARE bin_ptr    , BIN_ADR_HI+1   ;; Are we done reading response?
+		JUMP    NZ         , read_rsp_l1    ;; If no, loop l1
+		JUMP                 return0        ;; If yes, return 0
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;; Parse through the binary rsp packet, converting binary nybbles to
+		;; hexchar equivalents. Store the result in scratch pad memory.
+		;; 
+                ;; Returns: 0, success (should always find match)
+		;;
+     rsp_parse: LOAD    bin_ptr  , BIN_ADR_LO     ;; Init the binary pointer
+                LOAD    ascii_ptr, ASCII_ADR_LO   ;; Init the ascii pointer
+  rsp_parse_l2: LOAD    match_ptr, MATCH_ADR_LO   ;; Init the match pointer
+                LOAD    bin_eqv  , 0              ;; Init the binary equivalent
+                FETCH   xreg     , (bin_ptr)      ;; Get the nybble
+  rsp_parse_l1: COMPARE xreg     , bin_eqv        ;; Did we find a match?
+                JUMP    Z        , rsp_parse_sam  ;; If yes, store ascii match
+                COMPARE bin_ptr  , BIN_ADR_HI + 1 ;; Are we done parsing response?
+                JUMP    Z        , return0        ;; If yes, succecss! Return 0!
+		ADD     match_ptr, 1              ;; Increment match pointer
+                ADD     bin_eqv  , 1              ;; Increment binary equivalent
+                JUMP               rsp_parse_l1   ;; Loop l1
+
+ rsp_parse_sam: FETCH   xreg     , (match_ptr)    ;; Get the hexchar 
+                STORE   xreg     , (ascii_ptr)    ;; Store it in scratch pad memory
+                ADD     bin_ptr  , 1              ;; Increment the binary pointer
+                ADD     ascii_ptr, 1              ;; Increment the ascii pointer
+                JUMP               rsp_parse_l2   ;; Go process the next character   
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                ;; Write a start character. Then write all hexchars to the tx fifo. 
+                ;; Finally, write a sentinel linefeed. Block at tx fifo full. Note that 
+                ;; as long as the transmitter is draining the tx fifo at some point, 
+                ;; hangups won't happen here.
+		;;
+		;; Returns: 0, success (should always be able to write, eventually...)
+                ;; 
+      write_tx: LOAD    xreg     , ASCII_q          ;; Init xreg with the starting char 
+                CALL               wr_tx_l1         ;; Write the start character
+                LOAD    ascii_ptr, ASCII_ADR_LO     ;; Init the ascii pointer
+   write_tx_l1:	FETCH   xreg     , (ascii_ptr)      ;; Get the hexchar from memory
+		CALL               wr_tx_l1         ;; Write the hexchar to tx fifo
+		ADD     ascii_ptr, 1                ;; Increment ascii pointer
+		COMPARE ascii_ptr, ASCII_ADR_HI + 1 ;; Are we done?
+		JUMP    NZ       , write_tx_l1      ;; If no, loop l1
+                LOAD    xreg     , ASCII_lf         ;; Init xreg with the sentinel
+                CALL               wr_tx_l1         ;; Write the sentinel 
+                JUMP               return0          ;; Success! Return 0!
+   
+      wr_tx_l1: INPUT   yreg     , TX_FIFO_FULL     ;; Get tx fifo full flag
+                COMPARE yreg     , 1                ;; Is the tx fifo full?
+		JUMP    Z        , wr_tx_l1         ;; If yes, loop l1
+                OUTPUT  xreg     , TX_FIFO_WRITE    ;; Write hexchar to the tx fifo
+                RETURN                              ;; Done writing, return
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	        ;; These guys save a line of code on return. (They make the code
+		;; shorter, too.)
+		;;
+       return0: LOAD retval, 00 ;; generic return 0
+                RETURN
+       
+       retval1: LOAD retval, 01 ;; generic return 1
+                RETURN
+                ;;
+                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
