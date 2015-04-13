@@ -1,0 +1,5 @@
+set -tmpdir "/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/xst/projnav.tmp"
+set -xsthdpdir "/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/xst"
+elaborate
+-ifn rs232_if.prj
+-ifmt mixed

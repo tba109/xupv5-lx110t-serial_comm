@@ -1,0 +1,68 @@
+INFO:sim:172 - Generating IP...
+Resolving generics for 'fifo_16_32_dis'...
+Applying external generics to 'fifo_16_32_dis'...
+Delivering associated files for 'fifo_16_32_dis'...
+Delivering EJava files for 'fifo_16_32_dis'...
+Generating implementation netlist for 'fifo_16_32_dis'...
+INFO:sim - Pre-processing HDL files for 'fifo_16_32_dis'...
+WARNING:sim - BlackBox generator run option '-ifmt' found multiple times. Only
+   the first occurence is considered.
+Running synthesis for 'fifo_16_32_dis'
+Running ngcbuild...
+Writing VEO instantiation template for 'fifo_16_32_dis'...
+Writing Verilog behavioral simulation model for 'fifo_16_32_dis'...
+WARNING:sim - Overwriting existing file
+   /home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/tmp/_cg/fifo
+   _16_32_dis/doc/fifo_generator_v9_3_vinfo.html with file from view
+   xilinx_documentation
+Delivered 3 files into directory
+/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/tmp/_cg/fifo_16
+_32_dis
+Delivered 1 file into directory
+/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/tmp/_cg/fifo_16
+_32_dis
+Generating ASY schematic symbol...
+INFO:sim:949 - Finished generation of ASY schematic symbol.
+Generating SYM schematic symbol for 'fifo_16_32_dis'...
+Generating metadata file...
+Generating ISE project file for 'fifo_16_32_dis'...
+Generating ISE project...
+XCO file found: fifo_16_32_dis.xco
+XMDF file found: fifo_16_32_dis_xmdf.tcl
+Adding
+/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/tmp/_cg/fifo_16
+_32_dis.asy -view all -origin_type imported
+Adding
+/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/tmp/_cg/fifo_16
+_32_dis.ngc -view all -origin_type created
+Checking file
+"/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/tmp/_cg/fifo_1
+6_32_dis.ngc" for project device match ...
+File
+"/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/tmp/_cg/fifo_1
+6_32_dis.ngc" device information matches project device.
+Adding
+/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/tmp/_cg/fifo_16
+_32_dis.sym -view all -origin_type imported
+Adding
+/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/tmp/_cg/fifo_16
+_32_dis.v -view all -origin_type created
+INFO:HDLCompiler:1845 - Analyzing Verilog file
+   "/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/tmp/_cg/fif
+   o_16_32_dis.v" into library work
+INFO:ProjectMgmt - Parsing design hierarchy completed successfully.
+Adding
+/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/tmp/_cg/fifo_16
+_32_dis.veo -view all -origin_type imported
+INFO:TclTasksC:2116 - The automatic calculation of top has been turned-off.
+   Please set the new top explicitly by running the "project set top" command.
+   To re-calculate the new top automatically, set the "Auto Implementation Top"
+   property to true.
+Top level has been set to "/fifo_16_32_dis"
+Generating README file...
+Generating FLIST file...
+INFO:sim:948 - Finished FLIST file generation.
+Launching README viewer...
+Moving files to output directory...
+Finished moving files to output directory
+Wrote CGP file for project 'fifo_16_32_dis'.

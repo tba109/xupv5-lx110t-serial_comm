@@ -8,7 +8,7 @@
 <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.    -->
 
 <messages>
-<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/cygwin64/home/volundr/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/fifo_16_8_dis.v&quot; into library work</arg>
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;/home/tyler/sat_erp/firmware/xupv5-lx110t-serial_comm/ipcore_dir/fifo_16_32_dis.v&quot; into library work</arg>
 </msg>
 
 </messages>

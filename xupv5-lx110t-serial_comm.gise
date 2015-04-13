@@ -36,6 +36,7 @@
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/trce.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
+    <file xil_pn:fileType="FILE_LOG" xil_pn:name="ipcore_dir/coregen.log"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
@@ -89,6 +90,13 @@
     <file xil_pn:fileType="FILE_XST" xil_pn:name="rs232_des.xst"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="rs232_des_tb_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="rs232_des_tb_stx_beh.prj"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="rs232_if.prj"/>
+    <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="rs232_if.stx"/>
+    <file xil_pn:fileType="FILE_XST" xil_pn:name="rs232_if.xst"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="rs232_if_tb_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="rs232_if_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="rs232_if_tb_isim_beh.wdb"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="rs232_if_tb_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="rs232_ser.prj"/>
     <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="rs232_ser.stx"/>
     <file xil_pn:fileType="FILE_XST" xil_pn:name="rs232_ser.xst"/>
@@ -148,63 +156,87 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1428413939" xil_pn:in_ck="-7216908724272796580" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1428413939">
+    <transform xil_pn:end_ts="1428864560" xil_pn:in_ck="-1663813618890262138" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1428864560">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="fncs.h"/>
-      <outfile xil_pn:name="loopback_top_tb.v"/>
+      <outfile xil_pn:name="kcpsm3.v"/>
+      <outfile xil_pn:name="khex2bin.v"/>
       <outfile xil_pn:name="posedge_detector.v"/>
       <outfile xil_pn:name="rs232_des.v"/>
+      <outfile xil_pn:name="rs232_if.v"/>
+      <outfile xil_pn:name="rs232_if_tb.v"/>
       <outfile xil_pn:name="rs232_ser.v"/>
       <outfile xil_pn:name="rs232_ser_tb.v"/>
-      <outfile xil_pn:name="rs232_serdes.v"/>
       <outfile xil_pn:name="rs232_serdes_tb.v"/>
       <outfile xil_pn:name="sync.v"/>
     </transform>
-    <transform xil_pn:end_ts="1428412775" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-5634853915184706099" xil_pn:start_ts="1428412775">
+    <transform xil_pn:end_ts="1428864305" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="1636472983257477846" xil_pn:start_ts="1428864305">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1428412775" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="5420147221400028219" xil_pn:start_ts="1428412775">
+    <transform xil_pn:end_ts="1428864305" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="1365848406890759428" xil_pn:start_ts="1428864305">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1428412743" xil_pn:in_ck="5453758188732042919" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="-2447797775284604243" xil_pn:start_ts="1428412743">
+    <transform xil_pn:end_ts="1428864305" xil_pn:in_ck="5077959913751545307" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="716421638810895286" xil_pn:start_ts="1428864305">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="ipcore_dir/fifo_16_32_dis.ngc"/>
+      <outfile xil_pn:name="ipcore_dir/fifo_16_32_dis.v"/>
       <outfile xil_pn:name="ipcore_dir/fifo_16_8_dis.ngc"/>
       <outfile xil_pn:name="ipcore_dir/fifo_16_8_dis.v"/>
     </transform>
-    <transform xil_pn:end_ts="1428413939" xil_pn:in_ck="6130751443916053775" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1428413939">
+    <transform xil_pn:end_ts="1428864560" xil_pn:in_ck="-1135138730422440583" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1428864560">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="fncs.h"/>
+      <outfile xil_pn:name="ipcore_dir/fifo_16_32_dis.v"/>
       <outfile xil_pn:name="ipcore_dir/fifo_16_8_dis.v"/>
-      <outfile xil_pn:name="loopback_top_tb.v"/>
+      <outfile xil_pn:name="kcpsm3.v"/>
+      <outfile xil_pn:name="khex2bin.v"/>
       <outfile xil_pn:name="posedge_detector.v"/>
       <outfile xil_pn:name="rs232_des.v"/>
+      <outfile xil_pn:name="rs232_if.v"/>
+      <outfile xil_pn:name="rs232_if_tb.v"/>
       <outfile xil_pn:name="rs232_ser.v"/>
       <outfile xil_pn:name="rs232_ser_tb.v"/>
-      <outfile xil_pn:name="rs232_serdes.v"/>
       <outfile xil_pn:name="rs232_serdes_tb.v"/>
       <outfile xil_pn:name="sync.v"/>
     </transform>
-    <transform xil_pn:end_ts="1428413942" xil_pn:in_ck="6130751443916053775" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="6858201614025243873" xil_pn:start_ts="1428413939">
+    <transform xil_pn:end_ts="1428864564" xil_pn:in_ck="-1135138730422440583" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="2622677001071687507" xil_pn:start_ts="1428864560">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="isim"/>
       <outfile xil_pn:name="isim.log"/>
-      <outfile xil_pn:name="rs232_serdes_tb_beh.prj"/>
-      <outfile xil_pn:name="rs232_serdes_tb_isim_beh.exe"/>
+      <outfile xil_pn:name="rs232_if_tb_beh.prj"/>
+      <outfile xil_pn:name="rs232_if_tb_isim_beh.exe"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1428413942" xil_pn:in_ck="-7881772297873780311" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-5247079453535251004" xil_pn:start_ts="1428413942">
+    <transform xil_pn:end_ts="1428864564" xil_pn:in_ck="-2620870097303318541" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-7460204609864034730" xil_pn:start_ts="1428864564">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>
-      <outfile xil_pn:name="rs232_serdes_tb_isim_beh.wdb"/>
+      <outfile xil_pn:name="rs232_if_tb_isim_beh.wdb"/>
     </transform>
     <transform xil_pn:end_ts="1427940700" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1427940700">
       <status xil_pn:value="SuccessfullyRun"/>
@@ -213,10 +245,14 @@
     <transform xil_pn:end_ts="1428410509" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="-773711434953776794" xil_pn:start_ts="1428410509">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
     <transform xil_pn:end_ts="1428410509" xil_pn:in_ck="5453758188732042919" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="-2447797775284604243" xil_pn:start_ts="1428410509">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="InputAdded"/>
       <outfile xil_pn:name="ipcore_dir/fifo_16_8_dis.ngc"/>
       <outfile xil_pn:name="ipcore_dir/fifo_16_8_dis.v"/>
     </transform>
@@ -227,81 +263,77 @@
     <transform xil_pn:end_ts="1428410509" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="2343367858227498936" xil_pn:start_ts="1428410509">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
     <transform xil_pn:end_ts="1428410509" xil_pn:in_ck="-4493420508938093066" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="-8458126479482839362" xil_pn:start_ts="1428410509">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
     </transform>
     <transform xil_pn:end_ts="1428410509" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="-288054248558869001" xil_pn:start_ts="1428410509">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
     </transform>
     <transform xil_pn:end_ts="1428411751" xil_pn:in_ck="-1504985253058753215" xil_pn:name="TRANEXT_xstsynthesize_virtex5" xil_pn:prop_ck="3315461208409183275" xil_pn:start_ts="1428411742">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="InputRemoved"/>
       <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name=".lso"/>
-      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
-      <outfile xil_pn:name="rs232_serdes.lso"/>
-      <outfile xil_pn:name="rs232_serdes.ngc"/>
-      <outfile xil_pn:name="rs232_serdes.ngr"/>
-      <outfile xil_pn:name="rs232_serdes.prj"/>
-      <outfile xil_pn:name="rs232_serdes.stx"/>
-      <outfile xil_pn:name="rs232_serdes.syr"/>
-      <outfile xil_pn:name="rs232_serdes.xst"/>
-      <outfile xil_pn:name="rs232_serdes_xst.xrpt"/>
-      <outfile xil_pn:name="webtalk_pn.xml"/>
-      <outfile xil_pn:name="xst"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1428412024" xil_pn:in_ck="-1142874832039636034" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-7169940499402396573" xil_pn:start_ts="1428412024">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
     </transform>
     <transform xil_pn:end_ts="1428412030" xil_pn:in_ck="-4226652009205661286" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-7023277268777493194" xil_pn:start_ts="1428412024">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="_ngo"/>
-      <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
-      <outfile xil_pn:name="rs232_serdes.bld"/>
-      <outfile xil_pn:name="rs232_serdes.ngd"/>
-      <outfile xil_pn:name="rs232_serdes_ngdbuild.xrpt"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1428412054" xil_pn:in_ck="-6285371923980413658" xil_pn:name="TRANEXT_map_virtex5" xil_pn:prop_ck="6733564432430981316" xil_pn:start_ts="1428412030">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
-      <outfile xil_pn:name="rs232_serdes.pcf"/>
-      <outfile xil_pn:name="rs232_serdes_map.map"/>
-      <outfile xil_pn:name="rs232_serdes_map.mrp"/>
-      <outfile xil_pn:name="rs232_serdes_map.ncd"/>
-      <outfile xil_pn:name="rs232_serdes_map.ngm"/>
-      <outfile xil_pn:name="rs232_serdes_map.xrpt"/>
-      <outfile xil_pn:name="rs232_serdes_summary.xml"/>
-      <outfile xil_pn:name="rs232_serdes_usage.xml"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1428412086" xil_pn:in_ck="5787847866264717119" xil_pn:name="TRANEXT_par_virtex5" xil_pn:prop_ck="-4097515898943074650" xil_pn:start_ts="1428412054">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
-      <outfile xil_pn:name="rs232_serdes.ncd"/>
-      <outfile xil_pn:name="rs232_serdes.pad"/>
-      <outfile xil_pn:name="rs232_serdes.par"/>
-      <outfile xil_pn:name="rs232_serdes.ptwx"/>
-      <outfile xil_pn:name="rs232_serdes.unroutes"/>
-      <outfile xil_pn:name="rs232_serdes.xpi"/>
-      <outfile xil_pn:name="rs232_serdes_pad.csv"/>
-      <outfile xil_pn:name="rs232_serdes_pad.txt"/>
-      <outfile xil_pn:name="rs232_serdes_par.xrpt"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1428412086" xil_pn:in_ck="-6285371923980413790" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416183" xil_pn:start_ts="1428412077">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>
-      <outfile xil_pn:name="rs232_serdes.twr"/>
-      <outfile xil_pn:name="rs232_serdes.twx"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
   </transforms>
 

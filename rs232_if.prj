@@ -1,0 +1,6 @@
+verilog work "sync.v"
+verilog work "posedge_detector.v"
+verilog work "rs232_ser.v"
+verilog work "rs232_des.v"
+verilog work "ipcore_dir/fifo_16_8_dis.v"
+verilog work "rs232_if.v"
